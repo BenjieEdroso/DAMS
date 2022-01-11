@@ -14,7 +14,7 @@ if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
     <table class="table bg-white rounded">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">File Id</th>
                 <th scope="col">File Name</th>
                 <th scope="col">File Type</th>
                 <th scope="col">File Temporary Name</th>
