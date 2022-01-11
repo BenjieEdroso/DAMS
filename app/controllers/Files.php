@@ -59,42 +59,45 @@ class Files extends Controller{
      
     }
 
-    public function uploadFile(){
-    $data = [
-      "upload_msg" => "",
-      "name" => "",
-      "type" => "",
-      "tmp_name" => "",
-      "error" => "",
-      "size" => "",
-    ];
+    public function upload_file(){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      for ($k = 0; $k < count($_FILES["file"]["name"]); $k++){
-        $fileDir = APPROOT . "\uploads\\" . basename($_FILES["file"]["name"][$k]);
-        if ( $this->uploadsModel->checkDuplicate($_FILES["file"]["name"][$k]) == 0 && !file_exists($fileDir)) {
-          for ($i = 0; $i < count($_FILES["file"]); $i++) {
-            $data = [
-              "name" => $_FILES["file"]["name"][$i],
-              "type" => $_FILES["file"]["type"][$i],
-              "tmp_name" => $_FILES["file"]["tmp_name"][$i],
-              "error" => $_FILES["file"]["error"][$i],
-              "size" => $_FILES["file"]["size"][$i],
-            ];
-            if ($_FILES["file"]["error"][$i] == 0 && $this->uploadsModel->upload($data)) {
-           
-              move_uploaded_file($data["tmp_name"], $fileDir );
+      //tmp name
+      foreach($_FILES["file"]["error"] as $key => $error){
+        $data = [
+        "name" => $_FILES["file"]["name"][$key],
+        "type" => $_FILES["file"]["type"][$key],
+        "tmp_name" => $_FILES["file"]["tmp_name"][$key],
+        "error" => $_FILES["file"]["error"][$key],
+        "size" => $_FILES["file"]["size"][$key],
+        "upload_msg" => ""
+      ];
+      
+        $tmp_name = $_FILES["file"]["tmp_name"][$key];
+        //file name
+        $name = basename($_FILES["file"]["name"][$key]);
+       
+      //if no error
+        if($error == UPLOAD_ERR_OK){
+          //if file name is not in the uploads folder and in the database
+          if(!file_exists(APPROOT."\uploads\\".$name) && $this->uploadsModel->checkDuplicate($name) == 0){
+            $this->uploadsModel->upload($data);
+            if(move_uploaded_file($tmp_name, APPROOT . "\uploads\\".$name)){
+              $data["upload_msg"] = "File successfully moved.";
               redirect("admin/documents");
-
-
-              
+            }else{
+              $data["upload_msg"] = "Error in moving of " . $name . " : " . $error;
             }
-          }
-        }
-        elseif ($this->uploadsModel->checkDuplicate($_FILES["file"]["name"][$k]) > 0 || file_exists($fileDir)) {
-          $data["upload_msg"] = "File is already archived";
+          }else if (file_exists(APPROOT."\uploads\\".$name) && $this->uploadsModel->checkDuplicate($name) > 0){
+            $data["upload_msg"] = "File is already uploaded.";
+          }  
+        }else{
+          $data["upload_msg"] = "Error uploading of " . $name . " : " . $error;
         }
       }
+      
     }
+
+    
   }
 
   public function downloadFile(){
