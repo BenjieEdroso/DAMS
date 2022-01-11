@@ -100,7 +100,7 @@ class Files extends Controller{
     
   }
 
-  public function downloadFile(){
+  public function download(){
     $file_name = $_GET["fileName"];
     $file_path = APPROOT . "\uploads\\" . $file_name;
       header("Content-Description", "File Transfer");
@@ -134,6 +134,8 @@ class Files extends Controller{
     redirect("admin/documents");
   }
 
+
+  
   
 
 }
