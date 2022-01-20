@@ -93,4 +93,8 @@ a {
   transform: translate(-50%, -50%);
 }
 
+.upload-alert {
+  transition: all 1s;
+}
+
 /*# sourceMappingURL=style.css.map */

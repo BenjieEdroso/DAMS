@@ -24,10 +24,11 @@ if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
                 <th scope="col">Actions</th>
             </tr>
         </thead>
-        <tbody class="table-body">
-
+        <tbody class="table-body" id="table">
+            <?php print_r($data)?>
         </tbody>
     </table>
 </div>
+
 <?php require_once APPROOT . "/views/includes/admin-main-footer.php"; ?>
 <?php require_once APPROOT . "/views/includes/footer.php"; ?>
