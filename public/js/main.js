@@ -1,3 +1,4 @@
+
 $(".modal-btn-open").on("click", function(){
     let file_id = $(this).attr("id");
     $.ajax({
@@ -16,6 +17,7 @@ $(".modal-btn-open").on("click", function(){
 
 $(".modal-btn-close, .close").on("click", function(){
     $("#myModal").modal("hide");
+    location.reload();
 });
 
 $("#editForm").on("submit", function (e){
@@ -28,7 +30,13 @@ $("#editForm").on("submit", function (e){
         method: "post",
         data: data,
         success: function(data){
-            console.log(data);
+
+            $(".edit-msg").html(data)
+                $(".edit-alert").fadeIn(1000);
+                $(".edit-alert").delay(900).fadeOut(1000);
+
         }
     })
 })
+
+$(".edit-alert").delay(900).fadeOut(1500);
