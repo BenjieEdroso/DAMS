@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Documents extends Controller
 {
   public function __construct()
@@ -18,7 +18,7 @@ class Documents extends Controller
   //upload the file to system move to folder and insert meta data to database.
   public function upload_file()
   {
-    $_SESSION["upload_msg"] = "";
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       foreach ($_FILES["file"]["error"] as $key => $error) {
         $data = [
@@ -36,16 +36,16 @@ class Documents extends Controller
             if (move_uploaded_file($tmp_name, APPROOT . "\uploads\\" . $name)) {
               $this->uploadsModel->upload($data);
               $data["upload_msg"] = "File successfully uploaded.";
-              $_SESSION["upload_msg"] = $data["upload_msg"];
+
               redirect("admin/documents");
             } else {
               $data["upload_msg"] = "Error in moving of " . $name . " : " . $error;
-              $_SESSION["upload_msg"] = $data["upload_msg"];
+
             }
           } else if (file_exists(APPROOT . "\uploads\\" . $name) && $this->uploadsModel->checkDuplicate($name) > 0) {
             $data["upload_msg"] = "File is already uploaded.";
-            $_SESSION["upload_msg"] = $data["upload_msg"];
-            $this->view("admin/documents");
+
+            $this->view("admin/documents", $data);
           }
         } else {
           $data["upload_msg"] = "Error in uploading of " . $name . " : " . $error;
@@ -96,20 +96,26 @@ class Documents extends Controller
             "file_name_old" => $_POST["file_name_old"]
         );
 
+        //if the string has .pdf remove it
+        if(str_contains($data["file_name"], ".pdf")){
+            $data["file_name"] = str_replace(".pdf", "", $data["file_name"]);
+        }
 
         if ($this->fileModel->save_changes($data)) {
             $path = APPROOT . "\uploads\\";
             $old_name = $data["file_name_old"];
             $new_name = $data["file_name"];
-
+            $extension = ".pdf";
             if (file_exists($path . $old_name)) {
-                rename($path . $old_name, $path . $new_name);
+                rename($path . $old_name, $path . $new_name . $extension);
             }
+
+//            $data["edit_msg"] = ;
+//            $_SESSION["edit_msg"] = $data["edit_msg"];
+            echo "Changes are saved";
+
         }
-        //query to database
-//        if($this->fileModel->save_changes($data)){
-//            echo "Changes saved";
-//        }
+
 
     }
 
