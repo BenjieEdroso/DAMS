@@ -1,12 +1,34 @@
-import { setDocTableData } from "./setDocTableData.js";
+$(".modal-btn-open").on("click", function(){
+    let file_id = $(this).attr("id");
+    $.ajax({
+        url: "http://localhost/DAMS/documents/select_file",
+        method: "post",
+        data: {file_id: file_id},
+        success: function(data){
+            let file_name = data;
+            $("#fileName").val(data);
+            $("#fileNameOld").val(file_name);
 
-setDocTableData();
+        }
+    })
+    $("#myModal").modal("show");
+})
 
-//set the location with controller and method
-//concatenate file_id to get parameters
+$(".modal-btn-close, .close").on("click", function(){
+    $("#myModal").modal("hide");
+});
 
-//when i click edit button
-let table = document.getElementById("table");
-console.log(table);
-//pop up modal
-//display $data in input fields
+$("#editForm").on("submit", function (e){
+    e.preventDefault();
+    let data = $(this).serialize();
+
+
+    $.ajax({
+        url: "http://localhost/DAMS/documents/save_edit",
+        method: "post",
+        data: data,
+        success: function(data){
+            console.log(data);
+        }
+    })
+})

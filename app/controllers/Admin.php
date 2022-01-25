@@ -1,5 +1,9 @@
 <?php
 class Admin extends Controller{
+    public function __construct()
+    {
+        $this->fileModel = $this->model("FileModel");
+    }
 
     public function index(){
         return;
@@ -9,7 +13,8 @@ class Admin extends Controller{
         $this->view("admin/dashboard");
     }
     public function documents(){
-        $this->view("admin/documents");
+        $data = $this->fileModel->view_data();
+        $this->view("admin/documents", $data);
     }
     public function archive(){
         $this->view("admin/archive");

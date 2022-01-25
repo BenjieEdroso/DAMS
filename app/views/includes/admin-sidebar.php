@@ -1,4 +1,4 @@
-<main class="d-flex">
+<main class="d-flex  " >
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-success vh-100 " style="width: 220px;">
         <a href="<?php echo URLROOT?>/pages/admin"
             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">

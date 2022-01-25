@@ -1,10 +1,10 @@
-<div class="w-100 bg-light">
+<div class="w-100 bg-light "  >
     <nav class="navbar navbar-expand-md navbar-light bg-white  mb-3 h-2 ">
         <div class="container-fluid">
             <div class="collapse navbar-collapse d-flex align-items-center" id="navbarCollapse">
                 <?php if($_SERVER["REDIRECT_QUERY_STRING"] === 'url=admin/documents') {?>
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <form action="<?php echo URLROOT;?>/files/upload_file" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo URLROOT;?>/documents/upload_file" method="post" enctype="multipart/form-data">
                         <div class="input-group">
                             <input type="file" class="form-control" name="file[]" id="file" multiple>
                             <input type="submit" class="btn btn-outline-primary" value="Upload" id="submit">
@@ -12,9 +12,10 @@
                     </form>
                 </ul>
                 <?php };?>
+                
                 <?php if(isset($_SESSION["upload_msg"])){ ?>
-                <div class="alert alert-success w-50 upload-alert" role="alert"
-                    style="line-height: 15px; padding: 10px 15px; margin: 0 15px;">
+                <div class="alert <?php if($_SESSION["upload_msg"] == "File successfully uploaded."){?> alert-success <?php }else if($_SESSION["upload_msg"] == "File is already uploaded."){?> alert-danger<?php }?> col-4 upload-alert" role="alert"
+                    style="line-height: 15px; padding: 10px 15px; margin: 0 15px; ">
                     <?php print_r($_SESSION["upload_msg"]);?>
                 </div>
                 <?php }?>
