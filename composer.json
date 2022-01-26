@@ -1,6 +1,7 @@
 {
     "require": {
-        "defuse/php-encryption": "^2.3"
+        "defuse/php-encryption": "^2.3",
+        "knplabs/knp-snappy": "^1.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"

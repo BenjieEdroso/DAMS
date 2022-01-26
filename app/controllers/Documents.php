@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 class Documents extends Controller
 {
   public function __construct()
@@ -8,17 +9,13 @@ class Documents extends Controller
     $this->uploadsModel = $this->model("Upload");
   }
 
-  //load primary view
   public function index()
   {
     $this->view("pages/admin");
   }
-
-  //Create document
-  //upload the file to system move to folder and insert meta data to database.
+  //Create
   public function upload_file()
   {
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       foreach ($_FILES["file"]["error"] as $key => $error) {
         $data = [
@@ -40,7 +37,6 @@ class Documents extends Controller
               redirect("admin/documents");
             } else {
               $data["upload_msg"] = "Error in moving of " . $name . " : " . $error;
-
             }
           } else if (file_exists(APPROOT . "\uploads\\" . $name) && $this->uploadsModel->checkDuplicate($name) > 0) {
             $data["upload_msg"] = "File is already uploaded.";
@@ -55,9 +51,15 @@ class Documents extends Controller
       $data["upload_msg"] = "Documents not uploaded";
     }
   }
+  //Read
+  public function open()
+  {
+    $fileName =  $_GET["fileName"];
+    $file = APPROOT . "\uploads\\" . $fileName;
+    header("Content-Type:", "application/pdf");
+    @readfile($file);
+  }
 
-  //Retreive document
-  //Download or open and search for document in the system
   public function download()
   {
     $file_name = $_GET["fileName"];
@@ -72,97 +74,59 @@ class Documents extends Controller
     ob_flush();
     exit();
   }
-
-  public function open()
+  //Update
+  public function save_edit()
   {
-    $file = APPROOT . "\uploads\\" . $_GET["file_name"];
-    header("Content-Type:", "application/pdf");
-    header('Content-Disposition: inline; filename="' . $_GET["file_name"] . '"');
-    header('Content-Transfer-Encoding: binary');
-    @readfile($file);
-  }
-
-   public function search()
-  {
-    $this->fileModel->view_data();
-  }
-
-  //Update document
-  //select and edit and save meta data of a document
-    public function save_edit(){
-        //get updated file name
-        $data = array(
-            "file_name" => $_POST["file_name"],
-            "file_name_old" => $_POST["file_name_old"]
-        );
-
-        //if the string has .pdf remove it
-        if(str_contains($data["file_name"], ".pdf")){
-            $data["file_name"] = str_replace(".pdf", "", $data["file_name"]);
-        }
-
-        if ($this->fileModel->save_changes($data)) {
-            $path = APPROOT . "\uploads\\";
-            $old_name = $data["file_name_old"];
-            $new_name = $data["file_name"];
-            $extension = ".pdf";
-            if (file_exists($path . $old_name)) {
-                rename($path . $old_name, $path . $new_name . $extension);
-            }
-
-//            $data["edit_msg"] = ;
-//            $_SESSION["edit_msg"] = $data["edit_msg"];
-            echo "Changes are saved";
-
-        }
-
-
+    $data = array(
+      "file_name" => $_POST["file_name"],
+      "file_name_old" => $_POST["file_name_old"]
+    );
+    if (str_contains($data["file_name"], ".pdf")) {
+      $data["file_name"] = str_replace(".pdf", "", $data["file_name"]);
     }
+
+    if ($this->fileModel->save_changes($data)) {
+      $path = APPROOT . "\uploads\\";
+      $old_name = $data["file_name_old"];
+      $new_name = $data["file_name"];
+      $extension = ".pdf";
+      if (file_exists($path . $old_name)) {
+        rename($path . $old_name, $path . $new_name . $extension);
+      }
+      echo "Changes are saved";
+    }
+  }
 
   public function select_file()
   {
-      if(isset($_POST["file_id"])){
-          $response = $this->fileModel->select_file($_POST["file_id"]);
-          echo basename($response->file_name);
-      }
+    if (isset($_POST["file_id"])) {
+      $response = $this->fileModel->select_file($_POST["file_id"]);
+      echo basename($response->file_name);
+    }
   }
-
-  public function save()
-  {
-//    $data = [
-//      "edited_name" => $_POST["edited_name"],
-//      "file_name" => $_POST["file_name"]
-//    ];
-//
-//
-//      $data["upload_msg"] = "Updated Successfully";
-//      $data["file_name"] = "";
-//    }
-//    $this->view("pages/admin", $data);
-  }
-
-  //Delete document
-  //remove document from file system and database
+  //Delete
   public function deleteFile()
   {
     $data = ["file_name" => $_GET["file_name"], "alert_msg" => "",];
-    echo "Deleted";
     $deletionPath = APPROOT . "\uploads" . $data["file_name"];
-
     if ($this->uploadsModel->deleteFileDb($data)) {
       if (file_exists($deletionPath)) {
         unlink($deletionPath);
       }
-
       $data["alert_msg"] = "File is deleted";
     };
     redirect("admin/documents");
   }
 
-  //other methods
+  //Others
+  public function search()
+  {
+    $this->fileModel->view_data();
+  }
+
   public function getFileInfo()
   {
     $data = $this->uploadsModel->get_file_info();
     echo json_encode($data);
-  } 
+  }
 }
