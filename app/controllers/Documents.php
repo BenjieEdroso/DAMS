@@ -105,16 +105,20 @@ class Documents extends Controller
     }
   }
   //Delete
-  public function deleteFile()
+  public function delete()
   {
-    $data = ["file_name" => $_GET["file_name"], "alert_msg" => "",];
-    $deletionPath = APPROOT . "\uploads" . $data["file_name"];
-    if ($this->uploadsModel->deleteFileDb($data)) {
-      if (file_exists($deletionPath)) {
-        unlink($deletionPath);
+    //get the filename to be deleted
+    $fileToDelete = $_GET["fileName"];
+
+
+    //if it is deleted in the database
+    if ($this->uploadsModel->deleteFileDb($fileToDelete)) {
+      $fileToDelete = APPROOT . "\uploads\\" . $fileToDelete;
+      if (file_exists($fileToDelete)) {
+        unlink($fileToDelete);
       }
-      $data["alert_msg"] = "File is deleted";
-    };
+    }
+
     redirect("admin/documents");
   }
 

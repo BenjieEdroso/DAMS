@@ -2,7 +2,7 @@
 session_start();
 require_once APPROOT . "/views/includes/header.php";
 
-if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
+if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
     redirect("users/login");
 }
 
@@ -25,35 +25,36 @@ if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
             </tr>
         </thead>
         <tbody class="table-body" id="table">
-            <?php foreach($data as $document){  ?>
+            <?php foreach ($data as $document) {  ?>
             <?php
-                if(strlen($document->file_name) > 27){
-                    $file_name = substr($document->file_name,0,27);
+                if (strlen($document->file_name) > 27) {
+                    $file_name = substr($document->file_name, 0, 27);
                     $file_name = $file_name . "...";
-                }else{
+                } else {
                     $file_name = $document->file_name;
                 }
                 ?>
             <tr>
-                <td><?php echo $document->file_id?></td>
-                <td><?php echo $file_name?></td>
-                <td><?php echo $document->file_type?></td>
-                <td><?php echo $document->file_tmpName?></td>
-                <td><?php echo $document->file_error?></td>
-                <td><?php echo $document->file_size?></td>
-                <td><?php echo $document->file_date?></td>
+                <td><?php echo $document->file_id ?></td>
+                <td><?php echo $file_name ?></td>
+                <td><?php echo $document->file_type ?></td>
+                <td><?php echo $document->file_tmpName ?></td>
+                <td><?php echo $document->file_error ?></td>
+                <td><?php echo $document->file_size ?></td>
+                <td><?php echo $document->file_date ?></td>
                 <td class="file_actions">
-                    <a href="http://localhost/DAMS/documents/download?fileName=<?php echo $document->file_name?>"
+                    <a href="http://localhost/DAMS/documents/download?fileName=<?php echo $document->file_name ?>"
                         class="download"><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
                     <a href="#" class="modal-btn-open edit" id="<?php echo $document->file_id; ?>" data-toggle="modal"
                         data-target="#myModal"><i class="bi bi-pencil-fill"></i></a>
-                    <a href="http://localhost/DAMS/documents/open?fileName=<?php echo $document->file_name?>"
-                        target="_blank" data-title="<?php echo $document->file_name;?>"><i
+                    <a href="http://localhost/DAMS/documents/open?fileName=<?php echo $document->file_name ?>"
+                        target="_blank" data-title="<?php echo $document->file_name; ?>"><i
                             class="bi bi-folder-symlink-fill"></i></a>
-                    <a href="#"><i class="bi bi-trash-fill"></i></a>
+                    <a href="http://localhost/DAMS/documents/delete?fileName=<?php echo $document->file_name ?>"><i
+                            class="bi bi-trash-fill"></i></a>
                 </td>
             </tr>
-            <?php };?>
+            <?php }; ?>
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -68,7 +69,7 @@ if(!isset($_SESSION["username"]) && !isset($_SESSION["password"])){
                             <form action="" method="post" id="editForm">
 
                                 <input type="hidden" class="form-control" id="fileNameOld" name="file_name_old"
-                                    value="<?php echo $document->file_name?>">
+                                    value="<?php echo $document->file_name ?>">
 
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="fileName" name="file_name" value="">

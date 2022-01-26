@@ -46,7 +46,7 @@ class Upload
   public function deleteFileDb($data)
   {
     $this->db->query("DELETE FROM uploads WHERE file_name = :file_name");
-    $this->db->bind(":file_name", $data["file_name"]);
+    $this->db->bind(":file_name", $data);
     return $this->db->execute();
   }
 }

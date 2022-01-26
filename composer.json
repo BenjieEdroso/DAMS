@@ -1,7 +1,8 @@
 {
     "require": {
         "defuse/php-encryption": "^2.3",
-        "knplabs/knp-snappy": "^1.4"
+        "knplabs/knp-snappy": "^1.4",
+        "google/cloud-storage": "^1.26"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
