@@ -1,5 +1,11 @@
 <?php
+
 session_start();
+require_once "../vendor/defuse-crypto.phar";
+require_once "../vendor/autoload.php";
+
+use Defuse\Crypto\File;
+use Defuse\Crypto\Key;
 
 class Documents extends Controller
 {
@@ -12,6 +18,13 @@ class Documents extends Controller
   public function index()
   {
     $this->view("pages/admin");
+  }
+
+  private function loadEncryptKey()
+  {
+    $randomKey = SECRET_KEY;
+    $keyAscii = Key::loadFromAsciiSafeString($randomKey);
+    return $keyAscii;
   }
   //Create
   public function upload_file()
@@ -29,8 +42,8 @@ class Documents extends Controller
         $tmp_name = $_FILES["file"]["tmp_name"][$key];
         $name = basename($_FILES["file"]["name"][$key]);
         if ($error == UPLOAD_ERR_OK) {
-          if (!file_exists(APPROOT . "\uploads\\" . $name) && $this->uploadsModel->checkDuplicate($name) == 0) {
-            if (move_uploaded_file($tmp_name, APPROOT . "\uploads\\" . $name)) {
+          if (!file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && $this->uploadsModel->checkDuplicate($name) == 0) {
+            if (move_uploaded_file($tmp_name, APPROOT . "\uploads\\decrypted\\" . $name)) {
               $this->uploadsModel->upload($data);
               $data["upload_msg"] = "File successfully uploaded.";
 
@@ -38,7 +51,7 @@ class Documents extends Controller
             } else {
               $data["upload_msg"] = "Error in moving of " . $name . " : " . $error;
             }
-          } else if (file_exists(APPROOT . "\uploads\\" . $name) && $this->uploadsModel->checkDuplicate($name) > 0) {
+          } else if (file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && $this->uploadsModel->checkDuplicate($name) > 0) {
             $data["upload_msg"] = "File is already uploaded.";
 
             $this->view("admin/documents", $data);
@@ -54,16 +67,38 @@ class Documents extends Controller
   //Read
   public function open()
   {
+    //if the settings is ecnrypted enabled
+    print_r($_SESSION["encryption_settings"]);
+
+    //pick the encrypted file
+    //decrypt it
+
+    //read it
     $fileName =  $_GET["fileName"];
-    $file = APPROOT . "\uploads\\" . $fileName;
+    $file = APPROOT . "\uploads\\encrypted\\" . $fileName;
+    $input_file = $file;
+    $output_file =
+      APPROOT . "\uploads\\decrypted\\" . $fileName;
+    $decrypted_file = $output_file;
+    File::decryptFile(
+      $input_file,
+      $output_file,
+      $this->loadEncryptKey()
+    );
     header("Content-Type:", "application/pdf");
-    @readfile($file);
+    // @readfile($decrypted_file);
   }
 
   public function download()
   {
+
     $file_name = $_GET["fileName"];
-    $file_path = APPROOT . "\uploads\\" . $file_name;
+    $file_path = APPROOT . "\uploads\\decrypted\\" . $file_name;
+    if ($_SESSION["encryption_settings"] == "true") {
+      $file_path =
+        APPROOT . "\uploads\\encrypted\\" . $file_name;
+    }
+
     header("Content-Description", "File Transfer");
     header('Content-Disposition: attachment; filename="' . basename($_GET["fileName"]) . '"');
     header("Expires: 0");
@@ -71,7 +106,7 @@ class Documents extends Controller
     header("Pragma: public");
     header("Content-Length: " . filesize($file_path));
     readfile($file_path);
-    ob_flush();
+
     exit();
   }
   //Update
@@ -86,7 +121,7 @@ class Documents extends Controller
     }
 
     if ($this->fileModel->save_changes($data)) {
-      $path = APPROOT . "\uploads\\";
+      $path = APPROOT . "\uploads\\decrypted\\";
       $old_name = $data["file_name_old"];
       $new_name = $data["file_name"];
       $extension = ".pdf";
@@ -113,7 +148,7 @@ class Documents extends Controller
 
     //if it is deleted in the database
     if ($this->uploadsModel->deleteFileDb($fileToDelete)) {
-      $fileToDelete = APPROOT . "\uploads\\" . $fileToDelete;
+      $fileToDelete = APPROOT . "\uploads\\decrypted\\" . $fileToDelete;
       if (file_exists($fileToDelete)) {
         unlink($fileToDelete);
       }
