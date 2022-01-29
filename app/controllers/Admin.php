@@ -55,6 +55,11 @@ class Admin extends Controller
 
     public function save_settings()
     {
+        //if save settings get the value
+        $setting_encrypt = $_POST["encrypted"];
+        //query the settings to database
+
+
         $_SESSION["encryption_settings"] = $_POST["encryption"];
 
 

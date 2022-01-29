@@ -8,12 +8,12 @@
     <div class="mb-4">
         <label for="exampleInputEmail1" class="form-label">Username</label>
         <input type="text" class="form-control" id="username" name="username" aria-describedby="username"
-            value="<?php echo $data["username"];?>">
+            value="<?php echo $data["username"]; ?>">
         <?php if (!empty($data["username_error"])) { ?> <div id="username_error"
             class="form-text position-absolute text-danger"><?php echo $data["username_error"]; ?></div><?php } ?>
     </div>
     <div class="mb-4 has-validation">
-        <label for="exampleInputPassword1" class="form-label" value="<?php echo $data["password"];?>">Password</label>
+        <label for="exampleInputPassword1" class="form-label" value="<?php echo $data["password"]; ?>">Password</label>
         <input type="password" class="form-control" name="password" id="exampleInputPassword1">
         <?php if (!empty($data["password_error"])) { ?><div id="password_error"
             class="form-text position-absolute text-danger"><?php echo $data["password_error"]; ?></div><?php } ?>
@@ -28,5 +28,6 @@
         <a class="btn btn-light" href="<?php echo URLROOT; ?>/users/register">Register</a>
     </div>
 </form>
+
 
 <?php require_once APPROOT . "/views/includes/footer.php"; ?>

@@ -44,6 +44,14 @@ class Documents extends Controller
         if ($error == UPLOAD_ERR_OK) {
           if (!file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && $this->uploadsModel->checkDuplicate($name) == 0) {
             if (move_uploaded_file($tmp_name, APPROOT . "\uploads\\decrypted\\" . $name)) {
+              if ($_SESSION["encryption_settings"] == "true") {
+                if (file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && !file_exists(APPROOT . "\uploads\\encrypted\\" . $name)) {
+                  File::encryptFile(APPROOT . "\uploads\\decrypted\\" . $name, APPROOT . "\uploads\\encrypted\\" . $name, $this->loadEncryptKey());
+                }
+              }
+
+
+
               $this->uploadsModel->upload($data);
               $data["upload_msg"] = "File successfully uploaded.";
 
@@ -67,26 +75,10 @@ class Documents extends Controller
   //Read
   public function open()
   {
-    //if the settings is ecnrypted enabled
-    print_r($_SESSION["encryption_settings"]);
-
-    //pick the encrypted file
-    //decrypt it
-
-    //read it
     $fileName =  $_GET["fileName"];
-    $file = APPROOT . "\uploads\\encrypted\\" . $fileName;
-    $input_file = $file;
-    $output_file =
-      APPROOT . "\uploads\\decrypted\\" . $fileName;
-    $decrypted_file = $output_file;
-    File::decryptFile(
-      $input_file,
-      $output_file,
-      $this->loadEncryptKey()
-    );
+    $file = APPROOT . "\uploads\\decrypted\\" . $fileName;
     header("Content-Type:", "application/pdf");
-    // @readfile($decrypted_file);
+    @readfile($file);
   }
 
   public function download()
@@ -94,9 +86,10 @@ class Documents extends Controller
 
     $file_name = $_GET["fileName"];
     $file_path = APPROOT . "\uploads\\decrypted\\" . $file_name;
+
     if ($_SESSION["encryption_settings"] == "true") {
-      $file_path =
-        APPROOT . "\uploads\\encrypted\\" . $file_name;
+      File::decryptFile(APPROOT . "\uploads\\encrypted\\" . $file_name, $file_path, $this->loadEncryptKey());
+      $file_path = APPROOT . "\uploads\\decrypted\\" . $file_name;
     }
 
     header("Content-Description", "File Transfer");
@@ -143,14 +136,19 @@ class Documents extends Controller
   public function delete()
   {
     //get the filename to be deleted
-    $fileToDelete = $_GET["fileName"];
+    $file_name = $_GET["fileName"];
 
 
     //if it is deleted in the database
-    if ($this->uploadsModel->deleteFileDb($fileToDelete)) {
-      $fileToDelete = APPROOT . "\uploads\\decrypted\\" . $fileToDelete;
+    if ($this->uploadsModel->deleteFileDb($file_name)) {
+      $fileToDelete = APPROOT . "\uploads\\decrypted\\" . $file_name;
+      $fileToDeleteEnc = APPROOT . "\uploads\\encrypted\\" . $file_name;
       if (file_exists($fileToDelete)) {
         unlink($fileToDelete);
+      }
+
+      if (file_exists($fileToDeleteEnc)) {
+        unlink($fileToDeleteEnc);
       }
     }
 
