@@ -50,18 +50,17 @@ class Register
 
   public function check_user_name($data)
   {
-    $this->db->query("SELECT * FROM users WHERE username= :username");
+    $this->db->query("SELECT * FROM tbl_account WHERE username= :username");
     $this->db->bind(":username", $data["username"]);
     $this->db->execute();
 
     $row = $this->db->fetchOne();
 
     if ($row) {
-      // $hashed_pass = $row->password;
-      // if (password_verify($data["password"], $hashed_pass)) {
-      //   return $row;
-      // }
-      return $row;
+      $hashed_pass = $row->password;
+      if (password_verify($data["password"], $hashed_pass)) {
+        return $row;
+      }
     } else {
       return false;
     }

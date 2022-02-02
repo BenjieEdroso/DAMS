@@ -69,10 +69,9 @@ class Users extends Controller
 
       if (empty($data["username_error"]) && empty($data["password_error"]) && empty($data["confirm_pass_error"]) && empty($data["firstname_error"]) && empty($data["middlename_error"]) && empty($data["lastname_error"])) {
         $data['password'] = password_hash($data["password"], PASSWORD_DEFAULT);
+        $result = $this->user_model->check_user_name($data);
+        var_dump($result);
         $this->user_model->insert_account($data);
-        // $id = $this->user_model->select_account_id($data);
-
-
 
         $key = array_keys($data);
         $size = 3;
