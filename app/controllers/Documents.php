@@ -44,14 +44,11 @@ class Documents extends Controller
         if ($error == UPLOAD_ERR_OK) {
           if (!file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && $this->uploadsModel->checkDuplicate($name) == 0) {
             if (move_uploaded_file($tmp_name, APPROOT . "\uploads\\decrypted\\" . $name)) {
-              if ($_SESSION["encryption_settings"] == "true") {
-                if (file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && !file_exists(APPROOT . "\uploads\\encrypted\\" . $name)) {
-                  File::encryptFile(APPROOT . "\uploads\\decrypted\\" . $name, APPROOT . "\uploads\\encrypted\\" . $name, $this->loadEncryptKey());
-                }
-              }
-
-
-
+              // if ($_SESSION["encryption_settings"] == "true") {
+              //   if (file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && !file_exists(APPROOT . "\uploads\\encrypted\\" . $name)) {
+              //     File::encryptFile(APPROOT . "\uploads\\decrypted\\" . $name, APPROOT . "\uploads\\encrypted\\" . $name, $this->loadEncryptKey());
+              //   }
+              // }
               $this->uploadsModel->upload($data);
               $data["upload_msg"] = "File successfully uploaded.";
 
@@ -99,7 +96,6 @@ class Documents extends Controller
     header("Pragma: public");
     header("Content-Length: " . filesize($file_path));
     readfile($file_path);
-
     exit();
   }
   //Update

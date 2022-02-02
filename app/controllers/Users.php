@@ -4,37 +4,50 @@ class Users extends Controller
 {
   public function __construct()
   {
-    $this->userModel = $this->model("Register");
+    $this->user_model = $this->model("Register");
   }
 
   public function index()
   {
     $data = [];
-    $this->view("users/register");
+    $this->view("users/student_registration");
   }
   public function setSession($data)
   {
   }
 
-  public function register()
+  public function register_student()
   {
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
       $data = [
+        "firstname" => trim($_POST["firstname"]),
+        "middlename" => trim($_POST["middlename"]),
+        "lastname" => trim($_POST["lastname"]),
         "username" => trim($_POST["username"]),
         "password" => trim($_POST["password"]),
         "confirm_pass" => trim($_POST["confirm-password"]),
-        "username_error" => "",
-        "password_error" => "",
-        "confirm_pass_error" => "",
-        "success_msg" => ""
+        "user_type" => trim($_POST["user_type"])
       ];
+
+      if (empty($data["firstname"])) {
+        $data["firstname_error"] = "Please enter a your first name.";
+      }
+
+      if (empty($data["middlename"])) {
+        $data["middlename_error"] = "Please enter a your middle name.";
+      }
+
+      if (empty($data["lastname"])) {
+        $data["lastname_error"] = "Please enter a your last name.";
+      }
 
       if (empty($data["username"])) {
         $data["username_error"] = "Please enter a username.";
       }
 
-      if ($this->userModel->checkUsername($data)) {
+      if ($this->user_model->check_user_name($data)) {
         $data["username_error"] = "Username is already taken.";
       }
 
@@ -54,20 +67,21 @@ class Users extends Controller
         }
       }
 
-      if (empty($data["username_error"]) && empty($data["password_error"]) && empty($data["confirm_pass_error"])) {
+      if (empty($data["username_error"]) && empty($data["password_error"]) && empty($data["confirm_pass_error"]) && empty($data["firstname_error"]) && empty($data["middlename_error"]) && empty($data["lastname_error"])) {
         $data['password'] = password_hash($data["password"], PASSWORD_DEFAULT);
-        $this->userModel->registerUser($data);
+        $user = $this->user_model->create_account($data);
 
         $key = array_keys($data);
         $size = 3;
         for ($i = 0; $i <= $size; $i++) {
           $data[$key[$i]] = '';
         }
-
+        print_r($user);
         $data["success_msg"] = "Registration complete";
-        $this->view("users/register", $data);
+
+        $this->view("users/student_registration", $data);
       }
-      $this->view("users/register", $data);
+      $this->view("users/student_registration", $data);
     } else {
       $data = [
         "username" => "",
@@ -78,13 +92,13 @@ class Users extends Controller
         "confirm_pass_error" => "",
         "success_msg" => "",
         "firstname" => "",
-        "firstname_error",
         "middlename" => "",
-        "middlename_error",
         "lastname" => "",
+        "firstname_error",
+        "middlename_error",
         "lastname_error"
       ];
-      $this->view("users/register", $data);
+      $this->view("users/student_registration", $data);
     }
   }
 
@@ -113,8 +127,8 @@ class Users extends Controller
         $data["password_error"] = "Please enter your password.";
       }
 
-      if ($this->userModel->checkUsername($data)) {
-        $this->userModel->setSession($data);
+      if ($this->user_model->check_user_name($data)) {
+        $this->user_model->setSession($data);
         redirect("admin/dashboard");
       } else {
         $data["error_msg"] = "Username does not exist.";
@@ -133,6 +147,8 @@ class Users extends Controller
       $this->view('users/login', $data);
     }
   }
+
+
 
   public function signout()
   {

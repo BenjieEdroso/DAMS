@@ -97,4 +97,16 @@ a {
   width: 100px;
 }
 
+.side {
+  width: 27rem;
+  background-color: #182d61;
+  height: 100vh;
+}
+.side__title {
+  font: Roboto;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
 /*# sourceMappingURL=style.css.map */
