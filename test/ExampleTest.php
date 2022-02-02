@@ -9,7 +9,7 @@ class ExampleTest extends TestCase{
       
 
         $this->assertSame($string1, $string2);
-       
+       echo "Hello World";
     }
 
 }
