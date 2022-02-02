@@ -69,14 +69,17 @@ class Users extends Controller
 
       if (empty($data["username_error"]) && empty($data["password_error"]) && empty($data["confirm_pass_error"]) && empty($data["firstname_error"]) && empty($data["middlename_error"]) && empty($data["lastname_error"])) {
         $data['password'] = password_hash($data["password"], PASSWORD_DEFAULT);
-        $user = $this->user_model->create_account($data);
+        $this->user_model->insert_account($data);
+        // $id = $this->user_model->select_account_id($data);
+
+
 
         $key = array_keys($data);
         $size = 3;
         for ($i = 0; $i <= $size; $i++) {
           $data[$key[$i]] = '';
         }
-        print_r($user);
+
         $data["success_msg"] = "Registration complete";
 
         $this->view("users/student_registration", $data);

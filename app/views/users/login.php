@@ -2,8 +2,12 @@
 <!-- <img src="<?php echo URLROOT; ?>/images/chmsc_logo.png" alt="carlos hilado memorial state college logo" class=""
     style="height: 150px;"> -->
 <div class="side">
-    <img src="<?php echo URLROOT; ?>/images/chmsc-logo-side.png" alt="carlos hilado memorial state college logo">
+    <img src="<?php echo URLROOT; ?>/images/chmsc-logo-side.png" class="side__logo"
+        alt="carlos hilado memorial state college logo">
     <h1 class="side__title">Document Archiving and Monitoring System</h1>
+    <div class="side__box side__box--border">
+        <h2 class="side__subtitle">this is h2</h2>
+    </div>
 </div>
 <form action="<?php echo URLROOT; ?>/users/login" method="post"
     class="col-3 container  border position-absolute start-50 top-50 translate-middle rounded py-4 px-3">

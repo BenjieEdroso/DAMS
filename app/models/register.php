@@ -9,29 +9,29 @@ class Register
     $this->db = new Database();
   }
 
-  public function create_account($data)
+  public function insert_account($data)
   {
 
-    if ($data["user_type"] == "student") {
-      //insert account
-      $this->db->query("INSERT INTO tbl_account (username, password) VALUES (:username, :password)");
-      $this->db->bind(":username", $data["username"]);
-      $this->db->bind(":password", $data["password"]);
-      $this->db->execute();
+    $this->db->query("INSERT INTO tbl_account (username, password) VALUES (:username, :password)");
+    $this->db->bind(":username", $data["username"]);
+    $this->db->bind(":password", $data["password"]);
+    $this->db->execute();
 
-      //find id
-      $this->db->query("SELECT account_id FROM tbl_account WHERE username = :username");
-      $this->db->bind(":username", $data["username"]);
-      $account_id = $this->db->execute();
-      //insert name
-      $this->db->query("INSERT INTO tbl_name (firstname, middlename, lastname, account_id) VALUES (:firstname, :middlename, :lastname, :account_id)");
-      $this->db->bind(":firstname", $data["firstname"]);
-      $this->db->bind(":middlename", $data["middlename"]);
-      $this->db->bind(":lastname", $data["lastname"]);
-      $this->db->bind(":account_id", $account_id);
-      return $this->db->execute();
-    }
+    //get id
+    $this->db->query("SELECT account_id FROM tbl_account WHERE username = :username");
+    $this->db->bind(":username", $data["username"]);
+    $this->db->execute();
+    $result = $this->db->fetchOne();
+
+    $this->db->query("INSERT INTO tbl_name (firstname, middlename, lastname, account_id) VALUES (:firstname, :middlename, :lastname, :account_id)");
+    $this->db->bind(":firstname", $data["firstname"]);
+    $this->db->bind(":middlename", $data["middlename"]);
+    $this->db->bind(":lastname", $data["lastname"]);
+    $this->db->bind(":account_id", $result->account_id);
+    return $this->db->execute();
   }
+
+
 
   public function setSession($data)
   {
