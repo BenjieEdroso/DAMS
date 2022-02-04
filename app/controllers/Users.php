@@ -70,8 +70,13 @@ class Users extends Controller
       if (empty($data["username_error"]) && empty($data["password_error"]) && empty($data["confirm_pass_error"]) && empty($data["firstname_error"]) && empty($data["middlename_error"]) && empty($data["lastname_error"])) {
         $data['password'] = password_hash($data["password"], PASSWORD_DEFAULT);
         $result = $this->user_model->check_user_name($data);
-        var_dump($result);
-        $this->user_model->insert_account($data);
+        if ($this->user_model->check_family_name($data) < "1") {
+          $this->user_model->insert_account($data);
+          $data["success_msg"] = "Registration complete";
+        } else {
+          $data["success_msg"] = "Person already existed in our database";
+        }
+
 
         $key = array_keys($data);
         $size = 3;
@@ -79,7 +84,7 @@ class Users extends Controller
           $data[$key[$i]] = '';
         }
 
-        $data["success_msg"] = "Registration complete";
+
 
         $this->view("users/student_registration", $data);
       }
@@ -119,8 +124,6 @@ class Users extends Controller
         "error_msg" => "",
       ];
 
-
-
       if (empty($data["username"])) {
         $data["username_error"] = "Please enter your username.";
       }
@@ -129,8 +132,11 @@ class Users extends Controller
         $data["password_error"] = "Please enter your password.";
       }
 
+
+
+
       if ($this->user_model->check_user_name($data)) {
-        $this->user_model->setSession($data);
+        $this->user_model->set_session($data);
         redirect("admin/dashboard");
       } else {
         $data["error_msg"] = "Username does not exist.";

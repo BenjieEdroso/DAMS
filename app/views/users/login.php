@@ -34,7 +34,7 @@
   </div> -->
     <div class="mt-5" style="position: relative; left:27%;">
         <button type="submit" class="btn btn-primary">Sign in</button>
-        <a class="btn btn-light" href="<?php echo URLROOT; ?>/users/register_student">Register</a>
+        <a class="btn btn-light" href="<?php echo URLROOT; ?>/users/login">Register</a>
     </div>
 </form>
 
