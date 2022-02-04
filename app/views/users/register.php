@@ -74,6 +74,8 @@
         <?php if (!empty($data["confirm_pass_error"])) { ?><div id="confirm_pass_error"
             class="form-text position-absolute text-danger"><?php echo $data["confirm_pass_error"]; ?></div><?php } ?>
     </div>
+
+    <input type="hidden" name="user_type" id="user_type" value="student">
     <div class="mt-5">
         <button type="submit" class="btn btn-primary">Register</button>
         <a class="btn btn-light" href="<?php echo URLROOT; ?>/users/login">Sign in</a>
