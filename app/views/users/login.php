@@ -3,7 +3,7 @@
     style="height: 150px;"> -->
 <div class="side">
     <div class="box">
-    <img src="<?php echo URLROOT; ?>/images/chmsc.jpg" style="width: 50rem;height: 90vh; border-radius:10px 0px 0px 10px; box-shadow: 0px 0px 10px 0px;" alt="carlos hilado memorial
+    <img src="<?php echo URLROOT; ?>/images/chmsc.jpg" style="width: 50rem;height: 90vh; border-radius:10px 0px 0px 10px;" alt="carlos hilado memorial
         state college">
     </div>
 </div>
