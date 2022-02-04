@@ -7,7 +7,7 @@
             <img src="<?php echo URLROOT; ?>/images/chmsc_logo.png" alt="chmsc logo" width="40" height="40">
         </a>
         <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
+        <ul class="nav nav-pills mb-auto">
             <li class="mb-1">
                 <a href="<?php echo URLROOT ?>/admin/dashboard"
                     <?php if ("http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] == URLROOT . "/admin/dashboard") { ?>class="btn btn-light text-start col-12"
