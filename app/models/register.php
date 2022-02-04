@@ -33,7 +33,7 @@ class Register
 
 
 
-  public function setSession($data)
+  public function set_session($data)
   {
     $this->db->query("SELECT * FROM users WHERE username = :username");
     $this->db->bind(":username", $data["username"]);
@@ -52,7 +52,7 @@ class Register
   {
     $this->db->query("SELECT * FROM tbl_account WHERE username= :username");
     $this->db->bind(":username", $data["username"]);
-    $this->db->execute();
+    return $this->db->execute();
 
     $row = $this->db->fetchOne();
 
@@ -64,5 +64,14 @@ class Register
     } else {
       return false;
     }
+  }
+
+  public function check_family_name($data)
+  {
+    $this->db->query("SELECT * FROM tbl_name WHERE middlename = :middlename AND lastname=:lastname");
+    $this->db->bind(":middlename", $data["middlename"]);
+    $this->db->bind(":lastname", $data["lastname"]);
+    $this->db->execute();
+    return $this->db->fetchOne();
   }
 }
