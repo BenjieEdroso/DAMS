@@ -4,7 +4,7 @@ class Users extends Controller
 {
   public function __construct()
   {
-    $this->user_model = $this->model("Register");
+    $this->user_model = $this->model("UsersModel");
   }
 
   public function index()
@@ -69,7 +69,7 @@ class Users extends Controller
 
       if (empty($data["username_error"]) && empty($data["password_error"]) && empty($data["confirm_pass_error"]) && empty($data["firstname_error"]) && empty($data["middlename_error"]) && empty($data["lastname_error"])) {
         $data['password'] = password_hash($data["password"], PASSWORD_DEFAULT);
-        $result = $this->user_model->check_user_name($data);
+        $this->user_model->check_user_name($data);
         if ($this->user_model->check_family_name($data) < "1") {
           $this->user_model->insert_account($data);
           $data["success_msg"] = "Registration complete";
@@ -108,6 +108,8 @@ class Users extends Controller
 
   public function login()
   {
+
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $data = [
         "username" => trim($_POST["username"]),
@@ -128,7 +130,7 @@ class Users extends Controller
         $data["password_error"] = "Please enter your password.";
       }
 
-      if ($this->user_model->check_login_username($data)) {
+      if ($this->user_model->check_user_name($data)) {
         $this->user_model->set_session($data);
         redirect("admin/dashboard");
       } else {
