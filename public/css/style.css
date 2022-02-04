@@ -118,4 +118,11 @@ a {
   width: 15%;
 }
 
+.box {
+  width: 50rem;
+  height: 50vh;
+  float: center;
+  background: #7a0c0c;
+}
+
 /*# sourceMappingURL=style.css.map */
