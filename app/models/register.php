@@ -52,7 +52,7 @@ class Register
   {
     $this->db->query("SELECT * FROM tbl_account WHERE username= :username");
     $this->db->bind(":username", $data["username"]);
-    return $this->db->execute();
+    $this->db->execute();
 
     $row = $this->db->fetchOne();
 

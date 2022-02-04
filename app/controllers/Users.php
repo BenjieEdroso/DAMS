@@ -77,14 +77,11 @@ class Users extends Controller
           $data["success_msg"] = "Person already existed in our database";
         }
 
-
         $key = array_keys($data);
         $size = 3;
         for ($i = 0; $i <= $size; $i++) {
           $data[$key[$i]] = '';
         }
-
-
 
         $this->view("users/register", $data);
       }
@@ -111,7 +108,6 @@ class Users extends Controller
 
   public function login()
   {
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $data = [
         "username" => trim($_POST["username"]),
@@ -132,10 +128,7 @@ class Users extends Controller
         $data["password_error"] = "Please enter your password.";
       }
 
-
-
-
-      if ($this->user_model->check_user_name($data)) {
+      if ($this->user_model->check_login_username($data)) {
         $this->user_model->set_session($data);
         redirect("admin/dashboard");
       } else {
@@ -155,8 +148,6 @@ class Users extends Controller
       $this->view('users/login', $data);
     }
   }
-
-
 
   public function signout()
   {
