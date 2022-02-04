@@ -2,7 +2,7 @@
 <!-- <img src="<?php echo URLROOT; ?>/images/chmsc_logo.png" alt="carlos hilado memorial state college logo" class=""
     style="height: 150px;"> -->
 <div class="side">
-    <img src="<?php echo URLROOT; ?>/images/chmsc.jpg" style="width: 44rem;height: 100vh; alt=" carlos hilado memorial
+    <img src="<?php echo URLROOT; ?>/images/chmsc.jpg" style="width: 44rem;height: 100vh;" alt=carlos hilado memorial
         state college">
 </div>
 <div class="center">
