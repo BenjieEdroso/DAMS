@@ -5,7 +5,8 @@
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1rem;
   text-rendering: optimizeLegibility;
 }
@@ -81,7 +82,8 @@ a {
   width: 100%;
   height: 150px;
 }
-.file__uploader, .file__date {
+.file__uploader,
+.file__date {
   display: block;
 }
 
@@ -109,13 +111,24 @@ a {
   color: #0e0c0c;
   position: absolute;
   top: 40%;
-  right: 10%;
+  right: 8%;
 }
 .center__logo {
   position: absolute;
-  top: 4%;
-  right: 22%;
+  top: 8%;
+  right: 18%;
   width: 15%;
+}
+
+.box {
+  width: 90%;
+  height: 90%;
+  background-color: white;
+  position: absolute;
+  top: 4%;
+  right: 3%;
+  left: 5%;
+  border-radius: 1%;
 }
 
 /*# sourceMappingURL=style.css.map */

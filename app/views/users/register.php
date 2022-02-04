@@ -2,7 +2,7 @@
 <?php if (!empty($data["success_msg"])) { ?> <div class="alert alert-success alert-dis fade show  " role="alert">
     <?php echo $data["success_msg"]; ?></div> <?php } ?>
 <form action="<?php echo URLROOT; ?>/users/register" method="post"
-    class="col-4 container  border position-relative rounded py-4 px-3">
+    class="col-4 container  border position-relative rounded py-4 px-3" style="top:124px;border-radius: 0%; box-shadow: 0px 0px 1px 0px;">
     <div class="mb-3">
         <h5>Create your DAMS account</h5>
         <h6 class="text-muted">(Step 1 of 2)</h6>
@@ -60,7 +60,7 @@
     <input type="hidden" name="user_type" id="user_type" value="student">
 
 
-    <div class="mt-5">
+    <div class="mt-5" style="position: relative; left:35%">
         <button type="submit" class="btn btn-primary">Register</button>
         <a class="btn btn-light" href="<?php echo URLROOT; ?>/users/login">Sign in</a>
     </div>
