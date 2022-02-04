@@ -2,7 +2,8 @@
 <!-- <img src="<?php echo URLROOT; ?>/images/chmsc_logo.png" alt="carlos hilado memorial state college logo" class=""
     style="height: 150px;"> -->
 <div class="side">
-<img src="<?php echo URLROOT; ?>/images/chmsc.jpg" style="width: 44rem;height: 100vh; alt="carlos hilado memorial state college" >
+    <img src="<?php echo URLROOT; ?>/images/chmsc.jpg" style="width: 44rem;height: 100vh; alt=" carlos hilado memorial
+        state college">
 </div>
 <div class="center">
     <img src="<?php echo URLROOT; ?>/images/chmsc-logo-side.png" class="center__logo"
@@ -10,7 +11,7 @@
     <h1 class="center__title">Document Archiving and Monitoring System</h1>
 </div>
 <form action="<?php echo URLROOT; ?>/users/login" method="post"
-    class="col-3 container   position-absolute top-50 translate-middle rounded py-4 px-3" style="right:5%; bottom:45%;">
+    class="col-3 container position-absolute top-50 translate-middle rounded py-4 px-3" style="right:5%; bottom:45%;">
     <div class="mb3">
         <h4 style="position:relative; left:40%;">Sign in</h4>
     </div>
