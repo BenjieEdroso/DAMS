@@ -10,13 +10,13 @@ class Users extends Controller
   public function index()
   {
     $data = [];
-    $this->view("users/student_registration");
+    $this->view("users/register");
   }
   public function setSession($data)
   {
   }
 
-  public function register_student()
+  public function register()
   {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -77,18 +77,15 @@ class Users extends Controller
           $data["success_msg"] = "Person already existed in our database";
         }
 
-
         $key = array_keys($data);
         $size = 3;
         for ($i = 0; $i <= $size; $i++) {
           $data[$key[$i]] = '';
         }
 
-
-
-        $this->view("users/student_registration", $data);
+        $this->view("users/register", $data);
       }
-      $this->view("users/student_registration", $data);
+      $this->view("users/register", $data);
     } else {
       $data = [
         "username" => "",
@@ -105,13 +102,12 @@ class Users extends Controller
         "middlename_error",
         "lastname_error"
       ];
-      $this->view("users/student_registration", $data);
+      $this->view("users/register", $data);
     }
   }
 
   public function login()
   {
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $data = [
         "username" => trim($_POST["username"]),
@@ -132,10 +128,7 @@ class Users extends Controller
         $data["password_error"] = "Please enter your password.";
       }
 
-
-
-
-      if ($this->user_model->check_user_name($data)) {
+      if ($this->user_model->check_login_username($data)) {
         $this->user_model->set_session($data);
         redirect("admin/dashboard");
       } else {
@@ -155,8 +148,6 @@ class Users extends Controller
       $this->view('users/login', $data);
     }
   }
-
-
 
   public function signout()
   {

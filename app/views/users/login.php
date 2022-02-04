@@ -34,11 +34,10 @@
   </div> -->
     <div class="mt-5">
         <button type="submit" class="btn btn-primary">Sign in</button>
-        <a class="btn btn-light" href="<?php echo URLROOT; ?>/users/login">Register</a>
+        <a class="btn btn-light" href="<?php echo URLROOT; ?>/users/register">Register</a>
     </div>
 </form>
-<a href="<?php echo URLROOT; ?>/users/register_student">Student Register</a>
-<a href="#">Dalisay</a>
+
 
 
 <!-- <?php require_once APPROOT . "/views/includes/footer.php"; ?> -->
