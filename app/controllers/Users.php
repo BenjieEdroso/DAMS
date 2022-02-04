@@ -10,13 +10,13 @@ class Users extends Controller
   public function index()
   {
     $data = [];
-    $this->view("users/student_registration");
+    $this->view("users/register");
   }
   public function setSession($data)
   {
   }
 
-  public function register_student()
+  public function register()
   {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -86,9 +86,9 @@ class Users extends Controller
 
 
 
-        $this->view("users/student_registration", $data);
+        $this->view("users/register", $data);
       }
-      $this->view("users/student_registration", $data);
+      $this->view("users/register", $data);
     } else {
       $data = [
         "username" => "",
@@ -105,7 +105,7 @@ class Users extends Controller
         "middlename_error",
         "lastname_error"
       ];
-      $this->view("users/student_registration", $data);
+      $this->view("users/register", $data);
     }
   }
 
