@@ -43,4 +43,36 @@ $("#encryption").on("click", function() {
         $(this).val("false");
     }
 });
-//set the value to true
+
+$("#search-box").on("input", function() {
+    let search_string = $(this).val();
+
+    fetch_data(search_string);
+});
+
+function fetch_data(search_string) {
+    $.ajax({
+        url: "http://localhost/DAMS/documents/search",
+        method: "POST",
+        data: { query: search_string },
+        success: function(response) {
+            console.log(response);
+            let ul = document.querySelector(".dataViewer");
+            ul.innerHTML = "";
+            let data = JSON.parse(response);
+
+            data.forEach((data) => {
+                const li = document.createElement("li");
+                let file_name = "";
+                if (data.file_name.length > 20) {
+                    file_name = data.file_name.substring(0, 20) + "...";
+                }
+                li.innerHTML = file_name;
+
+                if (search_string.length > 0) {
+                    ul.appendChild(li);
+                }
+            });
+        },
+    });
+}

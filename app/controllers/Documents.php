@@ -17,7 +17,8 @@ class Documents extends Controller
 
   public function index()
   {
-    $this->view("pages/admin");
+    $data = $this->fileModel->view_data();
+    $this->view("pages/admin", $data);
   }
 
   private function loadEncryptKey()
@@ -154,8 +155,19 @@ class Documents extends Controller
   //Others
   public function search()
   {
-    $this->fileModel->view_data();
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      echo $this->fileModel->search_string($_POST["query"]);
+    }
   }
+
+
+
+
+
+
+
+
+
 
   public function getFileInfo()
   {
