@@ -5,8 +5,7 @@
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1rem;
   text-rendering: optimizeLegibility;
 }
@@ -82,8 +81,7 @@ a {
   width: 100%;
   height: 150px;
 }
-.file__uploader,
-.file__date {
+.file__uploader, .file__date {
   display: block;
 }
 
@@ -129,6 +127,10 @@ a {
   right: 3%;
   left: 5%;
   border-radius: 1%;
+}
+
+body {
+  background-color: red;
 }
 
 /*# sourceMappingURL=style.css.map */

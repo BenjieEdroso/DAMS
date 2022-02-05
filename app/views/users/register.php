@@ -4,7 +4,7 @@
 <form action="<?php echo URLROOT; ?>/users/register" method="post"
     class="col-4 container  border position-relative rounded py-4 px-3" style="top:124px;border-radius: 0%; box-shadow: 0px 0px 1px 0px;">
     <div class="mb-3">
-        <h5>Create your DAMS account</h5>
+        <h5 style="position:relative;left:28%;">Create your DAMS account</h5>
         <h6 class="text-muted">(Step 1 of 2)</h6>
     </div>
 
