@@ -46,32 +46,33 @@ $("#encryption").on("click", function() {
 
 $("#search-box").on("input", function() {
     let search_string = $(this).val();
-
-    fetch_data(search_string);
+    if (search_string.length > 0) {
+        $(".data_viewer").show();
+        fetch_data(search_string);
+    } else if (search_string == 0) {
+        $(".data_viewer").hide();
+    }
 });
 
 function fetch_data(search_string) {
     $.ajax({
-        url: "http://localhost/DAMS/documents/search",
+        url: "http://localhost/DAMS/documents/find",
         method: "POST",
         data: { query: search_string },
         success: function(response) {
-            console.log(response);
-            let ul = document.querySelector(".dataViewer");
-            ul.innerHTML = "";
+            let div = document.querySelector(".data_viewer");
+            div.innerHTML = "";
             let data = JSON.parse(response);
+            // if (data.length == 0) {
+            //     $(".data_viewer").hide();
+            // }
 
             data.forEach((data) => {
-                const li = document.createElement("li");
-                let file_name = "";
-                if (data.file_name.length > 20) {
-                    file_name = data.file_name.substring(0, 20) + "...";
-                }
-                li.innerHTML = file_name;
-
-                if (search_string.length > 0) {
-                    ul.appendChild(li);
-                }
+                const a = document.createElement("a");
+                a.setAttribute("href", "#");
+                a.setAttribute("class", "p-3 searchItems");
+                a.innerHTML = data.file_name;
+                div.appendChild(a);
             });
         },
     });

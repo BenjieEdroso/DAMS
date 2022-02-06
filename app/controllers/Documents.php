@@ -155,9 +155,16 @@ class Documents extends Controller
   //Others
   public function search()
   {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      echo $this->fileModel->search_string($_POST["query"]);
-    }
+
+
+
+    $this->view("admin/search");
+  }
+
+  public function find()
+  {
+
+    echo $this->fileModel->search_string($_POST["query"]);
   }
 
 

@@ -121,3 +121,19 @@ a {
         width: 15%;
     }
 }
+
+.searchItems {
+    text-decoration: none;
+    color: #000;
+    &:hover {
+        color: #0d6efd;
+    }
+}
+
+.seeResults {
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+    color: rgb(13, 110, 253, 0.7);
+}

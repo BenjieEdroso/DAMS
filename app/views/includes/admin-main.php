@@ -11,24 +11,14 @@
                             <input type="submit" class="btn btn-outline-primary" value="Upload" id="submit">
                         </div>
                     </form>
+
+                    <a class="btn btn-primary mx-3" href="<?php echo URLROOT; ?>/documents/search">Search</a>
                 </ul>
                 <?php }; ?>
 
 
 
-                <form action="<?php echo URLROOT; ?>/documents/search" method="post" id="search-form"
-                    class="d-flex position-relative">
-                    <input class="form-control me-2 position-relative" id="search-box" type="search" name="q"
-                        placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <div class="card position-absolute" style=" right: 10px; bottom: -100%;" id="results">
-                    <div class="card-body">
-                        <ul class="dataViewer">
 
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </nav>

@@ -25,6 +25,7 @@ class Admin extends Controller
     public function documents()
     {
         $data = $this->fileModel->view_data();
+
         $this->view("admin/documents", $data);
     }
     public function archive()
