@@ -47,12 +47,49 @@ $("#encryption").on("click", function() {
 $("#search-box").on("input", function() {
     let search_string = $(this).val();
     if (search_string.length > 0) {
-        $(".data_viewer").show();
         fetch_data(search_string);
     } else if (search_string == 0) {
         $(".data_viewer").hide();
     }
 });
+
+$(".seeResults").on("click", function() {
+    if (see_all_results()) {
+        $(".seeResults").addClass("close");
+        $(".seeResults").text("Close");
+    }
+
+    if ($(this).hasClass("close")) {
+        let data_viewer = document.querySelector(".data_viewer");
+        data_viewer.style = "display: none;";
+    }
+});
+
+function see_all_results() {
+    $.ajax({
+        url: "http://localhost/DAMS/documents/see_all_results",
+        method: "POST",
+        success: function(response) {
+            let data_viewer = document.querySelector(".data_viewer");
+            let data = JSON.parse(response);
+            data_viewer.innerHTML = "";
+            if (data.length == 0) {
+                data_viewer.setAttribute("style", "width: 70%;  visibility: hidden;");
+            } else if (data.length > 0) {
+                data.forEach((data) => {
+                    const a = document.createElement("a");
+                    a.setAttribute("href", "#");
+                    a.setAttribute("class", "p-3 searchItems");
+                    a.innerHTML = data.file_name;
+                    data_viewer.appendChild(a);
+                });
+                data_viewer.setAttribute("style", "width: 70%; visibility: visible;");
+            }
+        },
+    });
+
+    return true;
+}
 
 function fetch_data(search_string) {
     $.ajax({
@@ -61,19 +98,24 @@ function fetch_data(search_string) {
         data: { query: search_string },
         success: function(response) {
             let div = document.querySelector(".data_viewer");
-            div.innerHTML = "";
+
             let data = JSON.parse(response);
+            div.innerHTML = "";
+            if (data.length == 0) {
+                div.setAttribute("style", "width: 70%;  visibility: hidden;");
+            } else if (data.length > 0) {
+                data.forEach((data) => {
+                    const a = document.createElement("a");
+                    a.setAttribute("href", "#");
+                    a.setAttribute("class", "p-3 searchItems");
+                    a.innerHTML = data.file_name;
+                    div.appendChild(a);
+                });
+                div.setAttribute("style", "width: 70%; visibility: visible;");
+            }
             // if (data.length == 0) {
             //     $(".data_viewer").hide();
             // }
-
-            data.forEach((data) => {
-                const a = document.createElement("a");
-                a.setAttribute("href", "#");
-                a.setAttribute("class", "p-3 searchItems");
-                a.innerHTML = data.file_name;
-                div.appendChild(a);
-            });
         },
     });
 }

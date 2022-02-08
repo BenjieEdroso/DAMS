@@ -17,7 +17,7 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
     <a href="#" class="position-absolute seeResults">See all results</a>
 </form>
 
-<div class="data_viewer card mx-auto mt-3" style="width: 70%; display: none;">
+<div class="data_viewer card mx-auto mt-3" style="width: 70%; display: none; visibility: hidden;">
     <div class="card-body">
 
     </div>

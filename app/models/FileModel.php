@@ -31,6 +31,12 @@ class FileModel
         return json_encode($this->db->resultSet());
     }
 
+    public function see_all_results()
+    {
+        $this->db->query("SELECT * FROM uploads");
+        return json_encode($this->db->resultSet());
+    }
+
     public function view_data()
     {
         $this->db->query("SELECT * FROM uploads");

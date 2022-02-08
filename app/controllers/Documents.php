@@ -167,15 +167,10 @@ class Documents extends Controller
     echo $this->fileModel->search_string($_POST["query"]);
   }
 
-
-
-
-
-
-
-
-
-
+  public function see_all_results()
+  {
+    echo $this->fileModel->see_all_results();
+  }
   public function getFileInfo()
   {
     $data = $this->uploadsModel->get_file_info();
