@@ -14,14 +14,13 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
 <form action="<?php echo URLROOT; ?>/documents/search" method="post"
     class="d-flex justify-content-center mx-auto position-relative" style="width: 70%; ">
     <input class="form-control p-3" type="text" name="search" id="search-box" placeholder="Search">
-    <a href="#" class="position-absolute seeResults">See all results</a>
+    <a href="#" class="position-absolute seeResults result-text">See all results</a>
 </form>
 
-<div class="data_viewer card mx-auto mt-3" style="width: 70%; display: none; visibility: hidden;">
-    <div class="card-body">
+<div id="list-example" class="list-group data_viewer mx-auto">
 
-    </div>
 </div>
+
 
 
 

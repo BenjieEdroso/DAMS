@@ -53,37 +53,45 @@ $("#search-box").on("input", function() {
     }
 });
 
-$(".seeResults").on("click", function() {
-    if (see_all_results()) {
-        $(".seeResults").addClass("close");
-        $(".seeResults").text("Close");
-    }
-
-    if ($(this).hasClass("close")) {
-        let data_viewer = document.querySelector(".data_viewer");
-        data_viewer.style = "display: none;";
+$(".seeResults").on("click", function(e) {
+    if (e.target.innerText == "See all results") {
+        see_all_results($(this));
+        $(".data_viewer").addClass("show");
+        e.target.innerText = "Close";
+    } else if (e.target.innerText == "Close") {
+        $(".data_viewer").removeClass("show");
+        $(".data_viewer").addClass("hidden");
+        let some = $(".data_viewer").children();
+        some.each(function(index) {
+            some[index].remove();
+        });
+        e.target.innerText = "See all results";
     }
 });
 
-function see_all_results() {
+function see_all_results(a) {
     $.ajax({
         url: "http://localhost/DAMS/documents/see_all_results",
         method: "POST",
         success: function(response) {
+            let element = a[0];
             let data_viewer = document.querySelector(".data_viewer");
             let data = JSON.parse(response);
             data_viewer.innerHTML = "";
+
             if (data.length == 0) {
-                data_viewer.setAttribute("style", "width: 70%;  visibility: hidden;");
+                $(".data_viewer").addClass("hidden");
             } else if (data.length > 0) {
                 data.forEach((data) => {
                     const a = document.createElement("a");
                     a.setAttribute("href", "#");
-                    a.setAttribute("class", "p-3 searchItems");
+                    a.setAttribute(
+                        "class",
+                        "searchItems list-group-item list-group-item-action"
+                    );
                     a.innerHTML = data.file_name;
                     data_viewer.appendChild(a);
                 });
-                data_viewer.setAttribute("style", "width: 70%; visibility: visible;");
             }
         },
     });
@@ -102,20 +110,20 @@ function fetch_data(search_string) {
             let data = JSON.parse(response);
             div.innerHTML = "";
             if (data.length == 0) {
-                div.setAttribute("style", "width: 70%;  visibility: hidden;");
+                $(".data_viewer").addClass("hidden");
             } else if (data.length > 0) {
                 data.forEach((data) => {
                     const a = document.createElement("a");
                     a.setAttribute("href", "#");
-                    a.setAttribute("class", "p-3 searchItems");
+                    a.setAttribute(
+                        "class",
+                        "searchItems list-group-item list-group-item-action"
+                    );
                     a.innerHTML = data.file_name;
                     div.appendChild(a);
                 });
-                div.setAttribute("style", "width: 70%; visibility: visible;");
+                $(".data_viewer").addClass("show");
             }
-            // if (data.length == 0) {
-            //     $(".data_viewer").hide();
-            // }
         },
     });
 }

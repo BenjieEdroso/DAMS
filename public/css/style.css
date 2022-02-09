@@ -125,13 +125,28 @@ a {
   color: #0d6efd;
 }
 
+.data_viewer {
+  width: 70%;
+  display: none;
+}
+
 .seeResults,
-.close {
+.result-text {
   right: 18px;
   top: 50%;
   transform: translateY(-50%);
   text-decoration: none;
   color: rgba(13, 110, 253, 0.7);
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.show {
+  width: 70%;
+  visibility: visible;
 }
 
 /*# sourceMappingURL=style.css.map */
