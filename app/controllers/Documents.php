@@ -28,48 +28,7 @@ class Documents extends Controller
     return $keyAscii;
   }
   //Create
-  public function upload_file()
-  {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      foreach ($_FILES["file"]["error"] as $key => $error) {
-        $data = [
-          "name" => $_FILES["file"]["name"][$key],
-          "type" => $_FILES["file"]["type"][$key],
-          "tmp_name" => $_FILES["file"]["tmp_name"][$key],
-          "error" => $_FILES["file"]["error"][$key],
-          "size" => $_FILES["file"]["size"][$key],
-          "upload_msg" => ""
-        ];
-        $tmp_name = $_FILES["file"]["tmp_name"][$key];
-        $name = basename($_FILES["file"]["name"][$key]);
-        if ($error == UPLOAD_ERR_OK) {
-          if (!file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && $this->uploadsModel->checkDuplicate($name) == 0) {
-            if (move_uploaded_file($tmp_name, APPROOT . "\uploads\\decrypted\\" . $name)) {
-              if ($_SESSION["encryption_settings"] == "true") {
-                if (file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && !file_exists(APPROOT . "\uploads\\encrypted\\" . $name)) {
-                  File::encryptFile(APPROOT . "\uploads\\decrypted\\" . $name, APPROOT . "\uploads\\encrypted\\" . $name, $this->loadEncryptKey());
-                }
-              }
-              $this->uploadsModel->upload($data);
-              $data["upload_msg"] = "File successfully uploaded.";
 
-              redirect("admin/documents");
-            } else {
-              $data["upload_msg"] = "Error in moving of " . $name . " : " . $error;
-            }
-          } else if (file_exists(APPROOT . "\uploads\\decrypted\\" . $name) && $this->uploadsModel->checkDuplicate($name) > 0) {
-            $data["upload_msg"] = "File is already uploaded.";
-
-            $this->view("admin/documents", $data);
-          }
-        } else {
-          $data["upload_msg"] = "Error in uploading of " . $name . " : " . $error;
-        }
-      }
-    } else if (empty($_SERVER["REQUEST_METHOD"])) {
-      $data["upload_msg"] = "Documents not uploaded";
-    }
-  }
   //Read
   public function open()
   {

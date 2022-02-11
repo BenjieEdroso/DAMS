@@ -49,7 +49,12 @@ $("#search-box").on("input", function() {
     if (search_string.length > 0) {
         fetch_data(search_string);
     } else if (search_string == 0) {
-        $(".data_viewer").hide();
+        $(".data_viewer").removeClass("show");
+        $(".data_viewer").addClass("hidden");
+        let some = $(".data_viewer").children();
+        some.each(function(index) {
+            some[index].remove();
+        });
     }
 });
 
@@ -108,9 +113,15 @@ function fetch_data(search_string) {
             let div = document.querySelector(".data_viewer");
 
             let data = JSON.parse(response);
+            console.log(data);
             div.innerHTML = "";
+
             if (data.length == 0) {
                 $(".data_viewer").addClass("hidden");
+                let some = $(".data_viewer").children();
+                some.each(function(index) {
+                    some[index].remove();
+                });
             } else if (data.length > 0) {
                 data.forEach((data) => {
                     const a = document.createElement("a");
@@ -122,6 +133,7 @@ function fetch_data(search_string) {
                     a.innerHTML = data.file_name;
                     div.appendChild(a);
                 });
+                $(".data_viewer").removeClass("hidden");
                 $(".data_viewer").addClass("show");
             }
         },
