@@ -15,6 +15,7 @@ class ArchiveModel
         $this->db->query(
             "INSERT INTO uploads (file_name, file_type, file_tmpName, file_error, file_size, file_date) VALUES ( :fileName, :fileType, :fileTmpName, :fileError, :fileSize, :fileDate)"
         );
+
         $this->db->bind(":fileName", $data["file_name"]);
         $this->db->bind(":fileType", $data["file_type"]);
         $this->db->bind(":fileTmpName", $data["file_tmp_name"]);

@@ -14,22 +14,22 @@ class Archive extends Controller
     public function store()
     {
         $posted = $_SERVER["REQUEST_METHOD"] == "POST";
-        $data = array(
-            "file_name" => $posted ? $_FILES["file"]["name"] : "",
-            "file_type" => $posted ? $_FILES["file"]["type"] : "",
-            "file_tmp_name" => $posted ? $_FILES["file"]["tmp_name"] : "",
-            "file_error" => $posted ? $_FILES["file"]["error"] : "",
-            "file_size" => $posted ? $_FILES["file"]["size"] : "",
-            "upload_msg" => ""
-        );
-
-        $storage_folder = APPROOT . "\archive\\";
+        $data = array("upload_msg" => "");
 
         if ($posted) {
-            for ($i = 0; $i < count($data["file_name"]); $i++) {
-                //query files to db
+            foreach ($_FILES["file"]["error"] as $key) {
+                $data = [
+                    "file_name" => $posted ? $_FILES["file"]["name"][$key] : "",
+                    "file_type" => $posted ? $_FILES["file"]["type"][$key] : "",
+                    "file_tmp_name" => $posted ? $_FILES["file"]["tmp_name"][$key] : "",
+                    "file_error" => $posted ? $_FILES["file"]["error"][$key] : "",
+                    "file_size" => $posted ? $_FILES["file"]["size"][$key] : "",
+                    "upload_msg" => ""
+                ];
+
+                $storage_folder = APPROOT . "\archive\\";
                 $this->archive_model->archive_file_db($data);
-                if (move_uploaded_file($data["file_tmp_name"][$i], $storage_folder . $data["file_name"][$i])) {
+                if (move_uploaded_file($data["file_tmp_name"], $storage_folder . $data["file_name"])) {
                     $data["upload_msg"] = "File is stored successfully";
                 };
             }
@@ -40,10 +40,39 @@ class Archive extends Controller
 
     public function recover()
     {
-        //find the files in the file system
         $data = $this->archive_model->select_all_files();
-        //download it
-
         $this->view("archive/recover", $data);
+    }
+
+    public function download()
+    {
+        $file_name = $_GET["file_name"];
+        $storage_folder = APPROOT . "\archive\\" . $file_name;
+        header("Content-Description", "File Transfer");
+        header('Content-Disposition: attachment; filename="' . basename($_GET["file_name"]) . '"');
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate");
+        header("Pragma: public");
+        header("Content-Length: " . filesize($storage_folder));
+        readfile($storage_folder);
+        exit();
+    }
+
+    public function backup()
+    {
+        $this->view("archive/backup");
+    }
+
+    public function backup_start()
+    {
+        if (isset($_POST["backup"])) {
+            $files_in_archive = scandir(ARCHIVE_PATH);
+            $files = array_splice($files_in_archive, 2);
+            foreach ($files as $file) {
+                copy(ARCHIVE_PATH . $file, BACKUP_PATH . $file);
+            };
+        }
+
+        redirect("archive/backup");
     }
 }
