@@ -139,3 +139,20 @@ function fetch_data(search_string) {
         },
     });
 }
+
+$("#sort").on("change", function(e) {
+    let sort_method = this.value;
+    $.ajax({
+        url: "http://localhost/DAMS/archive/sort",
+        method: "POST",
+        data: { sort: sort_method },
+        success: function(response) {
+            let data = JSON.parse(response);
+            $(".list-item").each(function(i) {
+                $(this).text(
+                    `${data[i].file_id}  ${data[i].file_name} ${data[i].file_type} ${data[i].file_tmpName} ${data[i].file_error} ${data[i].file_size} ${data[i].file_date}`
+                );
+            });
+        },
+    });
+});

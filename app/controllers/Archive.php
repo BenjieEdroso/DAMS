@@ -8,13 +8,17 @@ class Archive extends Controller
 
     public function index()
     {
+
         $this->view("archive/store");
     }
 
     public function store()
     {
         $posted = $_SERVER["REQUEST_METHOD"] == "POST";
-        $data = array("upload_msg" => "");
+        $data  =  $this->archive_model->view_archive();
+
+
+
 
         if ($posted) {
             foreach ($_FILES["file"]["error"] as $key) {
@@ -37,6 +41,16 @@ class Archive extends Controller
 
         $this->view("archive/store", $data);
     }
+
+    public function sort()
+    {
+        $sort_by = $_POST["sort"];
+        $data = $this->archive_model->sort($sort_by);
+
+        echo json_encode($data);
+    }
+
+
 
     public function recover()
     {

@@ -33,4 +33,28 @@ class ArchiveModel
 
         return $this->db->resultSet();
     }
+
+    public function view_archive()
+    {
+        $this->db->query("SELECT * FROM uploads");
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
+
+    public function sort($data)
+    {
+        if ($data === "alpha") {
+            $this->db->query("SELECT * FROM uploads ORDER BY file_name ASC;");
+            $this->db->execute();
+        } else if ($data === "id") {
+            $this->db->query("SELECT * FROM uploads ORDER BY file_id ASC;");
+            $this->db->execute();
+        } else if ($data === "date") {
+            $this->db->query("SELECT * FROM uploads ORDER BY file_date ASC;");
+            $this->db->execute();
+        }
+
+        return $this->db->resultSet();
+    }
 }
