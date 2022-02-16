@@ -15,15 +15,15 @@ class ArchiveModel
         $this->db->query(
             "INSERT INTO uploads (file_name, file_type, file_tmpName, file_error, file_size, file_date) VALUES ( :fileName, :fileType, :fileTmpName, :fileError, :fileSize, :fileDate)"
         );
-
-        $this->db->bind(":fileName", $data["file_name"]);
-        $this->db->bind(":fileType", $data["file_type"]);
-        $this->db->bind(":fileTmpName", $data["file_tmp_name"]);
-        $this->db->bind(":fileError", $data["file_error"]);
-        $this->db->bind(":fileSize", $data["file_size"]);
-        $this->db->bind(":fileDate", $date);
-
-        return $this->db->execute();
+        for ($i = 0; $i < count($data["file_name"]); $i++) {
+            $this->db->bind(":fileName", $data["file_name"][$i]);
+            $this->db->bind(":fileType", $data["file_type"][$i]);
+            $this->db->bind(":fileTmpName", $data["file_tmp_name"][$i]);
+            $this->db->bind(":fileError", $data["file_error"][$i]);
+            $this->db->bind(":fileSize", $data["file_size"][$i]);
+            $this->db->bind(":fileDate", $date);
+            $this->db->execute();
+        }
     }
 
     public function select_all_files()

@@ -16,10 +16,6 @@
 
 
 
-<ul class="list">
-    <?php foreach ($data as $file) { ?>
-    <li class="list-item"><?php echo $file->file_name; ?></li>
-    <?php } ?>
-</ul>
+
 
 <?php require_once APPROOT . "/views/includes/footer.php"; ?>

@@ -14,31 +14,22 @@ class Archive extends Controller
 
     public function store()
     {
-        $posted = $_SERVER["REQUEST_METHOD"] == "POST";
-        $data  =  $this->archive_model->view_archive();
-
-
-
-
-        if ($posted) {
-            foreach ($_FILES["file"]["error"] as $key) {
-                $data = [
-                    "file_name" => $posted ? $_FILES["file"]["name"][$key] : "",
-                    "file_type" => $posted ? $_FILES["file"]["type"][$key] : "",
-                    "file_tmp_name" => $posted ? $_FILES["file"]["tmp_name"][$key] : "",
-                    "file_error" => $posted ? $_FILES["file"]["error"][$key] : "",
-                    "file_size" => $posted ? $_FILES["file"]["size"][$key] : "",
-                    "upload_msg" => ""
-                ];
-
-                $storage_folder = APPROOT . "\archive\\";
-                $this->archive_model->archive_file_db($data);
-                if (move_uploaded_file($data["file_tmp_name"], $storage_folder . $data["file_name"])) {
-                    $data["upload_msg"] = "File is stored successfully";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $data = [
+                "file_name" => $_FILES["file"]["name"],
+                "file_type" => $_FILES["file"]["type"],
+                "file_tmp_name" => $_FILES["file"]["tmp_name"],
+                "file_error" => $_FILES["file"]["error"],
+                "file_size" => $_FILES["file"]["size"],
+            ];
+            $storage_folder = APPROOT . "\archive\\";
+            $this->archive_model->archive_file_db($data);
+            for ($i = 0; $i < count($data["file_name"]); $i++) {
+                if (move_uploaded_file($data["file_tmp_name"][$i], $storage_folder . $data["file_name"][$i])) {
+                    $data["upload_msg"] = "File inserted successfully";
                 };
-            }
+            };
         }
-
         $this->view("archive/store", $data);
     }
 
