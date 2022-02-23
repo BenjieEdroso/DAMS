@@ -1,6 +1,7 @@
 <?php
 class Archive extends Controller
 {
+    public $upload_msg;
     public function __construct()
     {
         $this->archive_model = $this->model("ArchiveModel");
@@ -9,10 +10,16 @@ class Archive extends Controller
     public function index()
     {
 
-        $this->view("archive/store");
+        $data = $this->archive_model->display_data_from_db();
+        $this->view("archive/store", $data);
     }
-
     public function store()
+    {
+        $data = $this->archive_model->display_data_from_db();
+
+        $this->view("archive/store", $data);
+    }
+    public function store_file()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
@@ -21,7 +28,9 @@ class Archive extends Controller
                 "file_tmp_name" => $_FILES["file"]["tmp_name"],
                 "file_error" => $_FILES["file"]["error"],
                 "file_size" => $_FILES["file"]["size"],
+                "upload_size" => ""
             ];
+
             $storage_folder = APPROOT . "\archive\\";
             $this->archive_model->archive_file_db($data);
             for ($i = 0; $i < count($data["file_name"]); $i++) {
@@ -30,7 +39,8 @@ class Archive extends Controller
                 };
             };
         }
-        $this->view("archive/store", $data);
+
+        redirect("archive/store");
     }
 
     public function sort()

@@ -149,4 +149,25 @@ a {
   visibility: visible;
 }
 
+.viewContent {
+  position: absolute;
+}
+
+.myModal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.74);
+  display: none;
+}
+.myModal form {
+  position: relative;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+}
+
 /*# sourceMappingURL=style.css.map */

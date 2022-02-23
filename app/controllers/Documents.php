@@ -1,11 +1,6 @@
 <?php
 
 session_start();
-require_once "../vendor/defuse-crypto.phar";
-require_once "../vendor/autoload.php";
-
-use Defuse\Crypto\File;
-use Defuse\Crypto\Key;
 
 class Documents extends Controller
 {
@@ -21,12 +16,7 @@ class Documents extends Controller
     $this->view("pages/admin", $data);
   }
 
-  private function loadEncryptKey()
-  {
-    $randomKey = SECRET_KEY;
-    $keyAscii = Key::loadFromAsciiSafeString($randomKey);
-    return $keyAscii;
-  }
+
   //Create
 
   //Read
@@ -45,7 +35,7 @@ class Documents extends Controller
     $file_path = APPROOT . "\uploads\\decrypted\\" . $file_name;
 
     if ($_SESSION["encryption_settings"] == "true") {
-      File::decryptFile(APPROOT . "\uploads\\encrypted\\" . $file_name, $file_path, $this->loadEncryptKey());
+      // File::decryptFile(APPROOT . "\uploads\\encrypted\\" . $file_name, $file_path, $this->loadEncryptKey());
       $file_path = APPROOT . "\uploads\\decrypted\\" . $file_name;
     }
 

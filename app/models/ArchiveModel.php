@@ -11,7 +11,7 @@ class ArchiveModel
     public function archive_file_db($data)
     {
         date_default_timezone_set("Asia/Manila");
-        $date = date("Y-m-d g:i:s");
+        $date = date("Y-m-d g:i:s:A");
         $this->db->query(
             "INSERT INTO uploads (file_name, file_type, file_tmpName, file_error, file_size, file_date) VALUES ( :fileName, :fileType, :fileTmpName, :fileError, :fileSize, :fileDate)"
         );
@@ -34,7 +34,7 @@ class ArchiveModel
         return $this->db->resultSet();
     }
 
-    public function view_archive()
+    public function display_data_from_db()
     {
         $this->db->query("SELECT * FROM uploads");
         $this->db->execute();

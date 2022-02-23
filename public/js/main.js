@@ -156,3 +156,9 @@ $("#sort").on("change", function(e) {
         },
     });
 });
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+if (urlParams.has("file_name")) {
+    $(".myModal").show();
+}
