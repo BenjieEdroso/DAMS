@@ -9,4 +9,36 @@ html {
   font-size: 1rem;
   text-rendering: optimizeLegibility;
 }
+#file::before{
+  content: "File Upload";
+  display: block;
+  z-index: 3;
+  position: absolute;
+  color: #000;
+}
+
+#folder::before{
+  content: "Folder Upload";
+  display: block;
+  z-index: 3;
+  position: absolute;
+  color: #000;
+}
+
+.folderInput{
+  cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  border:none;
+  background:none;
+  padding:0;
+  color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+input[type="file"]{
+  color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
 

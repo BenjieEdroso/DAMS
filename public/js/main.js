@@ -175,3 +175,53 @@ $(".createNewFolderBtn").on("click", function(){
     $(".newItemList").hide();
     $(".createNewFolder").show();
 });
+
+$(document).on("mouseup", function(e){
+    if($(e.target).closest(".createNewFolder").length === 0){
+        $(".createNewFolder").hide();
+    };
+
+    if($(e.target).closest(".newItemList").length === 0){
+        $(".newItemList").hide();
+    };
+})
+
+$(".newFolderCancelBtn").on("click", function(){
+    $(".createNewFolder").hide();
+})
+
+// $(".fileUploadBtn").on("click", function(){
+//    $("#file").trigger("click")
+
+
+// //     let file = document.querySelector("#file");
+// //    console.log(file.files[0].name);
+   
+// })
+
+// if($("#file").trigger("click")){
+    
+// }
+
+//if click choose file
+$(".fileInput").trigger("click")
+//check if file is empty
+
+let file = document.querySelector("#file");
+
+
+$(".fileInput").on("change", function(){
+    if(file.files.length !== 0){
+        $(".fileUploadForm").trigger("submit");
+    }
+});
+
+
+
+let folder = document.querySelector("#folder");
+$(".folderInput").on("change", function(){
+    if($(this)[0].files !== 0){
+        $(".folderUploadForm").trigger("submit");
+    }
+});
+

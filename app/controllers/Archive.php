@@ -16,7 +16,7 @@ class Archive extends Controller
         $this->view("archive/store", $data);
     }
 
-    public function archive_file(){
+    public function file_upload(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
                 "file_name" => $_FILES["file"]["name"],
@@ -116,4 +116,9 @@ class Archive extends Controller
 
         //if exsist echo folder already exist
     }
+
+    public function folder_upload(){
+      var_dump($_FILES["folder"]);
+    }
+   
 }
