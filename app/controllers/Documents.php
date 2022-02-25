@@ -23,7 +23,7 @@ class Documents extends Controller
   public function open()
   {
     $fileName =  $_GET["fileName"];
-    $file = APPROOT . "\uploads\\decrypted\\" . $fileName;
+    $file = APPROOT . "\archive\\" . $fileName;
     header("Content-Type:", "application/pdf");
     @readfile($file);
   }
@@ -32,12 +32,7 @@ class Documents extends Controller
   {
 
     $file_name = $_GET["fileName"];
-    $file_path = APPROOT . "\uploads\\decrypted\\" . $file_name;
-
-    if ($_SESSION["encryption_settings"] == "true") {
-      // File::decryptFile(APPROOT . "\uploads\\encrypted\\" . $file_name, $file_path, $this->loadEncryptKey());
-      $file_path = APPROOT . "\uploads\\decrypted\\" . $file_name;
-    }
+    $file_path = APPROOT . "\archive\\" . $file_name;
 
     header("Content-Description", "File Transfer");
     header('Content-Disposition: attachment; filename="' . basename($_GET["fileName"]) . '"');

@@ -16,10 +16,9 @@ class Archive extends Controller
     public function store()
     {
         $data = $this->archive_model->display_data_from_db();
-
         $this->view("archive/store", $data);
     }
-    public function store_file()
+    public function archive_file()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
@@ -40,7 +39,7 @@ class Archive extends Controller
             };
         }
 
-        redirect("archive/store");
+        redirect("admin/documents");
     }
 
     public function sort()

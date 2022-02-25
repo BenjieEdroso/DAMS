@@ -13,7 +13,6 @@
 
     <input type="submit" value="Submit" hidden>
 </form>
-<?php echo $data["upload_msg"]; ?>
 <ul>
     <?php foreach ($data as $file) { ?>
     <li class="list-item">
