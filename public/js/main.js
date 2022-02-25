@@ -162,3 +162,16 @@ const urlParams = new URLSearchParams(queryString);
 if (urlParams.has("file_name")) {
     $(".myModal").show();
 }
+
+
+$(".newItemList").hide();
+$(".createNewFolder").hide();
+
+$(".new").on("click", function(){
+    $(".newItemList").show();
+});
+
+$(".createNewFolderBtn").on("click", function(){
+    $(".newItemList").hide();
+    $(".createNewFolder").show();
+});
