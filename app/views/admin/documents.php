@@ -33,11 +33,18 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
                 } else {
                     $file_name = $document->file_name;
                 }
+
+                if(strlen($document->file_type) > 20){
+                    $file_type = substr($document->file_type, 0, 20);
+                    $file_type = $file_type;
+                }else{
+                    $file_type = $document->file_type;
+                }
                 ?>
             <tr>
                 <td><?php echo $document->file_id ?></td>
                 <td><?php echo $file_name ?></td>
-                <td><?php echo $document->file_type ?></td>
+                <td><?php echo $file_type ?></td>
                 <td><?php echo $document->file_tmpName ?></td>
                 <td><?php echo $document->file_error ?></td>
                 <td><?php echo $document->file_size ?></td>

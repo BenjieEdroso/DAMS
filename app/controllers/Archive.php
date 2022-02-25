@@ -1,25 +1,21 @@
 <?php
 class Archive extends Controller
 {
-    public $upload_msg;
-    public function __construct()
-    {
+    public function __construct(){
         $this->archive_model = $this->model("ArchiveModel");
     }
 
-    public function index()
-    {
+    public function index(){
+        $data = $this->archive_model->display_data_from_db();
+        $this->view("archive/store", $data);
+    }
 
+    public function store(){
         $data = $this->archive_model->display_data_from_db();
         $this->view("archive/store", $data);
     }
-    public function store()
-    {
-        $data = $this->archive_model->display_data_from_db();
-        $this->view("archive/store", $data);
-    }
-    public function archive_file()
-    {
+    
+    public function archive_file(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
                 "file_name" => $_FILES["file"]["name"],
@@ -42,24 +38,19 @@ class Archive extends Controller
         redirect("admin/documents");
     }
 
-    public function sort()
-    {
+    public function sort(){
         $sort_by = $_POST["sort"];
         $data = $this->archive_model->sort($sort_by);
 
         echo json_encode($data);
     }
 
-
-
-    public function recover()
-    {
+    public function recover(){
         $data = $this->archive_model->select_all_files();
         $this->view("archive/recover", $data);
     }
 
-    public function download()
-    {
+    public function download(){
         $file_name = $_GET["file_name"];
         $storage_folder = APPROOT . "\archive\\" . $file_name;
         header("Content-Description", "File Transfer");
@@ -72,13 +63,11 @@ class Archive extends Controller
         exit();
     }
 
-    public function backup()
-    {
+    public function backup(){
         $this->view("archive/backup");
     }
 
-    public function backup_start()
-    {
+    public function backup_start(){
         if (isset($_POST["backup"])) {
             $files_in_archive = scandir(ARCHIVE_PATH);
             $files = array_splice($files_in_archive, 2);
