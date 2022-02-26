@@ -17,7 +17,9 @@
                         <button type="button" class="p-0 list-group-item list-group-item-action folderUploadBtn">
                         <form action="<?php echo URLROOT; ?>/archive/folder_upload" method="post"
                         enctype="multipart/form-data" class="folderUploadForm"  >
+                
                             <input type="file"  name="folder[]" id="folder" webkitdirectory multiple class="folderInput px-3 py-2  col-12" >
+                            <input type="text" name="directory" id="directory" hidden value="">
                             <input type="submit" value="Upload" class="position-absolute folderUploadSubmitBtn" style="display:none; border: none; background: none;">    
                         </form>
                         </button>

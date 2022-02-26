@@ -118,7 +118,46 @@ class Archive extends Controller
     }
 
     public function folder_upload(){
-      var_dump($_FILES["folder"]);
+
+        $folder_name = substr($_POST["directory"], 0 ,strpos($_POST["directory"], "/"));
+        $data = [
+            "folder_name" => $folder_name,
+            "file_name" => $_FILES["folder"]["name"],
+            "file_type" => $_FILES["folder"]["type"],
+            "file_tmp_name" => $_FILES["folder"]["tmp_name"],
+            "file_error" => $_FILES["folder"]["error"],
+            "file_size" => $_FILES["folder"]["size"],
+        ];
+
+        $directory = APPROOT . "\archive\\" . $data["folder_name"] ."\\";
+        //if folder name does not exist
+        $isdir = is_dir($directory);
+
+        if(!file_exists($directory)){
+            mkdir($directory);
+        }
+
+
+        
+        if(is_dir($directory)){
+            for($i = 0; $i < count($data["file_name"]); $i++){
+                move_uploaded_file($data["file_tmp_name"][$i], $directory . $data["file_name"][$i]);
+            }
+        }
+        //upload files to that folder
+        //if folder exist
+        //add(1) to folder name
+        //then upload to taht folder
+
+       
+
+
+
+    //     print_r($_POST);
+    //     var_dump($folder_name);
+    //   echo "<pre>";
+    //   print_r($_FILES["folder"]);
+    //   echo "</pre>";
     }
    
 }

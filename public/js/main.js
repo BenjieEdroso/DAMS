@@ -221,7 +221,13 @@ $(".fileInput").on("change", function(){
 let folder = document.querySelector("#folder");
 $(".folderInput").on("change", function(){
     if($(this)[0].files !== 0){
+
+        $("#directory").val($(this)[0].files[0].webkitRelativePath);
         $(".folderUploadForm").trigger("submit");
+       
+        
     }
 });
+
+
 
