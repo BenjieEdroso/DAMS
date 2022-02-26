@@ -1,6 +1,0 @@
-<br />
-<b>Warning</b>:  Undefined array key "encryption_settings" in <b>C:\xampp\htdocs\dams\app\controllers\Documents.php</b> on line <b>37</b><br />
-<br />
-<b>Warning</b>:  filesize(): stat failed for C:\xampp\htdocs\dams\app\uploads\decrypted\Benjie Edroso OJT Application-ns.pdf in <b>C:\xampp\htdocs\dams\app\controllers\Documents.php</b> on line <b>47</b><br />
-<br />
-<b>Warning</b>:  readfile(C:\xampp\htdocs\dams\app\uploads\decrypted\Benjie Edroso OJT Application-ns.pdf): Failed to open stream: No such file or directory in <b>C:\xampp\htdocs\dams\app\controllers\Documents.php</b> on line <b>48</b><br />

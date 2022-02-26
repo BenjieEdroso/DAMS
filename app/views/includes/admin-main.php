@@ -59,7 +59,13 @@
                         </div>
                         </div>
                     </form>  -->
-
+                    <div class="col-1">
+                        <form>
+                            <select name="directories" id="directories" class="form-select">
+                                <option selected value="root">root</option>
+                            </select>
+                        </form>
+                    </div>
                     <a class="btn btn-primary mx-3" href="<?php echo URLROOT; ?>/documents/search">Search</a>
                 </ul>
                 <?php }; ?>

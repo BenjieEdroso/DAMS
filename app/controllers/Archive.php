@@ -38,7 +38,7 @@ class Archive extends Controller
             //set storage folder to storage + folder_name
 
             //else set storage folder to root
-            $storage_folder = APPROOT . "\archive\\";
+            $storage_folder = APPROOT . "\drive_main\\";
             if(!file_exists($storage_folder.$data["folder_name"])){
                mkdir($storage_folder . $data["folder_name"]);
                $storage_folder = $storage_folder . $data["folder_name"];
@@ -71,7 +71,7 @@ class Archive extends Controller
 
     public function download(){
         $file_name = $_GET["file_name"];
-        $storage_folder = APPROOT . "\archive\\" . $file_name;
+        $storage_folder = APPROOT . "\drive_main\\" . $file_name;
         header("Content-Description", "File Transfer");
         header('Content-Disposition: attachment; filename="' . basename($_GET["file_name"]) . '"');
         header("Expires: 0");
@@ -101,7 +101,7 @@ class Archive extends Controller
     public function create_folder(){
         $new_folder_name = $_POST["folderName"]; 
         //go to archive folder
-        $archive_folder = APPROOT . "\archive\\";
+        $archive_folder = APPROOT . "\drive_main\\";
         //check if the folder name is exist
         if(!file_exists($archive_folder . $new_folder_name)){
             $new_folder_name = $archive_folder . $new_folder_name;
@@ -129,35 +129,19 @@ class Archive extends Controller
             "file_size" => $_FILES["folder"]["size"],
         ];
 
-        $directory = APPROOT . "\archive\\" . $data["folder_name"] ."\\";
-        //if folder name does not exist
-        $isdir = is_dir($directory);
-
+        $directory = APPROOT . "\drive_main\\" . $data["folder_name"] ."\\";
         if(!file_exists($directory)){
             mkdir($directory);
         }
 
-
-        
         if(is_dir($directory)){
             for($i = 0; $i < count($data["file_name"]); $i++){
                 move_uploaded_file($data["file_tmp_name"][$i], $directory . $data["file_name"][$i]);
             }
         }
-        //upload files to that folder
-        //if folder exist
-        //add(1) to folder name
-        //then upload to taht folder
 
-       
+        redirect("admin/documents");
 
-
-
-    //     print_r($_POST);
-    //     var_dump($folder_name);
-    //   echo "<pre>";
-    //   print_r($_FILES["folder"]);
-    //   echo "</pre>";
     }
    
 }

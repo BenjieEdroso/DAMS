@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once "../vendor/defuse-crypto.phar";
 require_once "../vendor/autoload.php";
@@ -46,7 +47,8 @@ class Admin extends Controller
         $data["settings"] = $_SESSION["encryption_settings"];
         $this->view("admin/settings", $data);
     }
-
+    
+    
     private function loadEncryptKey()
     {
         $randomKey = SECRET_KEY;
