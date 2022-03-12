@@ -94,4 +94,14 @@ class Documents extends Controller
     echo json_encode($data);
   }
 
+  
+
+  public function show_files_root(){
+    //if root selected
+    
+    //show all folders and files under root
+  }
+ 
+
+
 }

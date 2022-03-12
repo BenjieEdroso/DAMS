@@ -4,7 +4,7 @@
   "description": "Document archiving and monitoring system for carlos hilado memorial state college.",
   "main": "index.js",
   "scripts": {
-    "build:sass": "sass public/css/main.scss public/css/style.css --watch"
+    "build:sass": "sass public/css/scss/style.scss public/css/style.css --watch"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
     "bootstrap": "^5.1.3",
     "bootstrap-icons": "^1.7.1",
     "jquery": "^3.6.0",
-    "sass": "^1.42.1"
+    "sass": "^1.49.9"
   },
   "devDependencies": {
     "tailwindcss": "^3.0.23"

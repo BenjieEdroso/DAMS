@@ -14,7 +14,21 @@ var searchFeature = function (){
             e.target.innerText = "See all results";
         }
     });
-    
+
+    $("#search-box").on("input", function() {
+        let search_string = $(this).val();
+        if (search_string.length > 0) {
+            fetch_data(search_string);
+        } else if (search_string == 0) {
+            $(".data_viewer").removeClass("show");
+            $(".data_viewer").addClass("hidden");
+            let some = $(".data_viewer").children();
+            some.each(function(index) {
+                some[index].remove();
+            });
+        }
+    });
+
     function see_all_results(a) {
         $.ajax({
             url: "http://localhost/DAMS/documents/see_all_results",
@@ -82,4 +96,4 @@ var searchFeature = function (){
     }
 }
 
-export default searchFeature; 
+export  default searchFeature; 

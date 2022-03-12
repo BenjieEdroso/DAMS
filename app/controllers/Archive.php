@@ -18,6 +18,7 @@ class Archive extends Controller
 
     public function file_upload(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            
             $data = [
                 "file_name" => $_FILES["file"]["name"],
                 "file_type" => $_FILES["file"]["type"],
@@ -25,7 +26,8 @@ class Archive extends Controller
                 "file_error" => $_FILES["file"]["error"],
                 "file_size" => $_FILES["file"]["size"],
                 "folder_name" => $_FILES["folderName"],
-                "upload_size" => ""
+                "upload_size" => "",
+                "root_path" => APPROOT . "\drive_main\\" 
             ];
           
             //check archive folder
@@ -127,13 +129,14 @@ class Archive extends Controller
             "file_tmp_name" => $_FILES["folder"]["tmp_name"],
             "file_error" => $_FILES["folder"]["error"],
             "file_size" => $_FILES["folder"]["size"],
+            "root_path" => APPROOT . "\drive_main\\" 
         ];
 
         $directory = APPROOT . "\drive_main\\" . $data["folder_name"] ."\\";
         if(!file_exists($directory)){
             mkdir($directory);
         }
-
+        $this->archive_model->archive_file_db($data);
         if(is_dir($directory)){
             for($i = 0; $i < count($data["file_name"]); $i++){
                 move_uploaded_file($data["file_tmp_name"][$i], $directory . $data["file_name"][$i]);
@@ -143,5 +146,25 @@ class Archive extends Controller
         redirect("admin/documents");
 
     }
+
+    public function select_directory(){
+         
+        
+
+
+
+
+        if($_POST["directories"] === "root"){
+            $data["file_dir"] = scandir(APPROOT . "\drive_main\\");
+        }
+
+        $this->view("admin/documents", $data);
+
+
+  
+
+    }
+
+
    
 }

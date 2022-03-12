@@ -1,4 +1,4 @@
-<main class="d-flex">
+<!-- <main class="d-flex">
     <div clas="d-flex flex-column border shadow vh-100" style="width:200px;">
        <div class="list-group">
                <a href="<?php echo URLROOT ?>/admin/dashboard"
@@ -33,4 +33,4 @@
                 </a>
           
         </div>
-    </div>
+    </div> -->

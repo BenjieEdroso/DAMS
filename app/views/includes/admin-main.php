@@ -1,4 +1,4 @@
-<div class="w-100 bg-light " style="height: 100vh;">
+<!-- <div class="w-100 bg-light " style="height: 100vh;">
     <nav class="navbar navbar-expand-md navbar-light bg-white  mb-3 h-2 ">
         <div class="container-fluid">
             <div class="collapse navbar-collapse d-flex align-items-center" id="navbarCollapse">
@@ -59,10 +59,12 @@
                         </div>
                         </div>
                     </form>  -->
-                    <div class="col-1">
-                        <form>
-                            <select name="directories" id="directories" class="form-select">
-                                <option selected value="root">root</option>
+                    <!-- <div class="col-1">
+                        <form action="<?php echo URLROOT?>/archive/select_directory" method="post" class="currentDirForm">
+                            <select name="directories" id="directories" class="form-select selectDirectory">
+                                <option  value="root" hidden>Choose file</option>
+                                <option  value="root">root</option>
+                                <option  value="benjie">benjie</option>
                             </select>
                         </form>
                     </div>
@@ -75,4 +77,4 @@
 
             </div>
         </div>
-    </nav>
+    </nav>  -->

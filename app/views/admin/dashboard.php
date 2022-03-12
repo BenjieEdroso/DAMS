@@ -68,8 +68,7 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
    
   </aside>
 </main> -->
-<?php require_once APPROOT . "/views/includes/admin-sidebar.php"; ?>
-<?php require_once APPROOT . "/views/includes/admin-main.php"; ?>
-<h1>Dashboard</h1>
+
+
 <?php require_once APPROOT . "/views/includes/admin-main-footer.php"; ?>
 <?php require_once APPROOT . "/views/includes/footer.php"; ?>

@@ -1,3 +1,3 @@
-import searchFeature from "./searchFeature";
+import searchFeature from "./searchFeature.js";
 
 searchFeature();

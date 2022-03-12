@@ -1,23 +1,13 @@
 export * from "./animations/index.js";
+export * from "./search/index.js";
+import {documentsTableFormat} from "./documentsTable/documentsTable.js";
+
+$("#directories").on("change", function(){
+    $(".currentDirForm").trigger("submit");
+})
 
 
 
-
-
-
-$("#search-box").on("input", function() {
-    let search_string = $(this).val();
-    if (search_string.length > 0) {
-        fetch_data(search_string);
-    } else if (search_string == 0) {
-        $(".data_viewer").removeClass("show");
-        $(".data_viewer").addClass("hidden");
-        let some = $(".data_viewer").children();
-        some.each(function(index) {
-            some[index].remove();
-        });
-    }
-});
 
 
 
