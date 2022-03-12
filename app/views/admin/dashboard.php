@@ -69,6 +69,43 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
   </aside>
 </main> -->
 
+<div class="sidebar--flex">
+    <aside class="sidebar">
+        <div class="sidebar__logo">
+            <img src="<?php echo URLROOT;?>/images/logo.png" alt="chmsc logo">
+            <span class="sidebar__title">DAMS</span>
+        </div>
+        <ul class="sidebar__nav">
+            <li><a href="<?php echo URLROOT ?>/admin/dashboard">Dashboard</a></li>
+            <li><a href="<?php echo URLROOT ?>/admin/archive">Archiving</a></li>
+            <li><a href="<?php echo URLROOT ?>/admin/monitor">Monitoring</a></li>
+            <li><a href="<?php echo URLROOT ?>/admin/control">Control</a></li>
+            <li><a href="<?php echo URLROOT ?>/admin/user">User Management</a></li>
+        </ul>
+    </aside>
+
+    <main class="main">
+        <div class="main__topCards">
+            <div class="main__storage">
+                <span class="main__storage--label">Storage</span>
+                <div class="main__storage--container"><canvas id="myChart"></canvas></div>
+                <span class="main__storage--used">Used Space <span> 39%</span></span>
+                <span class="main__storage--left">Space Left <span>61%</span> </span>
+            </div>
+
+            <div class="main__files"> </div>
+            <div class="main__users"> </div>
+            <div class="main__offices"> </div>
+        </div>
+    </main>
+</div>
+
+
+<script>
+
+</script>
+
+
 
 <?php require_once APPROOT . "/views/includes/admin-main-footer.php"; ?>
 <?php require_once APPROOT . "/views/includes/footer.php"; ?>
