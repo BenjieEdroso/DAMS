@@ -80,7 +80,7 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
             <li><a href="<?php echo URLROOT ?>/admin/archive">Archiving</a></li>
             <li><a href="<?php echo URLROOT ?>/admin/monitor">Monitoring</a></li>
             <li><a href="<?php echo URLROOT ?>/admin/control">Control</a></li>
-            <li><a href="<?php echo URLROOT ?>/admin/user">User Management</a></li>
+            <li><a href="<?php echo URLROOT ?>/admin/user">User</a></li>
         </ul>
     </aside>
 
