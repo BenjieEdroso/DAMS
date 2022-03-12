@@ -99,7 +99,9 @@ ul {
   align-items: center;
   margin-top: 30px;
 }
-.main__storage, .main__files,
+.main .storage,
+.main .usersCard,
+.main .files,
 .main .office {
   width: 350px;
   height: 205px;
@@ -107,17 +109,15 @@ ul {
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
   position: relative;
 }
-.main__storage--label, .main__files--label,
-.main .office--label {
+
+.storage__label {
   font-weight: 600;
   color: #2c2c2c;
   display: inline-block;
   margin-top: 10px;
   margin-left: 10px;
 }
-.main__storage--used, .main__storage--left, .main__files--used, .main__files--left,
-.main .office--used,
-.main .office--left {
+.storage__used, .storage__left {
   display: flex;
   align-items: flex-end;
   flex-direction: column-reverse;
@@ -125,9 +125,7 @@ ul {
   font-weight: 600;
   width: 83.23px;
 }
-.main__storage--used ::before, .main__storage--left ::before, .main__files--used ::before, .main__files--left ::before,
-.main .office--used ::before,
-.main .office--left ::before {
+.storage__used ::before, .storage__left ::before {
   content: "";
   clear: both;
   display: block;
@@ -138,30 +136,24 @@ ul {
   left: 0px;
   top: 8px;
 }
-.main__storage--used span, .main__storage--left span, .main__files--used span, .main__files--left span,
-.main .office--used span,
-.main .office--left span {
+.storage__used span, .storage__left span {
   font-size: 1.7rem;
 }
-.main__storage--used, .main__files--used,
-.main .office--used {
+.storage__used {
   right: 7%;
   top: 15%;
 }
-.main__storage--used ::before, .main__files--used ::before,
-.main .office--used ::before {
+.storage__used ::before {
   background-color: #3775ae;
 }
-.main__storage--left, .main__files--left,
-.main .office--left {
+.storage__left {
   right: 7%;
   top: 48%;
 }
-.main__storage--left ::before, .main__files--left ::before,
-.main .office--left ::before {
+.storage__left ::before {
   background-color: #f98901;
 }
-.main__storage--container {
+.storage__container {
   position: absolute;
   top: 53%;
   left: 36%;
@@ -169,49 +161,44 @@ ul {
   width: 180px;
   height: 200px;
 }
-.main__files--label {
+
+.files__label {
   font-weight: 600;
   color: #2c2c2c;
   display: inline-block;
   margin-top: 10px;
   margin-left: 10px;
 }
-.main__files--flexCol {
+.files__flexCol {
   display: flex;
   flex-flow: column;
   height: calc(100% - 31px);
   justify-content: space-evenly;
   align-items: flex-start;
 }
-.main__files--totalFiles {
+.files__totalFiles {
   display: block;
   width: 100%;
   font-weight: 600;
   font-size: 30px;
   padding-left: 2.5rem;
 }
-.main__files--flex {
+.files__flex {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
 }
-.main__files--docx, .main__files--pdf {
+.files__docx, .files__pdf {
   display: flex;
   align-items: center;
   font-size: 30px;
   font-weight: 600;
 }
-.main__files--docx img, .main__files--pdf img {
+.files__docx img, .files__pdf img {
   margin: 0 10px;
 }
 
-.usersCard {
-  width: 350px;
-  height: 205px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
-}
 .usersCard__label {
   font-weight: 600;
   color: #2c2c2c;

@@ -86,21 +86,21 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
 
     <main class="main">
         <div class="main__topCards">
-            <div class="main__storage">
-                <span class="main__storage--label">Storage</span>
-                <div class="main__storage--container"><canvas id="myChart"></canvas></div>
-                <span class="main__storage--used">Used Space <span> 39%</span></span>
-                <span class="main__storage--left">Space Left <span>61%</span> </span>
+            <div class="storage">
+                <span class="storage__label">Storage</span>
+                <div class="storage__container"><canvas id="myChart"></canvas></div>
+                <span class="storage__used">Used Space <span> 39%</span></span>
+                <span class="storage__left">Space Left <span>61%</span> </span>
             </div>
 
-            <div class="main__files">
-                <span class="main__files--label">Files</span>
-                <div class="main__files--flexCol">
-                    <span class="main__files--totalFiles"><span>1364</span> Files</span>
-                    <div class="main__files--flex">
-                        <span class="main__files--docx">1000 <img src="<?php echo URLROOT;?>/public/images/word.png"
+            <div class="files">
+                <span class="files__label">Files</span>
+                <div class="files__flexCol">
+                    <span class="files__totalFiles"><span>1364</span> Files</span>
+                    <div class="files__flex">
+                        <span class="files__docx">1000 <img src="<?php echo URLROOT;?>/public/images/word.png"
                                 alt="word icon"> </span>
-                        <span class="main__files--pdf">364 <img src="<?php echo URLROOT;?>/public/images/pdf.png"
+                        <span class="files__pdf">364 <img src="<?php echo URLROOT;?>/public/images/pdf.png"
                                 alt="pdf icon"> </span>
                     </div>
                 </div>
