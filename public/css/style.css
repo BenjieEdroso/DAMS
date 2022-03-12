@@ -96,21 +96,25 @@ ul {
 .main__topCards {
   display: flex;
 }
-.main__storage, .main__users, .main__files, .main__offices {
+.main__storage, .main__files,
+.main .office {
   width: 350px;
   height: 205px;
   border-radius: 5px;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
   position: relative;
 }
-.main__storage--label, .main__users--label, .main__files--label, .main__offices--label {
+.main__storage--label, .main__files--label,
+.main .office--label {
   font-weight: 600;
   color: #2c2c2c;
   display: inline-block;
   margin-top: 10px;
   margin-left: 10px;
 }
-.main__storage--used, .main__storage--left, .main__users--used, .main__users--left, .main__files--used, .main__files--left, .main__offices--used, .main__offices--left {
+.main__storage--used, .main__storage--left, .main__files--used, .main__files--left,
+.main .office--used,
+.main .office--left {
   display: flex;
   align-items: flex-end;
   flex-direction: column-reverse;
@@ -118,7 +122,9 @@ ul {
   font-weight: 600;
   width: 83.23px;
 }
-.main__storage--used ::before, .main__storage--left ::before, .main__users--used ::before, .main__users--left ::before, .main__files--used ::before, .main__files--left ::before, .main__offices--used ::before, .main__offices--left ::before {
+.main__storage--used ::before, .main__storage--left ::before, .main__files--used ::before, .main__files--left ::before,
+.main .office--used ::before,
+.main .office--left ::before {
   content: "";
   clear: both;
   display: block;
@@ -129,21 +135,27 @@ ul {
   left: 0px;
   top: 8px;
 }
-.main__storage--used span, .main__storage--left span, .main__users--used span, .main__users--left span, .main__files--used span, .main__files--left span, .main__offices--used span, .main__offices--left span {
+.main__storage--used span, .main__storage--left span, .main__files--used span, .main__files--left span,
+.main .office--used span,
+.main .office--left span {
   font-size: 1.7rem;
 }
-.main__storage--used, .main__users--used, .main__files--used, .main__offices--used {
+.main__storage--used, .main__files--used,
+.main .office--used {
   right: 7%;
   top: 15%;
 }
-.main__storage--used ::before, .main__users--used ::before, .main__files--used ::before, .main__offices--used ::before {
+.main__storage--used ::before, .main__files--used ::before,
+.main .office--used ::before {
   background-color: #3775ae;
 }
-.main__storage--left, .main__users--left, .main__files--left, .main__offices--left {
+.main__storage--left, .main__files--left,
+.main .office--left {
   right: 7%;
   top: 48%;
 }
-.main__storage--left ::before, .main__users--left ::before, .main__files--left ::before, .main__offices--left ::before {
+.main__storage--left ::before, .main__files--left ::before,
+.main .office--left ::before {
   background-color: #f98901;
 }
 .main__storage--container {
@@ -153,6 +165,107 @@ ul {
   transform: translate(-50%, -50%);
   width: 180px;
   height: 200px;
+}
+.main__files--label {
+  font-weight: 600;
+  color: #2c2c2c;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.main__files--flexCol {
+  display: flex;
+  flex-flow: column;
+  height: calc(100% - 31px);
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+.main__files--totalFiles {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  font-size: 30px;
+  padding-left: 2.5rem;
+}
+.main__files--flex {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.main__files--docx, .main__files--pdf {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+.main__files--docx img, .main__files--pdf img {
+  margin: 0 10px;
+}
+
+.usersCard {
+  width: 350px;
+  height: 205px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
+}
+.usersCard__label {
+  font-weight: 600;
+  color: #2c2c2c;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.usersCard--flex {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.usersCard__data {
+  font-size: 34px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 125px;
+}
+.usersCard__data span {
+  display: inline-block;
+}
+.usersCard__data--user {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.office__label {
+  font-weight: 600;
+  color: #2c2c2c;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.office__flexCont {
+  display: flex;
+  height: calc(100% - 31px);
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.office__flex {
+  display: flex;
+}
+.office__data {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 130px;
+}
+.office__data--number {
+  font-size: 34px;
+  font-weight: 600;
+}
+.office__data span {
+  font-weight: 500;
 }
 
 /*# sourceMappingURL=style.css.map */

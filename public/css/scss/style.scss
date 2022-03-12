@@ -51,10 +51,10 @@
   &__topCards {
     display: flex;
   }
+  //Main storage card
   &__storage,
-  &__users,
   &__files,
-  &__offices {
+  .office {
     width: 350px;
     height: 205px;
     border-radius: 5px;
@@ -109,6 +109,7 @@
       }
     }
   }
+
   &__storage--container {
     position: absolute;
     top: 53%;
@@ -116,5 +117,124 @@
     transform: translate(-50%, -50%);
     width: 180px;
     height: 200px;
+  }
+
+  // Main Files card
+  &__files {
+    &--label {
+      font-weight: 600;
+      color: #2c2c2c;
+      display: inline-block;
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+
+    &--flexCol {
+      display: flex;
+      flex-flow: column;
+      height: calc(100% - 31px);
+      justify-content: space-evenly;
+      align-items: flex-start;
+    }
+
+    &--totalFiles {
+      display: block;
+      width: 100%;
+      font-weight: 600;
+      font-size: 30px;
+      padding-left: 2.5rem;
+    }
+
+    &--flex {
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    &--docx,
+    &--pdf {
+      display: flex;
+      align-items: center;
+      font-size: 30px;
+      font-weight: 600;
+
+      img {
+        margin: 0 10px;
+      }
+    }
+  }
+}
+.usersCard {
+  width: 350px;
+  height: 205px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
+
+  &__label {
+    font-weight: 600;
+    color: #2c2c2c;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  &--flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  &__data {
+    font-size: 34px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 125px;
+
+    span {
+      display: inline-block;
+    }
+
+    &--user {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.office {
+  &__label {
+    font-weight: 600;
+    color: #2c2c2c;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  &__flexCont {
+    display: flex;
+    height: calc(100% - 31px);
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  &__flex {
+    display: flex;
+  }
+
+  &__data {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 130px;
+    &--number {
+      font-size: 34px;
+      font-weight: 600;
+    }
+
+    span {
+      font-weight: 500;
+    }
   }
 }
