@@ -9,6 +9,7 @@ body {
   font-size: 1rem;
   text-rendering: optimizeLegibility;
   color: #303030;
+  background-color: #f4f4f4;
 }
 
 a {
@@ -95,9 +96,13 @@ ul {
 }
 .main__topCards {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin-top: 30px;
+}
+.main__bottomCards {
+  display: flex;
+  justify-content: space-between;
 }
 .main .storage,
 .main .usersCard,
@@ -110,6 +115,9 @@ ul {
   position: relative;
 }
 
+.storage {
+  background-color: #fff;
+}
 .storage__label {
   font-weight: 600;
   color: #2c2c2c;
@@ -162,6 +170,9 @@ ul {
   height: 200px;
 }
 
+.files {
+  background-color: #fff;
+}
 .files__label {
   font-weight: 600;
   color: #2c2c2c;
@@ -199,6 +210,9 @@ ul {
   margin: 0 10px;
 }
 
+.usersCard {
+  background-color: #fff;
+}
 .usersCard__label {
   font-weight: 600;
   color: #2c2c2c;
@@ -227,6 +241,9 @@ ul {
   font-weight: 600;
 }
 
+.office {
+  background-color: #fff;
+}
 .office__label {
   font-weight: 600;
   color: #2c2c2c;
@@ -256,6 +273,111 @@ ul {
 }
 .office__data span {
   font-weight: 500;
+}
+
+.monitorCard {
+  width: 959px;
+  height: 705px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 66px;
+}
+.monitorCard__step {
+  display: flex;
+  width: 840px;
+  margin: 44px;
+  justify-content: space-between;
+  border-bottom: 1px solid #4a4a4a;
+}
+.monitorCard__step1, .monitorCard__step2 {
+  position: relative;
+  cursor: pointer;
+}
+.monitorCard__step1::after, .monitorCard__step2::after {
+  content: url("http://localhost/DAMS/public/images/dots.png");
+  clear: both;
+  display: block;
+  position: absolute;
+  cursor: default;
+  top: 20%;
+}
+.monitorCard__step1 {
+  border-bottom: 5px solid #4a4a4a;
+  padding-bottom: 32px;
+}
+.monitorCard__step1::after {
+  right: -135%;
+}
+.monitorCard__step2::after {
+  right: -123%;
+}
+.monitorCard__step3 {
+  cursor: pointer;
+}
+.monitorCard__tableHead {
+  margin: 0 44px;
+}
+.monitorCard__tableHead table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.monitorCard__tableHead table th {
+  text-align: left;
+  padding: 13px 23px;
+}
+.monitorCard__tableHead table tr {
+  padding: 0 44px;
+  background-color: #efefef;
+}
+.monitorCard__tableCont {
+  margin: 0 44px;
+  font-size: 1.125rem;
+  height: 470px;
+  overflow-y: scroll;
+}
+.monitorCard__tableCont table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+.monitorCard__tableCont th {
+  text-align: left;
+  padding: 13px 23px;
+}
+.monitorCard__tableCont tr {
+  padding: 0 44px;
+  background-color: #efefef;
+  cursor: pointer;
+}
+.monitorCard__tableCont td {
+  padding: 13px 23px;
+}
+
+.activityLog {
+  background-color: #fff;
+  height: 704px;
+  width: 566px;
+  margin-top: 66px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.activityLog__logs {
+  margin: 50px 50px;
+  height: 567px;
+  overflow-y: scroll;
+}
+.activityLog__label {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.activityLog__label, .activityLog__day span {
+  color: #000;
+}
+.activityLog__day ul {
+  margin-left: 50px;
 }
 
 /*# sourceMappingURL=style.css.map */

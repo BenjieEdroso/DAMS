@@ -5,9 +5,14 @@
 
     &__topCards {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: center;
       margin-top: 30px;
+    }
+
+    &__bottomCards {
+      display: flex;
+      justify-content: space-between;
     }
     //Main storage card
     .storage,

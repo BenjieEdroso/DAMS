@@ -1,5 +1,6 @@
 @mixin usersCard {
   .usersCard {
+    background-color: #fff;
     &__label {
       font-weight: 600;
       color: #2c2c2c;

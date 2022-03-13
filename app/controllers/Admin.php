@@ -40,6 +40,11 @@ class Admin extends Controller
         $this->view("admin/control");
     }
 
+    public function user()
+    {
+        $this->view("admin/user");
+    }
+
     public function settings()
     {
         $data["settings"] = $_SESSION["encryption_settings"];

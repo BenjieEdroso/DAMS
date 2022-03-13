@@ -1,5 +1,6 @@
 @import "global", "login", "sidebar", "main/storageCard", "main/filesCard",
-  "main/usersCard", "main/officeCard", "main/main";
+  "main/usersCard", "main/officeCard", "main/main", "main/monitorCard",
+  "main/activityCard";
 
 @include sidebar;
 @include main;
@@ -7,3 +8,5 @@
 @include filesCard;
 @include usersCard;
 @include officeCard;
+@include monitorCard;
+@include activityLogs;

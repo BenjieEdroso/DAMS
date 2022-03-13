@@ -1,80 +1,199 @@
-<!-- <div class="w-100 bg-light " style="height: 100vh;">
-    <nav class="navbar navbar-expand-md navbar-light bg-white  mb-3 h-2 ">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse d-flex align-items-center" id="navbarCollapse">
-                <?php if ($_SERVER["REDIRECT_QUERY_STRING"] === 'url=admin/documents') { ?>
-                <ul class="navbar-nav w-100 me-auto mb-2 mb-md-0 d-flex justify-content-between">
-                    <button class="btn btn-primary new position-relative"><i class="bi bi-plus-square"></i></button>
-                    <ul class="list-group newItemList position-absolute ms-5 col-2">
-                        <button type="button" class="list-group-item list-group-item-action createNewFolderBtn">Folder</button>
-                        <button type="button" class="p-0 list-group-item list-group-item-action fileUploadBtn pe-auto" >
-                        <form action="<?php echo URLROOT; ?>/archive/file_upload" method="post"
-                        enctype="multipart/form-data" class="fileUploadForm" >
-                            <input type="file"  name="file[]" id="file" multiple  class="fileInput px-3 py-2  col-12">
-                            <input type="submit" value="Upload"  class="position-absolute fileUploadSubmitBtn"   style="display:none; border: none; background: none;">
-                        </form>
-                        </button>
-                        <button type="button" class="p-0 list-group-item list-group-item-action folderUploadBtn">
-                        <form action="<?php echo URLROOT; ?>/archive/folder_upload" method="post"
-                        enctype="multipart/form-data" class="folderUploadForm"  >
-                
-                            <input type="file"  name="folder[]" id="folder" webkitdirectory multiple class="folderInput px-3 py-2  col-12" >
-                            <input type="text" name="directory" id="directory" hidden value="">
-                            <input type="submit" value="Upload" class="position-absolute folderUploadSubmitBtn" style="display:none; border: none; background: none;">    
-                        </form>
-                        </button>
-                    </ul>
+<main class="main">
+    <div class="main__topCards">
+        <div class="storage">
+            <span class="storage__label">Storage</span>
+            <div class="storage__container"><canvas id="myChart"></canvas></div>
+            <span class="storage__used">Used Space <span> 39%</span></span>
+            <span class="storage__left">Space Left <span>61%</span> </span>
+        </div>
 
-                   
-
-                   
-
-                    <form action="<?php  echo URLROOT;?>/archive/create_folder" method="post" class="createNewFolder card p-3 position-absolute ms-5">
-                        <div class="fw-bold mb-3">
-                            <label for="folderName" class="mb-2">New folder</label>
-                            <input type="text" name="folderName" id="folderName" class="form-control">
-                        </div>
-
-                        <div class="input-group">
-                            <button type="button" class="newFolderCancelBtn btn btn-secondary me-3">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Create</button>
-                        </div>
-                    </form>
-
-                    <!-- <form action="<?php echo URLROOT; ?>/archive/archive_file" method="post"
-                        enctype="multipart/form-data" >
-                        <div class="col-6 mb-3" >
-                            <div class="input-group">
-                            <label for="folderName" class="input-group-text">Upload to</label>
-                            <select name="folderName" id="folderName" class="form-select ">
-                                <option selected value="#" id="#">Option1</option>
-                                <option value="#" id="#">Option2</option>
-                            </select>
-                            </div>
-                        </div> 
-                        <div class="">
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="file[]" id="file" multiple>
-                            <input type="submit" class="btn btn-outline-primary" value="Upload" id="submit">
-                        </div>
-                        </div>
-                    </form>  -->
-                    <!-- <div class="col-1">
-                        <form action="<?php echo URLROOT?>/archive/select_directory" method="post" class="currentDirForm">
-                            <select name="directories" id="directories" class="form-select selectDirectory">
-                                <option  value="root" hidden>Choose file</option>
-                                <option  value="root">root</option>
-                                <option  value="benjie">benjie</option>
-                            </select>
-                        </form>
+        <div class="files">
+            <span class="files__label">Files</span>
+            <div class="files__flexCol">
+                <span class="files__totalFiles"><span>1364</span> Files</span>
+                <div class="files__flex">
+                    <span class="files__docx">1000 <img src="<?php echo URLROOT;?>/public/images/word.png"
+                            alt="word icon"> </span>
+                    <span class="files__pdf">364 <img src="<?php echo URLROOT;?>/public/images/pdf.png" alt="pdf icon">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="usersCard">
+            <div class="usersCard__label">Users</div>
+            <div class="usersCard--flex">
+                <div class="usersCard__icon">
+                    <img src="<?php echo URLROOT;?>/public/images/user.png" alt="user icon">
+                </div>
+                <div class="usersCard__container">
+                    <div class="usersCard__data"> <span>6</span> <span class="usersCard__data--user">Faculties</span>
                     </div>
-                    <a class="btn btn-primary mx-3" href="<?php echo URLROOT; ?>/documents/search">Search</a>
-                </ul>
-                <?php }; ?>
+                    <div class="usersCard__data"> <span>5</span> <span class="usersCard__data--user">
+                            Admins</span></div>
+                    <div class="usersCard__data"> <span>16</span> <span class="usersCard__data--user">Teachers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="office">
+            <div class="office__label">Office</div>
+            <div class="office__flexCont">
+                <div class="office__flex">
+                    <div class="office__icon">
+                        <img src="<?php echo URLROOT;?>/public/images/office.png" alt="office icon">
+                    </div>
 
-
-
+                    <div class="office__data"><span class="office__data--number">13</span><span>Offices</span></div>
+                </div>
 
             </div>
         </div>
-    </nav>  -->
+    </div>
+
+    <div class="main__bottomCards">
+        <div class="monitorCard">
+            <div class="monitorCard__step">
+                <div class="monitorCard__step1"><img src="<?php echo URLROOT;?>/public/images/step1.png" alt=""></div>
+                <div class="monitorCard__step2"><img src="<?php echo URLROOT;?>/public/images/step2.png" alt=""></div>
+                <div class="monitorCard__step3"><img src="<?php echo URLROOT;?>/public/images/step3.png" alt=""></div>
+            </div>
+            <div class="monitorCard__tableHead">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Date Received</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="monitorCard__tableCont">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>FOM-101</td>
+                            <td>OJT-Application.pdf</td>
+                            <td>03/11/2022</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="activityLog">
+            <div class="activityLog__label">Activity Log</div>
+            <div class="activityLog__logs">
+                <div class="activityLog__day">
+                    <span>Monday, June 1, 2022</span>
+                    <ul>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                    </ul>
+                </div>
+                <div class="activityLog__day">
+                    <span>Friday, June 1, 2022</span>
+                    <ul>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                        <li>8:27 AM - uploaded OJT_form.docx by Ms.jane</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</main>
+</div>
