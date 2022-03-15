@@ -1,12 +1,52 @@
-@import "global", "login", "sidebar", "main/storageCard", "main/filesCard",
-  "main/usersCard", "main/officeCard", "main/main", "main/monitorCard",
-  "main/activityCard";
+@import "/node_modules/material-design-icons/iconfont/material-icons.css";
+@import "global", "login", "sidebar", "dashboard";
 
-@include sidebar;
-@include main;
-@include storageCard;
-@include filesCard;
-@include usersCard;
-@include officeCard;
-@include monitorCard;
-@include activityLogs;
+.topnav {
+  height: 76px;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  div {
+    display: flex;
+    align-items: center;
+    color: #f98901;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .icon {
+    color: #f98901;
+    margin-right: 11px;
+    margin-left: 33px;
+    font-size: 50px;
+  }
+  .icon-scanner-cont {
+    margin-right: 65px;
+  }
+  .icon-scanner {
+    color: #f98901;
+    margin-right: 11px;
+    margin-left: 64px;
+    font-size: 40px;
+  }
+
+  .search-box {
+    width: 500px;
+    height: 49px;
+    background-color: #efefef;
+    border: none;
+    outline: none;
+    border-radius: 24.5px;
+    position: relative;
+    padding-left: 80px;
+    caret-color: #f98901;
+    font-size: 21px;
+  }
+
+  .search-icon {
+    font-size: 50px;
+    position: absolute;
+    z-index: 2;
+    margin-left: 23px;
+  }
+}

@@ -1,3 +1,4 @@
+@import "/node_modules/material-design-icons/iconfont/material-icons.css";
 * {
   margin: 0;
   padding: 0;
@@ -94,6 +95,9 @@ ul {
   margin: 0 31px;
   width: 100vw;
 }
+.main--archive {
+  margin: 0;
+}
 .main__topCards {
   display: flex;
   justify-content: space-between;
@@ -113,6 +117,37 @@ ul {
   border-radius: 5px;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
   position: relative;
+}
+
+.usersCard {
+  background-color: #fff;
+}
+.usersCard__label {
+  font-weight: 600;
+  color: #2c2c2c;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.usersCard--flex {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.usersCard__data {
+  font-size: 34px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 125px;
+}
+.usersCard__data span {
+  display: inline-block;
+}
+.usersCard__data--user {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .storage {
@@ -168,77 +203,6 @@ ul {
   transform: translate(-50%, -50%);
   width: 180px;
   height: 200px;
-}
-
-.files {
-  background-color: #fff;
-}
-.files__label {
-  font-weight: 600;
-  color: #2c2c2c;
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-.files__flexCol {
-  display: flex;
-  flex-flow: column;
-  height: calc(100% - 31px);
-  justify-content: space-evenly;
-  align-items: flex-start;
-}
-.files__totalFiles {
-  display: block;
-  width: 100%;
-  font-weight: 600;
-  font-size: 30px;
-  padding-left: 2.5rem;
-}
-.files__flex {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.files__docx, .files__pdf {
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-  font-weight: 600;
-}
-.files__docx img, .files__pdf img {
-  margin: 0 10px;
-}
-
-.usersCard {
-  background-color: #fff;
-}
-.usersCard__label {
-  font-weight: 600;
-  color: #2c2c2c;
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-.usersCard--flex {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.usersCard__data {
-  font-size: 34px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 125px;
-}
-.usersCard__data span {
-  display: inline-block;
-}
-.usersCard__data--user {
-  font-size: 1rem;
-  font-weight: 600;
 }
 
 .office {
@@ -354,6 +318,46 @@ ul {
   padding: 13px 23px;
 }
 
+.files {
+  background-color: #fff;
+}
+.files__label {
+  font-weight: 600;
+  color: #2c2c2c;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.files__flexCol {
+  display: flex;
+  flex-flow: column;
+  height: calc(100% - 31px);
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+.files__totalFiles {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  font-size: 30px;
+  padding-left: 2.5rem;
+}
+.files__flex {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.files__docx, .files__pdf {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+.files__docx img, .files__pdf img {
+  margin: 0 10px;
+}
+
 .activityLog {
   background-color: #fff;
   height: 704px;
@@ -378,6 +382,54 @@ ul {
 }
 .activityLog__day ul {
   margin-left: 50px;
+}
+
+.topnav {
+  height: 76px;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.topnav div {
+  display: flex;
+  align-items: center;
+  color: #f98901;
+  font-size: 18px;
+  font-weight: 500;
+}
+.topnav .icon {
+  color: #f98901;
+  margin-right: 11px;
+  margin-left: 33px;
+  font-size: 50px;
+}
+.topnav .icon-scanner-cont {
+  margin-right: 65px;
+}
+.topnav .icon-scanner {
+  color: #f98901;
+  margin-right: 11px;
+  margin-left: 64px;
+  font-size: 40px;
+}
+.topnav .search-box {
+  width: 500px;
+  height: 49px;
+  background-color: #efefef;
+  border: none;
+  outline: none;
+  border-radius: 24.5px;
+  position: relative;
+  padding-left: 80px;
+  caret-color: #f98901;
+  font-size: 21px;
+}
+.topnav .search-icon {
+  font-size: 50px;
+  position: absolute;
+  z-index: 2;
+  margin-left: 23px;
 }
 
 /*# sourceMappingURL=style.css.map */
