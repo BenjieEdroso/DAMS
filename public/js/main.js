@@ -109,3 +109,10 @@ const myChart = new Chart(ctx, {
     },
   },
 });
+
+// setTimeout(removeAfterDelay, 1500);
+
+// function removeAfterDelay() {
+//   $("#username_error").fadeOut();
+//   $("#password_error").fadeOut();
+// }
