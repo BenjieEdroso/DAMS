@@ -1,3 +1,36 @@
 @import "/node_modules/material-design-icons/iconfont/material-icons.css";
 @import "global", "login", "sidebar", "dashboard", "archive", "monitor",
   "control";
+
+.used,
+.left {
+  position: relative;
+  &::after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: block;
+    clear: both;
+    border-radius: 100%;
+    position: absolute;
+    left: -30%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.used {
+  &::after {
+    background-color: #3775ae;
+  }
+}
+
+.left {
+  &::after {
+    background-color: #f98901;
+  }
+}
+
+.building {
+  color: #eb8202;
+}

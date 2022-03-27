@@ -91,297 +91,9 @@ ul {
   background-color: #409749;
 }
 
-.main {
-  margin: 0 31px;
-  width: 100vw;
-}
-.main--archive {
-  margin: 0;
-}
-.main__topCards {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 30px;
-}
-.main__bottomCards {
-  display: flex;
-  justify-content: space-between;
-}
-.main .storage,
-.main .usersCard,
-.main .files,
-.main .office {
-  width: 350px;
-  height: 205px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.usersCard {
-  background-color: #fff;
-}
-.usersCard__label {
-  font-weight: 600;
-  color: #2c2c2c;
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-.usersCard--flex {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.usersCard__data {
-  font-size: 34px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 125px;
-}
-.usersCard__data span {
-  display: inline-block;
-}
-.usersCard__data--user {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.storage {
-  background-color: #fff;
-}
-.storage__label {
-  font-weight: 600;
-  color: #2c2c2c;
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-.storage__used, .storage__left {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column-reverse;
-  position: absolute;
-  font-weight: 600;
-  width: 83.23px;
-}
-.storage__used ::before, .storage__left ::before {
-  content: "";
-  clear: both;
-  display: block;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  position: absolute;
-  left: 0px;
-  top: 8px;
-}
-.storage__used span, .storage__left span {
-  font-size: 1.7rem;
-}
-.storage__used {
-  right: 7%;
-  top: 15%;
-}
-.storage__used ::before {
-  background-color: #3775ae;
-}
-.storage__left {
-  right: 7%;
-  top: 48%;
-}
-.storage__left ::before {
-  background-color: #f98901;
-}
-.storage__container {
-  position: absolute;
-  top: 53%;
-  left: 36%;
-  transform: translate(-50%, -50%);
-  width: 180px;
-  height: 200px;
-}
-
-.office {
-  background-color: #fff;
-}
-.office__label {
-  font-weight: 600;
-  color: #2c2c2c;
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-.office__flexCont {
-  display: flex;
-  height: calc(100% - 31px);
-  align-items: center;
-  width: 100%;
-  justify-content: space-evenly;
-}
-.office__flex {
-  display: flex;
-}
-.office__data {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 130px;
-}
-.office__data--number {
-  font-size: 34px;
-  font-weight: 600;
-}
-.office__data span {
-  font-weight: 500;
-}
-
-.monitorCard {
-  width: 959px;
-  height: 705px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
-  margin-top: 66px;
-}
-.monitorCard__step {
-  display: flex;
-  width: 840px;
-  margin: 44px;
-  justify-content: space-between;
-  border-bottom: 1px solid #4a4a4a;
-}
-.monitorCard__step1, .monitorCard__step2 {
-  position: relative;
-  cursor: pointer;
-}
-.monitorCard__step1::after, .monitorCard__step2::after {
-  content: url("http://localhost/DAMS/public/images/dots.png");
-  clear: both;
-  display: block;
-  position: absolute;
-  cursor: default;
-  top: 20%;
-}
-.monitorCard__step1 {
-  border-bottom: 5px solid #4a4a4a;
-  padding-bottom: 32px;
-}
-.monitorCard__step1::after {
-  right: -135%;
-}
-.monitorCard__step2::after {
-  right: -123%;
-}
-.monitorCard__step3 {
-  cursor: pointer;
-}
-.monitorCard__tableHead {
-  margin: 0 44px;
-}
-.monitorCard__tableHead table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.monitorCard__tableHead table th {
-  text-align: left;
-  padding: 13px 23px;
-}
-.monitorCard__tableHead table tr {
-  padding: 0 44px;
-  background-color: #efefef;
-}
-.monitorCard__tableCont {
-  margin: 0 44px;
-  font-size: 1.125rem;
-  height: 470px;
-  overflow-y: scroll;
-}
-.monitorCard__tableCont table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 15px;
-}
-.monitorCard__tableCont th {
-  text-align: left;
-  padding: 13px 23px;
-}
-.monitorCard__tableCont tr {
-  padding: 0 44px;
-  background-color: #efefef;
-  cursor: pointer;
-}
-.monitorCard__tableCont td {
-  padding: 13px 23px;
-}
-
-.files {
-  background-color: #fff;
-}
-.files__label {
-  font-weight: 600;
-  color: #2c2c2c;
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-.files__flexCol {
-  display: flex;
-  flex-flow: column;
-  height: calc(100% - 31px);
-  justify-content: space-evenly;
-  align-items: flex-start;
-}
-.files__totalFiles {
-  display: block;
-  width: 100%;
-  font-weight: 600;
-  font-size: 30px;
-  padding-left: 2.5rem;
-}
-.files__flex {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.files__docx, .files__pdf {
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-  font-weight: 600;
-}
-.files__docx img, .files__pdf img {
-  margin: 0 10px;
-}
-
-.activityLog {
-  background-color: #fff;
-  height: 704px;
-  width: 566px;
-  margin-top: 66px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
-  font-size: 1.125rem;
-  font-weight: 700;
-}
-.activityLog__logs {
-  margin: 50px 50px;
-  height: 567px;
-  overflow-y: scroll;
-}
-.activityLog__label {
-  margin-top: 10px;
-  margin-left: 10px;
-}
-.activityLog__label, .activityLog__day span {
-  color: #000;
-}
-.activityLog__day ul {
-  margin-left: 50px;
+#myChart {
+  height: 150px !important;
+  width: 150px !important;
 }
 
 .topnav {
@@ -708,6 +420,36 @@ ul {
 .control-card img {
   width: 150px;
   height: 150px;
+}
+
+.used,
+.left {
+  position: relative;
+}
+.used::after,
+.left::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  display: block;
+  clear: both;
+  border-radius: 100%;
+  position: absolute;
+  left: -30%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.used::after {
+  background-color: #3775ae;
+}
+
+.left::after {
+  background-color: #f98901;
+}
+
+.building {
+  color: #eb8202;
 }
 
 /*# sourceMappingURL=style.css.map */
