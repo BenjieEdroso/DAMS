@@ -69,3 +69,94 @@
             </div>
         </div>
     </div>
+    <div class="card p-3 mt-3" style="height: 29.656rem;">
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Date Received</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="overflow-scroll" style="height: 29.656rem;">
+            <table class="table table-striped  " style="max-height: 29.656rem;">
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>FOM-101</td>
+                        <td>OJT-Application.pdf</td>
+                        <td>03/11/2022</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

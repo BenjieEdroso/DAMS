@@ -31,7 +31,7 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
         </div>
 
         <div class="tab-pane fade" id="v-pills-archiving" role="tabpanel" aria-labelledby="v-pills-archiving-tab">
-            <h1>Archiving</h1>
+
         </div>
         <div class="tab-pane fade" id="v-pills-monitoring" role="tabpanel" aria-labelledby="v-pills-monitoring-tab">
             <h1>Monitoring</h1>
