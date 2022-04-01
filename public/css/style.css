@@ -57,7 +57,7 @@ ul {
 .sidebar {
   width: 15.625rem;
   height: 100vh;
-  background-color: #4ba855;
+  background: #044a8b;
 }
 .sidebar--flex {
   display: flex;
@@ -450,6 +450,14 @@ ul {
 
 .building {
   color: #eb8202;
+}
+
+#search-text {
+  border-radius: 25px;
+}
+
+aside {
+  background-color: #044a8b;
 }
 
 /*# sourceMappingURL=style.css.map */

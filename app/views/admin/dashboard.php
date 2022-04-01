@@ -5,8 +5,8 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
 }?>
 
 <div class="d-flex align-items-start vh-100 ">
-    <aside class="nav flex-column nav-pills me-3 col-lg-2 d-none d-xl-block bg-success h-100" id="v-pills-tab"
-        role="tablist" aria-orientation="vertical">
+    <aside class="nav flex-column nav-pills me-3 col-lg-2 d-none d-xl-block  h-100" id="v-pills-tab" role="tablist"
+        aria-orientation="vertical">
         <div class="d-flex align-content-center justify-content-center p-3">
             <img src="<?php echo URLROOT?>/images/logo.png" alt="Carlos Hilado Memorial State College logo">
             <p class="text-white h3 my-auto ms-3">DAMS</p>
@@ -31,7 +31,15 @@ if (!isset($_SESSION["username"]) && !isset($_SESSION["password"])) {
         </div>
 
         <div class="tab-pane fade" id="v-pills-archiving" role="tabpanel" aria-labelledby="v-pills-archiving-tab">
-
+            <div class="w-100 navbar navbar-expand-xl navbar-light bg-light">
+                <div class="d-flex">
+                    <i class="bi bi-upload icon"></i>
+                    <form action="#" method="get" id="search-form">
+                        <i class="bi bi-search position-absolute"></i>
+                        <input type="text" name="search-text" id="search-text" class="form-control position-relative">
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="tab-pane fade" id="v-pills-monitoring" role="tabpanel" aria-labelledby="v-pills-monitoring-tab">
             <h1>Monitoring</h1>
