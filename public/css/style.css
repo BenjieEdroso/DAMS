@@ -1,3 +1,27 @@
+.sidebar {
+  background-color: #044a8b;
+}
+
+.sidebar-links li {
+  background-color: #044a8b;
+}
 .sidebar-link:hover {
-  background-color: #66a3ff;
+  background-color: #005cb3;
+}
+
+.card-label {
+  position: relative;
+}
+.card-icon {
+  color: #044a8b;
+  position: absolute;
+  right: 0;
+  font-size: 35px;
+}
+
+.number {
+  color: #044a8b;
+}
+.chart-size {
+  width: 250px;
 }
