@@ -12,6 +12,14 @@
 .card-label {
   position: relative;
 }
+.table-card {
+  height: calc(100vh - 255px);
+}
+
+.table-body {
+  height: 300px;
+}
+
 .card-icon {
   color: #044a8b;
   position: absolute;
