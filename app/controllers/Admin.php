@@ -23,14 +23,19 @@ class Admin extends Controller
     {
         $this->view("admin/dashboard");
     }
+  public function processForm(){
+        $this->view("admin/archiving");
+    }
+    public function archiving()
+    {
+        $this->view("admin/archiving");
+    }
+    
     public function documents()
     {
         $this->view("admin/documents");
     }
-    public function archive()
-    {
-        $this->view("admin/archive");
-    }
+  
     public function monitor()
     {
         $this->view("admin/monitor");

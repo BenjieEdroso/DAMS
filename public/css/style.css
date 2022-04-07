@@ -33,3 +33,12 @@
 .chart-size {
   width: 250px;
 }
+
+.active-archive {
+  background-color: #005cb3;
+}
+
+.settings {
+  outline: none;
+  border: none;
+}
