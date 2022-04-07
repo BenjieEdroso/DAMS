@@ -8,9 +8,7 @@
        <div class="tab-pane fade" id="v-pills-monitoring" role="tabpanel" aria-labelledby="v-pills-monitoring-tab">
            <?php require_once APPROOT . "/views/includes/monitoring-content.php" ; ?>
        </div>
-       <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-           Lorem
-           ipsum dolor sit amet consectetur adipisicing elit. Harum consectetur voluptates inventore adipisci
-           quaerat
-           asperiores ab blanditiis excepturi sunt, assumenda est ad voluptatum, iste provident?</div>
+       <div class="tab-pane fade" id="v-pills-request" role="tabpanel" aria-labelledby="v-pills-request-tab">
+           <?php require_once APPROOT . "/views/includes/request-content.php" ; ?>
+       </div>
    </main>

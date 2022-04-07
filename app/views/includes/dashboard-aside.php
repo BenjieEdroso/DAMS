@@ -9,8 +9,8 @@
              <a class="nav-link text-white" id="v-pills-monitoring-tab" data-bs-toggle="pill" href="#v-pills-monitoring"
                  role="tab" aria-controls="v-pills-monitoring" aria-selected="false"> <i
                      class="bi bi-activity pe-3"></i>Monitoring</a>
-             <a class="nav-link text-white" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings"
-                 role="tab" aria-controls="v-pills-settings" aria-selected="false"> <i
+             <a class="nav-link text-white" id="v-pills-request-tab" data-bs-toggle="pill" href="#v-pills-request"
+                 role="tab" aria-controls="v-pills-request" aria-selected="false"> <i
                      class="bi bi-send-plus pe-3"></i>Request</a>
              <a class="nav-link text-white" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings"
                  role="tab" aria-controls="v-pills-settings" aria-selected="false"> <i
