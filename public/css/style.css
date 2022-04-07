@@ -42,3 +42,27 @@
   outline: none;
   border: none;
 }
+
+.cards-container{
+  max-height: calc(100vh - 208px);
+}
+
+.cards-container::-webkit-scrollbar{
+  display: none;
+}
+.card-custom{
+  position: relative;
+  height: 100%;
+
+}
+.card-custom::after{
+  content: "";
+  clear: both;
+  display: block;
+  height: inherit;
+  width: 12px;
+  position: absolute;
+  border-top-left-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
+  background: #0a53be;
+}

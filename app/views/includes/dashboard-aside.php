@@ -6,8 +6,8 @@
              <a class="nav-link text-white" id="v-pills-archiving-tab" data-bs-toggle="pill"
                  href="archiving#v-pills-archiving" role="tab" aria-controls="v-pills-archiving" aria-selected="false">
                  <i class="bi bi-archive pe-3"></i>Archiving</a>
-             <a class="nav-link text-white" id="v-pills-messages-tab" data-bs-toggle="pill" href="#v-pills-messages"
-                 role="tab" aria-controls="v-pills-messages" aria-selected="false"> <i
+             <a class="nav-link text-white" id="v-pills-monitoring-tab" data-bs-toggle="pill" href="#v-pills-monitoring"
+                 role="tab" aria-controls="v-pills-monitoring" aria-selected="false"> <i
                      class="bi bi-activity pe-3"></i>Monitoring</a>
              <a class="nav-link text-white" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings"
                  role="tab" aria-controls="v-pills-settings" aria-selected="false"> <i
