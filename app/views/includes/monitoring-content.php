@@ -1,5 +1,5 @@
 <div class="d-flex mx-3 my-3 position-relative">
-    <form action="#" method="get" class="col-4 ms-5">
+    <form action="#" method="get" class="col-4">
         <div class="position-relative">
             <i class="bi bi-search position-absolute top-50 ms-4  translate-middle text-primary"></i>
             <input type="text" name="q" id="q" class="form-control rounded-pill ps-5 text-primary">

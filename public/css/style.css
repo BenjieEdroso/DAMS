@@ -38,24 +38,32 @@
   background-color: #005cb3;
 }
 
+.select-custom {
+  display: inline-block !important;
+  width: 50% !important;
+}
+
+.control-icon {
+  font-size: 80px;
+  margin-left: 50px;
+}
 .settings {
   outline: none;
   border: none;
 }
 
-.cards-container{
+.cards-container {
   max-height: calc(100vh - 208px);
 }
 
-.cards-container::-webkit-scrollbar{
+.cards-container::-webkit-scrollbar {
   display: none;
 }
-.card-custom{
+.card-custom {
   position: relative;
   height: 100%;
-
 }
-.card-custom::after{
+.card-custom::after {
   content: "";
   clear: both;
   display: block;
@@ -65,4 +73,9 @@
   border-top-left-radius: 0.25em;
   border-bottom-left-radius: 0.25em;
   background: #0a53be;
+}
+
+.select-custom {
+  display: block;
+  width: 150px;
 }

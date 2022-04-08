@@ -11,4 +11,7 @@
        <div class="tab-pane fade" id="v-pills-request" role="tabpanel" aria-labelledby="v-pills-request-tab">
            <?php require_once APPROOT . "/views/includes/request-content.php" ; ?>
        </div>
+       <div class="tab-pane fade" id="v-pills-control" role="tabpanel" aria-labelledby="v-pills-control-tab">
+           <?php require_once APPROOT . "/views/includes/control-content.php" ; ?>
+       </div>
    </main>

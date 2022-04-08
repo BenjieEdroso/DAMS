@@ -12,11 +12,11 @@
              <a class="nav-link text-white" id="v-pills-request-tab" data-bs-toggle="pill" href="#v-pills-request"
                  role="tab" aria-controls="v-pills-request" aria-selected="false"> <i
                      class="bi bi-send-plus pe-3"></i>Request</a>
-             <a class="nav-link text-white" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings"
-                 role="tab" aria-controls="v-pills-settings" aria-selected="false"> <i
+             <a class="nav-link text-white" id="v-pills-control-tab" data-bs-toggle="pill" href="#v-pills-control"
+                 role="tab" aria-controls="v-pills-control" aria-selected="false"> <i
                      class="bi bi-ui-radios pe-3"></i>Control</a>
-             <a class="nav-link text-white" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings"
-                 role="tab" aria-controls="v-pills-settings" aria-selected="false"> <i
+             <a class="nav-link text-white" id="v-pills-usermanagement-tab" data-bs-toggle="pill" href="#v-pills-usermanagement"
+                 role="tab" aria-controls="v-pills-usermanagement" aria-selected="false"> <i
                      class="bi bi-people pe-3"></i>User
                  management</a>
          </div>
