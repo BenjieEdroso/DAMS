@@ -1,8 +1,18 @@
 <?php require_once APPROOT . "/views/includes/header.php" ; ?>
-<form action="#" method="post"
+<?php if(!empty($data["error_msg"])) { ?><div class="alert-danger p-3"><?php echo $data["error_msg"]?></div> <?php }?>
+<form action="<?php echo URLROOT?>/users/login" method="post" autocomplete="off"
     class="col-3 px-4 py-5 rounded shadow position-absolute top-50 start-50 translate-middle">
-    <input type="text" name="username" id="username" class="form-control p-2 mb-3">
-    <input type="password" name="password" id="password" class="form-control p-2 mb-3">
+    <div class="mb-3">
+        <input type="text" name="username" id="username" class="form-control p-2 " autocomplete="off">
+        <?php if(!empty($data["username_error"])) { ?><div class="text-danger"><?php echo $data["username_error"];?>
+        </div><?php }?>
+    </div>
+    <div class="mb-3">
+        <input type="password" name="password" id="password" class="form-control p-2" autocomplete="off">
+        <?php if(!empty($data["password_error"])) { ?><div class="text-danger"><?php echo $data["password_error"];?>
+        </div><?php }?>
+    </div>
     <input type="submit" value="Login" class="form-control p-2 bg-primary text-white">
 </form>
+
 <?php require_once APPROOT . "/views/includes/footer.php" ; ?>
