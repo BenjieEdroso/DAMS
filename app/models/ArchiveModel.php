@@ -12,19 +12,8 @@ class ArchiveModel
     {
         date_default_timezone_set("Asia/Manila");
         $date = date("Y-m-d g:i:s:A");
-        $this->db->query(
-            "INSERT INTO uploads (file_name, file_type, file_tmpName, file_error, file_size, file_date, file_path) VALUES ( :fileName, :fileType, :fileTmpName, :fileError, :fileSize, :fileDate, :filePath)"
-        );
-        for ($i = 0; $i < count($data["file_name"]); $i++) {
-            $this->db->bind(":fileName", $data["file_name"][$i]);
-            $this->db->bind(":fileType", $data["file_type"][$i]);
-            $this->db->bind(":fileTmpName", $data["file_tmp_name"][$i]);
-            $this->db->bind(":fileError", $data["file_error"][$i]);
-            $this->db->bind(":fileSize", $data["file_size"][$i]);
-            $this->db->bind(":fileDate", $date);
-            $this->db->bind(":filePath", $data["root_path"] .$data["folder_name"]. "\\" . $data["file_name"][$i]);
-            $this->db->execute();
-        }
+        $this->db->query();
+       
     }
 
     public function select_all_files()

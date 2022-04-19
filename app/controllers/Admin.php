@@ -11,7 +11,8 @@ class Admin extends Controller
 {
     public function __construct()
     {
-        $this->fileModel = $this->model("FileModel");
+  
+        $this->adminModel = $this->model("AdminModel");
     }
 
     public function index()
@@ -20,15 +21,81 @@ class Admin extends Controller
     }
 
     public function dashboard()
-    {
+    {   function unused_space(){
+            $bytes= disk_free_space("D:");
+            $si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' );
+            $base = 1024;
+            $class = min((int)log($bytes , $base) , count($si_prefix) - 1);
+            return round($bytes / pow($base,$class), 2) . $si_prefix[$class];
+        };
+
+        function used_space(){
+            $bytes= disk_free_space("D:");
+            $bytes_total= disk_total_space("D:");
+            $si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' );
+            $base = 1024;
+            $class = min((int)log(($bytes_total - $bytes) , $base) , count($si_prefix) - 1);
+            return round(($bytes_total - $bytes) / pow($base,$class), 2) . $si_prefix[$class];
+        };
+
+        function files()
+        {
+            $dir = APPROOT . "\\drive_main";
+            $dirs =  scandir($dir);
+            $total = null;
+            $docx_total =  null;
+            $pdf_total =  null;
+            for($i = 0; $i < count($dirs); $i++){
+                if($dirs[$i] != "." && $dirs[$i] != ".."){
+                    if(is_dir($dir . "\\" . $dirs[$i])){
+                        $d = new FilesystemIterator($dir . "\\" . $dirs[$i]);
+                        $docx = new CallbackFilterIterator($d, function($cur){
+                            return $cur->getExtension() == "docx";
+                        });
+
+                        $pdf = new CallbackFilterIterator($d, function($cur){
+                            return $cur->getExtension() == "pdf";
+                        });
+                        $docx_total  += iterator_count($docx);
+                        $pdf_total  += iterator_count($pdf);
+
+                        $total += iterator_count($d);
+                    }
+
+                    if(is_file($dir . "\\" . $dirs[$i])){
+                        $total++;
+                        $pi = pathinfo($dir . "\\" . $dirs[$i]);
+                        if($pi["extension"] == "pdf"){
+                            $pdf_total++;
+                        }
+
+                        if($pi["extension"] == "docx"){
+                            $docx_total++;
+                        }
+                    }
+                }
+            }
+
+          
+
+
+            return [
+              "total" => $total,
+              "total_docx" => $docx_total,
+              "total_pdf" => $pdf_total
+            ];
+        }
+
+      
+     
         $this->view("admin/dashboard");
     }
   public function processForm(){
         $this->view("admin/archiving");
     }
     public function archiving()
-    {
-        $this->view("admin/archiving");
+    {   $data = $this->adminModel->categories();
+        $this->view("admin/archiving", $data);
     }
     
     public function documents()

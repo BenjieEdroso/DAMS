@@ -17,46 +17,27 @@ class Archive extends Controller
     }
 
     public function file_upload(){
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            
-            $data = [
-                "file_name" => $_FILES["file"]["name"],
-                "file_type" => $_FILES["file"]["type"],
-                "file_tmp_name" => $_FILES["file"]["tmp_name"],
-                "file_error" => $_FILES["file"]["error"],
-                "file_size" => $_FILES["file"]["size"],
-                "folder_name" => $_FILES["folderName"],
-                "upload_size" => "",
-                "root_path" => APPROOT . "\drive_main\\" 
-            ];
-          
-            //check archive folder
-            
-            //if no folder name
-            //create folder
-            //set storage folder to storare + folder_name
 
-            // has foldername
-            //set storage folder to storage + folder_name
-
-            //else set storage folder to root
-            $storage_folder = APPROOT . "\drive_main\\";
-            if(!file_exists($storage_folder.$data["folder_name"])){
-               mkdir($storage_folder . $data["folder_name"]);
-               $storage_folder = $storage_folder . $data["folder_name"];
-            }else if(file_exists($storage_folder.$data["folder_name"])){
-                $storage_folder = $storage_folder . $data["folder_name"];
-            }
-
-            $this->archive_model->archive_file_db($data);
-            for ($i = 0; $i < count($data["file_name"]); $i++) {
-                if (move_uploaded_file($data["file_tmp_name"][$i], $storage_folder . $data["file_name"][$i])) {
-                    $data["upload_msg"] = "File inserted successfully";
-                };
-            };
+        function upload($files, $storage_folder, $category){
+            for($i = 0; $i < count($files["name"]); $i++){
+                  move_uploaded_file($files["tmp_name"][$i], $storage_folder . $category . "\\" .$files["name"][$i]);
+            } 
         }
+  
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $category = $_POST["category"];
+            $files = $_FILES["files"];
+            $storage_folder = APPROOT . "\drive_main\\";
 
-        redirect("admin/documents");
+            if(!file_exists($storage_folder . $category)){
+                mkdir($storage_folder . $category);
+                upload($files, $storage_folder, $category);
+                
+            }else{
+                upload($files, $storage_folder, $category);
+            }
+        }
+        redirect("admin/archiving");
     }
 
     public function sort(){

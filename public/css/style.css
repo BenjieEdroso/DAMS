@@ -80,9 +80,18 @@
   width: 150px;
 }
 
-.profile-image{
+.profile-image {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.modalCustom {
+  z-index: 9999 !important;
+}
+.modal-bg {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  display: none;
+  z-index: 0;
 }

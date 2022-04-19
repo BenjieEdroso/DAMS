@@ -3,8 +3,8 @@
 <form action="<?php echo URLROOT?>/users/login" method="post" autocomplete="off"
     class="col-3 px-4 py-5 rounded shadow position-absolute top-50 start-50 translate-middle">
     <div class="mb-3">
-        <input type="text" name="username" id="username" class="form-control p-2 " autocomplete="off">
-        <?php if(!empty($data["username_error"])) { ?><div class="text-danger"><?php echo $data["username_error"];?>
+        <input type="email" name="email" id="email" class="form-control p-2 " autocomplete="off">
+        <?php if(!empty($data["email_error"])) { ?><div class="text-danger"><?php echo $data["email_error"];?>
         </div><?php }?>
     </div>
     <div class="mb-3">

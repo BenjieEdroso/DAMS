@@ -9,28 +9,6 @@ class UsersModel
         $this->db = new Database();
     }
 
-    public function insert_account($data)
-    {
-
-        $this->db->query("INSERT INTO tbl_account (username, password) VALUES (:username, :password)");
-        $this->db->bind(":username", $data["username"]);
-        $this->db->bind(":password", $data["password"]);
-        $this->db->execute();
-
-        //get id
-        $this->db->query("SELECT account_id FROM tbl_account WHERE username = :username");
-        $this->db->bind(":username", $data["username"]);
-        $this->db->execute();
-        $result = $this->db->fetchOne();
-
-        $this->db->query("INSERT INTO tbl_name (firstname, middlename, lastname, account_id) VALUES (:firstname, :middlename, :lastname, :account_id)");
-        $this->db->bind(":firstname", $data["firstname"]);
-        $this->db->bind(":middlename", $data["middlename"]);
-        $this->db->bind(":lastname", $data["lastname"]);
-        $this->db->bind(":account_id", $result->account_id);
-        return $this->db->execute();
-    }
-
 
 
     public function set_session($data)
@@ -48,10 +26,10 @@ class UsersModel
     }
 
 
-    public function check_user_name($data)
+    public function check_user($data)
     {
-        $this->db->query("SELECT * FROM tbl_account WHERE username= :username");
-        $this->db->bind(":username", $data["username"]);
+        $this->db->query("SELECT * FROM users WHERE email= :email");
+        $this->db->bind(":email", $data["email"]);
         $this->db->execute();
 
         $row = $this->db->fetchOne();
@@ -66,12 +44,5 @@ class UsersModel
         }
     }
 
-    public function check_family_name($data)
-    {
-        $this->db->query("SELECT * FROM tbl_name WHERE middlename = :middlename AND lastname=:lastname");
-        $this->db->bind(":middlename", $data["middlename"]);
-        $this->db->bind(":lastname", $data["lastname"]);
-        $this->db->execute();
-        return $this->db->fetchOne();
-    }
+
 }
