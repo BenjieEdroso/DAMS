@@ -26,9 +26,10 @@ class Users extends Controller
       $data = [
         "firstname" => trim($_POST["firstname"]),
         "lastname" => trim($_POST["lastname"]),
-        "birthate" => $_POST["birthdate"],
+        "birthdate" => $_POST["birthdate"],
         "email" => $_POST["email"],
         "password" => trim($_POST["password"]),
+        "type" => trim($_POST["type"]),
       ];
 
       if (empty($data["firstname"])) {
@@ -55,9 +56,16 @@ class Users extends Controller
         }
       }
 
-      // if (empty($data["email_error"]) && empty($data["password_error"]) && empty($data["firstname_error"]) &&  empty($data["lastname_error"])) {
+      if(empty($data["type"])){
+        $data["type_error"] = "Please enter user type";
+      }
 
-      // }
+      if (empty($data["email_error"]) && empty($data["password_error"]) && empty($data["firstname_error"]) &&  empty($data["lastname_error"]) && empty($data["type_error"])) {
+        $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
+        if($this->user_model->register_user($data)){
+          redirect("users/login");
+        };
+      }
       $this->view("users/register", $data);
     } else {
       $data = [
@@ -73,7 +81,8 @@ class Users extends Controller
         "lastname" => "",
         "firstname_error",
         "middlename_error",
-        "lastname_error"
+        "lastname_error",
+        "type_error",
       ];
       $this->view("users/register", $data);
     }
@@ -84,12 +93,16 @@ class Users extends Controller
       if($_SERVER["REQUEST_METHOD"] == "POST"){
           $email = trim($_POST["email"]);
           $password = trim($_POST["password"]);
+          $_SESSION["email"] = $email;
           $data = [
             "email" => $email,
             "password" => $password
           ];
-
-         echo $this->user_model->check_user($data);
+       
+  
+        if($this->user_model->check_user($data)){
+          redirect("admin/dashboard");
+        }
       }
 
       $this->view("users/login");

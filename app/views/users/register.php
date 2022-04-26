@@ -34,15 +34,24 @@
     </div>
 
 
-    <div>
+    <div class="mb-4">
         <label for="password" class="form-label">Password</label>
         <input class="form-control" type="password" name="password" id="password">
         <?php if(!empty($data["password_error"])){?> <div class="text-danger"><?php echo $data["password_error"];?>
         </div><?php }?>
     </div>
 
+    <div>
+        <select name="type" id="type" class="form-control">
+            <option value="superuser">Admin</option>
+            <option value="user" selected>User</option>
+        </select>
+        <?php if(!empty($data["type_error"])){?> <div class="text-danger"><?php echo $data["type_error"];?>
+        </div><?php }?>
+    </div>
+
     <input type="submit" value="Register" class="btn btn-primary mb-3 mt-3">
 </form>
 
-<?php print_r($data)?>
+
 <?php require_once APPROOT . "/views/includes/footer.php" ; ?>

@@ -1,9 +1,5 @@
 <?php
-
 session_start();
-require_once "../vendor/defuse-crypto.phar";
-require_once "../vendor/autoload.php";
-
 use Defuse\Crypto\File;
 use Defuse\Crypto\Key;
 
@@ -85,10 +81,15 @@ class Admin extends Controller
               "total_pdf" => $pdf_total
             ];
         }
-
-      
-     
-        $this->view("admin/dashboard");
+        $data = [
+            "used" => used_space(),
+            "un_used" => unused_space(),
+            "total" => files()["total"],
+            "total_docx" => files()["total_docx"],
+            "total_pdf" => files()["total_pdf"]
+        ];
+          
+        $this->view("admin/dashboard", $data);
     }
   public function processForm(){
         $this->view("admin/archiving");

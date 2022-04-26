@@ -8,11 +8,11 @@ class ArchiveModel
         $this->db = new Database();
     }
 
-    public function archive_file_db($data)
+    public function query_to_database($data)
     {
-        date_default_timezone_set("Asia/Manila");
-        $date = date("Y-m-d g:i:s:A");
-        $this->db->query();
+      
+        var_dump($data);
+        $this->db->query("INSERT INTO files (file_name, file_type, file_tmp_name, file_size, file_date_uploaded, fuile_date_modified, file_expiration)");
        
     }
 

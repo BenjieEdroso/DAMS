@@ -1,5 +1,5 @@
 <?php require_once APPROOT . "/views/includes/header.php" ; ?>
-<?php if(!isset($_SESSION["username"])) {
+<?php if(!isset($_SESSION["email"])) {
     redirect("users/login");
 }?>
 <div class="d-flex" style="width: 100%">
@@ -14,16 +14,14 @@
                             Storage
                             <i class="bi bi-hdd-fill card-icon"></i>
                         </div>
-
-
-                        <span>Free Space: <?php echo $data["unused"]?></span>
-                        <span>Used Space: <?php echo $data["used_space"]?></span>
+                        <span>Free Space: <?php echo $data["un_used"]?></span>
+                        <span>Used Space: <?php echo $data["used"]?></span>
                     </div>
                     <div class="files card col-3 px-4 py-3 ">
                         <div class="card-label h5">Files <i class="bi bi-file-earmark-text-fill card-icon"></i></div>
                         <div class="d-flex justify-content-between  my-auto">
                             <div>
-                                <div class="number h4 "><?php echo $data["total_files"]?></div>
+                                <div class="number h4 "><?php echo $data["total"]?></div>
                                 <div>Total</div>
                             </div>
                             <div>

@@ -25,14 +25,20 @@ class Archive extends Controller
         }
   
         if($_SERVER["REQUEST_METHOD"] == "POST"){
+            date_default_timezone_set("Asia/Manila");
+            $date = date("Y-m-d g:i:s:A");
             $category = $_POST["category"];
             $files = $_FILES["files"];
             $storage_folder = APPROOT . "\drive_main\\";
+            $data = ["category" => $category, "date_uploaded" => $date];
+            array_push($data, $files);
+            
+            $this->archive_model->query_to_database($data);
 
             if(!file_exists($storage_folder . $category)){
+                
                 mkdir($storage_folder . $category);
                 upload($files, $storage_folder, $category);
-                
             }else{
                 upload($files, $storage_folder, $category);
             }
