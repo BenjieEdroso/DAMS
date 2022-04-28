@@ -42,8 +42,9 @@ class Archive extends Controller
             }else{
                 upload($files, $storage_folder, $category);
             }
+            // var_dump($data);
         }
-        redirect("admin/archiving", $data);
+        // redirect("admin/archiving", $data);
     }
 
     public function add_category(){

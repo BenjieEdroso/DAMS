@@ -4,7 +4,7 @@ define("DB_USERNAME", "root");
 define("DB_PASSWORD", "");
 define("DB_NAME", "dams");
 define("APPROOT", dirname(dirname(__FILE__)));
-define("ARCHIVE_PATH", APPROOT . "\archive\\");
+define("ARCHIVE_PATH", APPROOT . "\drive_main\\");;
 define("BACKUP_PATH", "D:\backup\\");
 define("URLROOT", "http://localhost/DAMS");
 define("SITENAME", "DAMS");
