@@ -4,6 +4,12 @@
     <div class="col-10">
         <div class="d-flex mx-3 my-3 position-relative">
             <button class="btn btn-primary upload-btn" data-bs-toggle="modal" data-bs-target="#myModal">Upload</button>
+            <button class="btn btn-secondary mx-3 upload-btn" data-bs-toggle="modal"
+                data-bs-target="#addCategoryModal">Add
+                Category</button>
+            <button class="btn btn-secondary upload-btn" data-bs-toggle="modal"
+                data-bs-target="#deleteCategoryModal">Delete a
+                Category</button>
             <form action="#" method="get" class="col-4 ms-5">
                 <div class="position-relative">
                     <i class="bi bi-search position-absolute top-50 ms-4  translate-middle text-primary"></i>
@@ -104,6 +110,59 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <input type="submit" value="Upload" class="btn btn-primary">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add a category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="<?php echo URLROOT?>/archive/add_category" method="post" className="form col-3"
+                            enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="category" class="mb-3">Category:</label>
+                            </div>
+                            <input class="form-control text-primary mb-3" type="text" id="category" name="category">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" value="Add" class="btn btn-primary">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete a category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="<?php echo URLROOT?>/archive/delete_category" method="post" className="form col-3"
+                            enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="category" class="mb-3">Category:</label>
+                            </div>
+                            <select name="category" id="category" class="form-control">
+                                <?php foreach($data as $item){ ?>
+                                <option value="<?php echo $item->category?>"><?php echo $item->category?>
+                                </option>
+                                <?php };?>
+                            </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" value="Delete" class="btn btn-danger">
                     </div>
                     </form>
                 </div>

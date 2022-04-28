@@ -43,7 +43,41 @@ class Archive extends Controller
                 upload($files, $storage_folder, $category);
             }
         }
-        redirect("admin/archiving");
+        redirect("admin/archiving", $data);
+    }
+
+    public function add_category(){
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $category = $_POST["category"];
+            $data = [
+                "category" => $category,
+                "category_msg" => ""
+            ];
+            if($this->archive_model->insert_category($data)){
+                $data["category_msg"] = "Category Added!";
+            }else{
+                $data["category_msg"] = "Failed to add category!";
+            }
+
+            redirect("admin/archiving");
+        };
+    }
+
+    public function delete_category(){
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $category = $_POST["category"];
+            $data = [
+                "category" => $category,
+                "category_msg" => ""
+            ];
+            if($this->archive_model->delete_category($data)){
+                $data["category_msg"] = "Category Added!";
+            }else{
+                $data["category_msg"] = "Failed to add category!";
+            }
+
+            redirect("admin/archiving");
+        };
     }
 
     public function sort(){

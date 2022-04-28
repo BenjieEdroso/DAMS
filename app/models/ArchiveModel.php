@@ -47,4 +47,18 @@ class ArchiveModel
 
         return $this->db->resultSet();
     }
+
+    public function insert_category($data){
+        $this->db->query("INSERT INTO category (category) VALUES (:category)");
+        $this->db->bind(":category", $data["category"]);
+        
+        return $this->db->execute();
+    }
+
+    public function delete_category($data){
+        $this->db->query("DELETE FROM category WHERE category=:category");
+        $this->db->bind(":category", $data["category"]);
+        
+        return $this->db->execute();
+    }
 }
