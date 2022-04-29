@@ -30,10 +30,14 @@ class Archive extends Controller
             $category = $_POST["category"];
             $files = $_FILES["files"];
             $storage_folder = APPROOT . "\drive_main\\";
-            $data = ["category" => $category, "date_uploaded" => $date];
+            $data = ["category" => $category, "date_uploaded" => $date, "expiration_id" => 12, "category_id" => 2];
             array_push($data, $files);
             
-            $this->archive_model->query_to_database($data);
+           if( $this->archive_model->query_to_database($data)){
+               echo "Good";
+           }else{
+               echo "BAd";
+           }
 
             if(!file_exists($storage_folder . $category)){
                 
@@ -44,7 +48,7 @@ class Archive extends Controller
             }
             // var_dump($data);
         }
-        // redirect("admin/archiving", $data);
+        redirect("admin/archiving", $data);
     }
 
     public function add_category(){

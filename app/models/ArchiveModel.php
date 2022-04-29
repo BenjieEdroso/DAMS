@@ -10,15 +10,14 @@ class ArchiveModel
 
     public function query_to_database($data)
     {   
-        date_default_timezone_set("Asia/Manila");
+     
         $files_array = [];
         foreach($data[0] as $file_data){
             foreach($file_data as $meta_data){
                 array_push($files_array, $meta_data);
             }
         }
-        $data["expiration_id"] = 1;
-        $data["category_id"] = 9;
+    
         $the_file = ARCHIVE_PATH . $data["category"] . "\\" .$files_array[0];
         if(!empty($data["category"])){
             if(file_exists($the_file)){
@@ -36,7 +35,7 @@ class ArchiveModel
         // if(file_exists(ARCHIVE_PATH . $files_array[0])){
            
         // }
-        // var_dump($data);
+        
         $this->db->query("INSERT INTO files (file_name, file_type, file_tmp_name, file_error, file_size,  file_date_uploaded, file_date_modified, expiration_id, category_id) VALUES (:file_name, :file_type, :file_tmp_name, :file_error, :file_size,  :file_date_uploaded, :file_date_modified, :expiration_id, :category_id)");
         $this->db->bind(":file_name", $files_array[0]);
         $this->db->bind(":file_type", $files_array[1]);
@@ -48,6 +47,9 @@ class ArchiveModel
         $this->db->bind(":expiration_id", $data["expiration_id"]);
         $this->db->bind(":category_id", $data["category_id"]);
         $this->db->execute();
+
+    
+       
 
     }
 
