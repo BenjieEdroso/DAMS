@@ -7,12 +7,24 @@ class AdminModel {
         $this->db = new Database();
     }
 
-    public function categories(){
+    public function get_categories(){
         $this->db->query("SELECT * FROM category");
         $this->db->execute();
         return $this->db->resultSet();
     }
 
+    public function get_files(){
+        $this->db->query("SELECT * FROM files");
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
+
+    public function get_expiration(){
+        $this->db->query("SELECT * FROM expiration");
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
+        //file_category, file_name, file_size, file_type, file_tmp_name, file_error, file_date_uploaded, file_last_modified, file_date_expire
     public function query_file_details_to_database($data){
         $this->db->query("INSERT INTO archive (file_category, file_name, file_size, file_type, file_tmp_name, file_error, file_date_uploaded, file_last_modified, file_date_expire) VALUES ( :file_category, :file_name, :file_size, :file_type, :file_tmp_name, :file_error, :file_date_uploaded, :file_last_modified, :file_date_expire)");
         $this->db->bind(":file_category", $data["file_category"]);
@@ -24,7 +36,6 @@ class AdminModel {
         $this->db->bind(":file_date_uploaded", $data["file_date_uploaded"]);
         $this->db->bind(":file_last_modified", $data["file_last_modified"]);
         $this->db->bind(":file_date_expire", $data["file_date_expire"]);
-
         $this->db->execute();
     }
 } 

@@ -1,19 +1,22 @@
 <?php
 session_start();
-use Defuse\Crypto\File;
-use Defuse\Crypto\Key;
+
 
 class Admin extends Controller
 {
+    /**
+     * @var mixed
+     */
+    private $admin_model;
+
     public function __construct()
     {
   
-        $this->adminModel = $this->model("AdminModel");
+        $this->admin_model = $this->model("AdminModel");
     }
 
     public function index()
     {
-        return;
     }
 
     public function dashboard()
@@ -23,7 +26,7 @@ class Admin extends Controller
             $base = 1024;
             $class = min((int)log($bytes , $base) , count($si_prefix) - 1);
             return round($bytes / pow($base,$class), 2) . $si_prefix[$class];
-        };
+        }
 
         function used_space(){
             $bytes= disk_free_space("D:");
@@ -32,7 +35,7 @@ class Admin extends Controller
             $base = 1024;
             $class = min((int)log(($bytes_total - $bytes) , $base) , count($si_prefix) - 1);
             return round(($bytes_total - $bytes) / pow($base,$class), 2) . $si_prefix[$class];
-        };
+        }
 
         function files()
         {
@@ -72,8 +75,6 @@ class Admin extends Controller
                 }
             }
 
-          
-
 
             return [
               "total" => $total,
@@ -95,7 +96,12 @@ class Admin extends Controller
         $this->view("admin/archiving");
     }
     public function archiving()
-    {   $data = $this->adminModel->categories();
+    {   $data= [
+            "category" => $this->admin_model->get_categories(),
+            "expiration" => $this->admin_model->get_expiration(),
+            "files" => $this->admin_model->get_files()
+        ];
+     
         $this->view("admin/archiving", $data);
     }
     

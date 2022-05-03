@@ -16,40 +16,76 @@ class Archive extends Controller
         $this->view("archive/store", $data);
     }
 
-    public function file_upload(){
+    public function settings(){
+        $data = [
+            "expiration_count" => $_POST["expirationCount"],
+            "expiration" => $_POST["expiration"],
+            "archive_path" => $_POST["archivePath"]
+        ];
+        $this->archive_model->query_settings($data);
+        $this->view("archive/archiving");
+    }
+    public function file_upload()
+    {
+      
 
-        function upload($files, $storage_folder, $category){
-            for($i = 0; $i < count($files["name"]); $i++){
-                  move_uploaded_file($files["tmp_name"][$i], $storage_folder . $category . "\\" .$files["name"][$i]);
-            } 
-        }
-  
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             date_default_timezone_set("Asia/Manila");
+            $data = [
+                "file_category" => $_POST["category"],
+                "file_name" => [],
+                "file_type" => [],
+                "file_tmp_name" => [],
+                "file_error" => [],
+                "file_size" => [],
+                "file_date_uploaded" => [],
+                "file_date_modified" => [],
+                "file_expiration" => [],
+            ];
+
+            function upload($files, $category)
+            {
+                for ($i = 0; $i < count($files["name"]); $i++) {
+                    move_uploaded_file($files["tmp_name"][$i], ARCHIVE_PATH . $category . "\\" . $files["name"][$i]);
+                }
+            }
+
             $date = date("Y-m-d g:i:s:A");
             $category = $_POST["category"];
             $files = $_FILES["files"];
-            $storage_folder = APPROOT . "\drive_main\\";
-            $data = ["category" => $category, "date_uploaded" => $date, "expiration_id" => 12, "category_id" => 2];
-            array_push($data, $files);
-            
-           if( $this->archive_model->query_to_database($data)){
-               echo "Good";
-           }else{
-               echo "BAd";
-           }
-
-            if(!file_exists($storage_folder . $category)){
-                
-                mkdir($storage_folder . $category);
-                upload($files, $storage_folder, $category);
-            }else{
-                upload($files, $storage_folder, $category);
+            $tmp_array = [];
+            foreach($files as $file){
+                array_push($tmp_array, $file);
             }
-            // var_dump($data);
-        }
-        redirect("admin/archiving", $data);
+
+            $data["file_name"] = $tmp_array[0];
+            $data["file_type"] = $tmp_array[1];
+            $data["file_tmp_name"] = $tmp_array[2];
+            $data["file_error"] = $tmp_array[3];
+            $data["file_size"] = $tmp_array[4];
+            
+            if(!file_exists(ARCHIVE_PATH . $category)){
+                mkdir(ARCHIVE_PATH . $category);
+                upload($files, $category);
+            }else{
+                upload($files, $category);
+            }
+
+            foreach($data["file_name"] as $file_name){
+                array_push($data["file_date_uploaded"], $date);
+                $fileToCheck = ARCHIVE_PATH . $category . "\\" . $file_name;
+                if(file_exists($fileToCheck)){
+                    array_push($data["file_date_modified"], date("Y-m-d g:i:s:A", filemtime($fileToCheck)));
+                }else{
+                    array_push($data["file_date_modified"],  $data["file_date_uploaded"]);
+                }
+            }
+            
+              $this->archive_model->query_to_database($data);
     }
+
+    redirect("admin/archiving");
+}
 
     public function add_category(){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -98,16 +134,16 @@ class Archive extends Controller
     }
 
     public function download(){
-        $file_name = $_GET["file_name"];
-        $storage_folder = APPROOT . "\drive_main\\" . $file_name;
-        header("Content-Description", "File Transfer");
-        header('Content-Disposition: attachment; filename="' . basename($_GET["file_name"]) . '"');
-        header("Expires: 0");
-        header("Cache-Control: must-revalidate");
-        header("Pragma: public");
-        header("Content-Length: " . filesize($storage_folder));
-        readfile($storage_folder);
-        exit();
+        // $file_name = $_GET["file_name"];
+        // ARCHIVE_PATH = APPROOT . "\drive_main\\" . $file_name;
+        // header("Content-Description", "File Transfer");
+        // header('Content-Disposition: attachment; filename="' . basename($_GET["file_name"]) . '"');
+        // header("Expires: 0");
+        // header("Cache-Control: must-revalidate");
+        // header("Pragma: public");
+        // header("Content-Length: " . filesize(ARCHIVE_PATH));
+        // readfile(ARCHIVE_PATH);
+        // exit();
     }
 
     public function backup(){
