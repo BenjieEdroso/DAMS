@@ -75,7 +75,7 @@ class Admin extends Controller
                 }
             }
 
-
+            
             return [
               "total" => $total,
               "total_docx" => $docx_total,
@@ -92,6 +92,11 @@ class Admin extends Controller
           
         $this->view("admin/dashboard", $data);
     }
+
+    public function monitoring(){
+        $this->view("admin/monitoring");
+    }
+
   public function processForm(){
         $this->view("admin/archiving");
     }
@@ -99,7 +104,8 @@ class Admin extends Controller
     {   $data= [
             "category" => $this->admin_model->get_categories(),
             "expiration" => $this->admin_model->get_expiration(),
-            "files" => $this->admin_model->get_files()
+            "files" => $this->admin_model->get_files(),
+            "settings" => $this->admin_model->get_settings()
         ];
      
         $this->view("admin/archiving", $data);

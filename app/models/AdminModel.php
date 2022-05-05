@@ -1,11 +1,13 @@
 <?php
 
 class AdminModel {
+    
     private $db;
     public function __construct()
     {
         $this->db = new Database();
     }
+  
 
     public function get_categories(){
         $this->db->query("SELECT * FROM category");
@@ -17,6 +19,12 @@ class AdminModel {
         $this->db->query("SELECT * FROM files");
         $this->db->execute();
         return $this->db->resultSet();
+    }
+
+    public function get_settings(){
+        $this->db->query("SELECT * FROM settings");
+        $this->db->execute();
+       return $this->db->resultSet();
     }
 
     public function get_expiration(){

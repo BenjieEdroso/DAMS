@@ -33,11 +33,21 @@ class ArchiveModel
     }
 
     public function query_settings($data){
-        $this->db->query("INSERT INTO settings (expiration_count, expiration, archive_path) VALUES (:expiration_count, :expiration, :archive_path)");
-        $this->db->bind(":expiration_count", $data["expiration_count"]);
-        $this->db->bind(":expiration", $data["expiration"]);
-        $this->db->bind(":archive_path", $data["archive_path"]);
+        
+        $this->db->query("SELECT * FROM settings");
         $this->db->execute();
+        if(!$this->db->rowCount() === 1 && $this->db->rowCount() < 1){
+            $this->db->query("INSERT INTO settings (expiration_count, expiration, archive_path) VALUES (:expiration_count, :expiration, :archive_path)");
+            $this->db->bind(":expiration_count", $data["expiration_count"]);
+            $this->db->bind(":expiration", $data["expiration"]);
+            $this->db->bind(":archive_path", $data["archive_path"]);
+            $this->db->execute();
+        };
+        
+
+
+
+
     }
 
     public function select_all_files()

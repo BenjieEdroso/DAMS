@@ -95,3 +95,12 @@
   display: none;
   z-index: 0;
 }
+
+.small-text {
+  font-size: 11px;
+  color: rgb(179, 179, 179);
+}
+
+.action-icon {
+  font-size: 20px;
+}

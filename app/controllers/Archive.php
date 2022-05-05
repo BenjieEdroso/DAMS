@@ -20,10 +20,11 @@ class Archive extends Controller
         $data = [
             "expiration_count" => $_POST["expirationCount"],
             "expiration" => $_POST["expiration"],
-            "archive_path" => $_POST["archivePath"]
+            "archive_path" => $_POST["archivePath"],
+          
         ];
         $this->archive_model->query_settings($data);
-        $this->view("archive/archiving");
+        $this->view("archive/archiving", $data);
     }
     public function file_upload()
     {
