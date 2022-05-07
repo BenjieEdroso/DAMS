@@ -104,3 +104,53 @@
 .action-icon {
   font-size: 20px;
 }
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+}
+.msg-info {
+  position: relative;
+}
+.msg-info::before {
+  content: "";
+  display: block;
+  width: 9px;
+  height: 9px;
+  background: rgb(110, 110, 110);
+  border-radius: 100%;
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.monitor-container {
+  height: calc(100vh - 195px);
+}
+
+.msg-cont {
+  overflow: scroll;
+  max-height: calc(100vh - 195px);
+}
+
+.msg-cont::-webkit-scrollbar {
+  display: none;
+}
+.msg {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.msg-rec {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.sb {
+  max-width: 480px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

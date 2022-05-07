@@ -97,7 +97,11 @@ class Admin extends Controller
         $this->view("admin/monitoring");
     }
 
-  public function processForm(){
+    public function request(){
+        $this->view("admin/request");
+    }
+
+    public function processForm(){
         $this->view("admin/archiving");
     }
     public function archiving()
