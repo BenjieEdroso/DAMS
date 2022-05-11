@@ -8,7 +8,7 @@
         <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel"
             aria-labelledby="v-pills-home-tab">
             <div>
-                <div class="cards-top d-flex p-3">
+                <div class="cards-top d-flex p-3 justify-content-between">
                     <div class="storage card  col-3 px-4 py-3">
                         <div class="card-label h5">
                             Storage
