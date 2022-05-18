@@ -4,7 +4,8 @@
                  alt="Carlos Hilado Memorial State College">
              <div>
                  <h5 class="text-white m-0">DAMS</h5>
-                 <p class="ms-2 small-text">Carlos Hilado Memorial State University</p>
+                 <p class="ms-2 small-text text-dark mb-1">Carlos Hilado Memorial State University</p>
+                 <p class="ms-2 small-text m-0 text-secondary">SEDAMS</p>
              </div>
          </div>
          <ul class="nav flex-column ">

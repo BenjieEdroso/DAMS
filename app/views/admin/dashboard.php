@@ -4,11 +4,21 @@
 }?>
 <div class="d-flex" style="width: 100%">
     <?php require_once APPROOT . "/views/includes/dashboard-aside.php" ; ?>
-    <main class="tab-content col-10" id="v-pills-tabContent">
+    <main class="dashboard tab-content col-10" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel"
             aria-labelledby="v-pills-home-tab">
             <div>
-                <div class="cards-top d-flex p-3 justify-content-between">
+                <div class="w-100 custom-navbar p-2 text-white">
+                    <div class="col-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" aria-label="Username"
+                                aria-describedby="input-group-button-right">
+                            <button type="button" class="btn btn-light" id="input-group-button-right"><i
+                                    class="bi bi-search search-icon"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!--  <div class="cards-top d-flex p-3 justify-content-between">
                     <div class="storage card  col-3 px-4 py-3">
                         <div class="card-label h5">
                             Storage
@@ -182,7 +192,7 @@
                         </table>
                     </div>
 
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="tab-pane fade" id="v-pills-archiving" role="tabpanel" aria-labelledby="v-pills-profile-tab">

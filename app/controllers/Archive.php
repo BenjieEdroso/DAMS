@@ -1,4 +1,4 @@
-<?php
+k<?php
 session_start();
 class Archive extends Controller
 {
@@ -21,10 +21,9 @@ class Archive extends Controller
             "expiration_count" => $_POST["expirationCount"],
             "expiration" => $_POST["expiration"],
             "archive_path" => $_POST["archivePath"],
-          
         ];
-        $this->archive_model->query_settings($data);
-        $this->view("archive/archiving", $data);
+        var_dump($this->archive_model->query_settings($data));
+        // redirect("admin/archiving", $data);
     }
     public function file_upload()
     {
@@ -91,8 +90,10 @@ class Archive extends Controller
     public function add_category(){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $category = $_POST["category"];
+            $description = $_POST["cat_desc"];
             $data = [
                 "category" => $category,
+                "description" => $description,
                 "category_msg" => ""
             ];
             if($this->archive_model->insert_category($data)){
@@ -212,11 +213,7 @@ class Archive extends Controller
 
     public function select_directory(){
          
-        
-
-
-
-
+    
         if($_POST["directories"] === "root"){
             $data["file_dir"] = scandir(APPROOT . "\drive_main\\");
         }

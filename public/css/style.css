@@ -1,12 +1,35 @@
 .sidebar {
-  background-color: #044a8b;
+  background-color: #fff;
 }
 
 .sidebar-links li {
-  background-color: #044a8b;
+  background-color: #000;
 }
-.sidebar-link:hover {
-  background-color: #005cb3;
+
+.nav li a {
+  text-align: left;
+}
+.nav li a:hover {
+  background: #047a40;
+  color: #fff;
+}
+
+.dashboard,
+.archiving-main {
+  background: #f3f3f3;
+}
+
+.custom-navbar {
+  background-color: #047a40;
+}
+
+.custom-searchbtn {
+}
+.default-color {
+  color: #047a40 !important;
+}
+.search-icon {
+  color: #047a40;
 }
 
 .card-label {
@@ -153,4 +176,8 @@
   max-width: 480px;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+#loginBtn {
+  background: #047a40;
 }

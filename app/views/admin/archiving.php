@@ -1,23 +1,28 @@
 <?php require_once APPROOT . "/views/includes/header.php" ; ?>
 <div class="d-flex">
     <?php require_once APPROOT . "/views/includes/dashboard-aside.php" ; ?>
-    <div class="col-10">
-        <div class="d-flex mx-3 my-3 position-relative">
-            <button class="btn btn-primary upload-btn btn-sm " data-bs-toggle="modal" data-bs-target="#myModal"><i
-                    class="bi bi-upload pe-2"></i>Upload</button>
-            <button class="btn btn-secondary mx-3 btn-sm upload-btn " data-bs-toggle="modal"
-                data-bs-target="#addCategoryModal"><i class="bi bi-plus-circle pe-2"></i>Add
-                Category</button>
-            <button class="btn btn-secondary upload-btn btn-sm  " data-bs-toggle="modal"
-                data-bs-target="#deleteCategoryModal"><i class="bi bi-trash3-fill pe-2"></i>Delete a
-                Category</button>
-            <form action="#" method="get" class="col-4 ms-5">
-                <div class="position-relative">
-                    <i class="bi bi-search position-absolute top-50 ms-4  translate-middle text-primary"></i>
-                    <input type="text" name="q" id="q" class="form-control rounded-pill ps-5 text-primary">
+    <div class="col-10 archiving-main">
+        <div class="w-100 custom-navbar p-2 text-white">
+            <div class="d-flex ">
+                <div class="col-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Username"
+                            aria-describedby="input-group-button-right">
+                        <button type="button" class="btn btn-light" id="input-group-button-right"><i
+                                class="bi bi-search search-icon"></i></button>
+                    </div>
                 </div>
-            </form>
-            <!-- <div class="dropdown position-absolute end-0">
+
+                <button class="default-color btn btn-light fw-bold upload-btn btn-sm ms-3" data-bs-toggle="modal"
+                    data-bs-target="#myModal"><i class="bi bi-upload pe-2 default-color"></i>Upload</button>
+                <button class="default-color btn btn-light fw-bold mx-3 btn-sm upload-btn mx-3" data-bs-toggle="modal"
+                    data-bs-target="#addCategoryModal"><i class="bi bi-plus-circle pe-2 default-color"></i>Add
+                    Category</button>
+                <button class="default-color btn btn-light fw-bold upload-btn btn-sm   " data-bs-toggle="modal"
+                    data-bs-target="#deleteCategoryModal"><i class="bi bi-trash3-fill pe-2 default-color"></i>Delete a
+                    Category</button>
+
+                <!-- <div class="dropdown position-absolute end-0">
                 <button class="rounded-circle px-2 py-1 settings text-primary" type="button" id="dropdownMenuButton"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-gear"></i>
@@ -28,11 +33,14 @@
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
             </div> -->
-            <button class="btn btn-secondary position-absolute end-0 btn-sm" data-bs-toggle="modal"
-                data-bs-target="#settingsModal"><i class="bi bi-gear pe-2"></i>Settings</button>
+                <button class="btn btn-light position-absolute fw-bold end-0 btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#settingsModal"><i
+                        class="bi bi-gear pe-2 default-color fw-bold"></i>Settings</button>
+            </div>
 
         </div>
-        <div class="card mx-3 px-3" style="height: calc(100vh - 90px); overflow-y: auto;">
+
+        <div class="bg-white rounded mx-3 px-3" style="height: calc(100vh - 90px); overflow-y: auto;">
             <table class="table">
                 <thead>
                     <tr>
@@ -110,8 +118,13 @@
                             enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="category" class="mb-3">Category:</label>
+                                <input class="form-control text-primary mb-3" type="text" id="category" name="category">
                             </div>
-                            <input class="form-control text-primary mb-3" type="text" id="category" name="category">
+                            <div class="mb-3">
+                                <label for="cat_desc" class="mb-3">Description:</label>
+                                <textarea name="cat_desc" id="cat_desc" rows="2" class="form-control"></textarea>
+                            </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -169,8 +182,8 @@
                                 </div>
                                 <div class="col-6">
                                     <select name="expiration" id="expiration" class="form-control col-6">
-                                        <option value="7" <?php if($data["settings"][0]->expiration=== "7") {?> selected
-                                            <?php } ?>>
+                                        <option value="7" <?php if($data["settings"][0]->expiration === "7") {?>
+                                            selected <?php } ?>>
                                             Week/s</option>
                                         <option value="30" <?php if($data["settings"][0]->expiration === "30") {?>
                                             selected <?php } ?>>Month/s</option>
