@@ -1,7 +1,12 @@
-k<?php
+<?php
 session_start();
 class Archive extends Controller
 {
+    /**
+     * @var mixed
+     */
+    private $archive_model;
+
     public function __construct(){
         $this->archive_model = $this->model("ArchiveModel");
     }
@@ -17,13 +22,18 @@ class Archive extends Controller
     }
 
     public function settings(){
+        $expiration_settings_count = count($this->archive_model->get_expiration());
         $data = [
             "expiration_count" => $_POST["expirationCount"],
             "expiration" => $_POST["expiration"],
-            "archive_path" => $_POST["archivePath"],
+            "archive_path" => $_POST["archivePath"]
         ];
-        var_dump($this->archive_model->query_settings($data));
-        // redirect("admin/archiving", $data);
+        if($expiration_settings_count !== 0 AND $expiration_settings_count < 2){
+            $this->archive_model->update_expiration_settings($data);
+        }else{
+            $this->archive_model->query_settings($data);
+        }
+        redirect("admin/archiving", $data);
     }
     public function file_upload()
     {

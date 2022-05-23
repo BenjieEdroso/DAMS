@@ -12,7 +12,7 @@ class Admin extends Controller
     public function __construct()
     {
   
-        $this->admin_model = $this->model("AdminModel");
+        $this->admin_model = $this->model("DashboardModel");
     }
 
     public function index()
@@ -87,9 +87,10 @@ class Admin extends Controller
             "un_used" => unused_space(),
             "total" => files()["total"],
             "total_docx" => files()["total_docx"],
-            "total_pdf" => files()["total_pdf"]
+            "total_pdf" => files()["total_pdf"],
+            "master_list" => $this->admin_model->get_categories()
         ];
-          
+
         $this->view("admin/dashboard", $data);
     }
 

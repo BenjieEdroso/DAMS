@@ -1,6 +1,6 @@
 <?php
 
-class AdminModel {
+class DashboardModel {
     
     private $db;
     public function __construct()
@@ -22,7 +22,7 @@ class AdminModel {
     }
 
     public function get_settings(){
-        $this->db->query("SELECT * FROM settings");
+        $this->db->query("SELECT * FROM expiration");
         $this->db->execute();
        return $this->db->resultSet();
     }

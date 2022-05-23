@@ -18,6 +18,20 @@
                         </div>
                     </div>
                 </div>
+               <div class="p-3 custom-height">
+                   <div class="card border bg-white p-3 col-3 master-list-mh">
+                       <div class="position-relative">
+                           <h6>Master List</h6>
+                           <img src="<?php echo URLROOT?>/images/icons8-list-96.png" width="50" class="position-absolute end-0 top-0">
+                       </div>
+                       <div class="overflow-scroll hide-scroll">
+                       <?php if (isset($data)) { foreach($data["master_list"] as $category) { ?>
+                           <div><?php echo $category->category?></div>
+                       <?php } } ?>
+                       </div>
+                   </div>
+               </div>
+
                 <!--  <div class="cards-top d-flex p-3 justify-content-between">
                     <div class="storage card  col-3 px-4 py-3">
                         <div class="card-label h5">

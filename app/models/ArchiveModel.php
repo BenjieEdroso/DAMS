@@ -14,6 +14,15 @@ class ArchiveModel
         return $this->db->resultSet();
     }
 
+    public function update_expiration_settings($data){
+        $this->db->query("UPDATE expiration SET expiration_count = :expiration_count, expiration = :expiration, archive_path = :archive_path WHERE expiration_id = 1 ");
+        $this->db->bind(":expiration_count", $data["expiration_count"]);
+        $this->db->bind(":expiration", $data["expiration"]);
+        $this->db->bind(":archive_path", $data["archive_path"]);
+        return $this->db->execute();
+    }
+
+
     public function query_to_database($data)
     {       
             for($i=0; $i < count($data["file_name"]); $i++){
@@ -33,9 +42,7 @@ class ArchiveModel
     }
 
     public function query_settings($data){
-            
-            
-            $this->db->query("INSERT INTO settings (expiration_count, expiration, archive_path) VALUES (:expiration_count, :expiration, :archive_path)");
+            $this->db->query("INSERT INTO expiration (expiration_count, expiration, archive_path) VALUES (:expiration_count, :expiration, :archive_path)");
             $this->db->bind(":expiration_count", (int)$data["expiration_count"]);
             $this->db->bind(":expiration", (int)$data["expiration"]);
             $this->db->bind(":archive_path", $data["archive_path"]);
