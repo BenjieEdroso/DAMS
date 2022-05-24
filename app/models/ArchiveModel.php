@@ -22,6 +22,12 @@ class ArchiveModel
         return $this->db->execute();
     }
 
+    public function get_last_modification(){
+        $this->db->query("SELECT * FROM files");
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
 
     public function query_to_database($data)
     {       
