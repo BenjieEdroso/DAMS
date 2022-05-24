@@ -262,7 +262,4 @@ class Archive extends Controller
             }  
         }
     }
-
-
-   
 }
