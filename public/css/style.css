@@ -18,19 +18,23 @@
 .archiving-main {
   background: #f3f3f3;
 }
-.master-list-mh{
+.master-list-mh {
   max-height: 300px;
 }
 
-.hide-scroll::-webkit-scrollbar{
-  display: none;
+.custom-thead {
+  background-color: #047a40;
+  color: #fff;
 }
 
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
 
 .custom-navbar {
   background-color: #047a40;
 }
-.custom-height{
+.custom-height {
   height: calc(100vh - 54px);
 }
 .custom-searchbtn {

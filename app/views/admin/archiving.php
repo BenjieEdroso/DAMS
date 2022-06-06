@@ -40,9 +40,9 @@
 
         </div>
 
-        <div class="bg-white rounded mx-3 px-3" style="height: calc(100vh - 90px); overflow-y: auto;">
-            <table class="table">
-                <thead>
+        <div class="bg-white rounded m-3" style="height: calc(100vh - 90px); overflow-y: auto;">
+            <table class="table table-hover">
+                <thead class="custom-thead">
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Code</th>
@@ -182,12 +182,15 @@
                                 </div>
                                 <div class="col-6">
                                     <select name="expiration" id="expiration" class="form-control col-6">
-                                        <option value="7" <?php if(empty($data["settings"]) OR $data["settings"][0]->expiration === "7" ){?>
+                                        <option value="7"
+                                            <?php if(empty($data["settings"]) OR $data["settings"][0]->expiration === "7" ){?>
                                             selected <?php } ?>>
                                             Week/s</option>
-                                        <option value="30" <?php if(empty($data["settings"]) OR $data["settings"][0]->expiration === "30") {?>
+                                        <option value="30"
+                                            <?php if(empty($data["settings"]) OR $data["settings"][0]->expiration === "30") {?>
                                             selected <?php } ?>>Month/s</option>
-                                        <option value="365" <?php if(empty($data["settings"]) OR $data["settings"][0]->expiration === "365") {?>
+                                        <option value="365"
+                                            <?php if(empty($data["settings"]) OR $data["settings"][0]->expiration === "365") {?>
                                             selected <?php } ?>>Year/s</option>
                                     </select>
                                 </div>
