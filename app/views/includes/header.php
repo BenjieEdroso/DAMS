@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT?>/css/style.css">
     <link rel="stylesheet" href="<?php echo URLROOT?>/css/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo URLROOT?>/css/bootstrap.min.css">
-
+    <link rel="shortcut icon" href="<?php echo URLROOT?>/images/chmsu-logo.png" type="image/x-icon" />
 </head>
 
 <body>

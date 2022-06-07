@@ -22,6 +22,10 @@
   max-height: 300px;
 }
 
+.active-link {
+  background-color: #047a40 !important;
+  color: #fff !important;
+}
 .custom-thead {
   background-color: #047a40;
   color: #fff;

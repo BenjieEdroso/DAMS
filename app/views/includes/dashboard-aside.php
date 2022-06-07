@@ -10,7 +10,7 @@
          </div>
          <ul class="nav flex-column ">
              <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/dashboard">Dashboard</a></li>
-             <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/archiving">Archiving</a></li>
+             <li><a class="btn col-12 sidebar-archiving" href="<?php echo URLROOT?>/admin/archiving">Archiving</a></li>
              <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/monitoring">Monitoring</a></li>
              <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/request">Request</a></li>
              <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/control">Control</a></li>
