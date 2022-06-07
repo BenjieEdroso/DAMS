@@ -33,7 +33,7 @@
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
             </div> -->
-                <button class="btn btn-light position-absolute fw-bold end-0 btn-sm" data-bs-toggle="modal"
+                <button class="btn btn-light  fw-bold ms-auto btn-sm default-color " data-bs-toggle="modal"
                     data-bs-target="#settingsModal"><i
                         class="bi bi-gear pe-2 default-color fw-bold"></i>Settings</button>
             </div>
