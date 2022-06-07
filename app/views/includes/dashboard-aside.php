@@ -9,12 +9,13 @@
              </div>
          </div>
          <ul class="nav flex-column ">
-             <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/dashboard">Dashboard</a></li>
-             <li><a class="btn col-12 sidebar-archiving" href="<?php echo URLROOT?>/admin/archiving">Archiving</a></li>
-             <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/monitoring">Monitoring</a></li>
-             <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/request">Request</a></li>
-             <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/control">Control</a></li>
-             <li><a class="btn col-12" href="<?php echo URLROOT?>/admin/usermanagement">User
+             <li><a class="btn col-12 dashboard" href="<?php echo URLROOT?>/admin/dashboard">Dashboard</a></li>
+             <li><a class="btn col-12 archiving" href="<?php echo URLROOT?>/admin/archiving">Archiving</a></li>
+             <li><a class="btn col-12 monitoring" href="<?php echo URLROOT?>/admin/monitoring">Monitoring</a>
+             </li>
+             <li><a class="btn col-12 request" href="<?php echo URLROOT?>/admin/request">Request</a></li>
+             <li><a class="btn col-12 control" href="<?php echo URLROOT?>/admin/control">Control</a></li>
+             <li><a class="btn col-12 usermanagement" href="<?php echo URLROOT?>/admin/usermanagement">User
                      Management</a>
              </li>
          </ul>
