@@ -9,10 +9,12 @@ class Archive extends Controller
 
     public function __construct(){
         $this->archive_model = $this->model("ArchiveModel");
+        
     }
 
     public function index(){
         $data = $this->archive_model->display_data_from_db();
+  
         $this->view("archive/store", $data);
     }
 
@@ -262,4 +264,6 @@ class Archive extends Controller
             }  
         }
     }
+
+    
 }

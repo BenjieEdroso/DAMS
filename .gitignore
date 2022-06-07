@@ -1,6 +1,7 @@
 node_modules
 /vendor/*
 !/vendor/defuse-crypto.phar
+/app/archive/*
 drive_archive/
 drive_main/
 
