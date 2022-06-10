@@ -9,12 +9,11 @@ class Archive extends Controller
 
     public function __construct(){
         $this->archive_model = $this->model("ArchiveModel");
-        
+        $this->disposal();
     }
 
     public function index(){
         $data = $this->archive_model->display_data_from_db();
-  
         $this->view("archive/store", $data);
     }
 
@@ -238,32 +237,10 @@ class Archive extends Controller
 
     }
 
-    public function delete_file($to_delete_file){
-        if(file_exists($to_delete_file)){
-            unlink($to_delete_file);
-        }
-    }
 
-    public function write_log($log_msg){
-        $log_file = fopen(ARCHIVE_PATH . 'system_logs.txt', 'w') or die ("Log file file not found please create a log file in archive main directory.");
-        fwrite($log_file, $log_msg);
-        fclose($log_file);
-    }
 
-    public function disposal(){
-        $results = $this->archive_model->get_last_modification();
-        $date_now = new DateTime();
-        var_dump(gettype($date_now));
-        foreach($results as $result){
-            $old_date = new DateTime($result->file_date_modified);
-            $interval = date_diff($old_date, $date_now)->days;
-            if($interval >= 30){
-                $to_delete_file = ARCHIVE_PATH . $result->file_category . "\\" . $result->file_name;
-                $this->delete_file($to_delete_file);
-                $this->write_log("deleted ----- " . $result->file_name . " from archive on " . date_format($date_now, 'Y-m-d h:i:s:A'));
-            }  
-        }
-    }
+
+
 
     
 }
