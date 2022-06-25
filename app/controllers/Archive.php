@@ -9,7 +9,7 @@ class Archive extends Controller
 
     public function __construct(){
         $this->archive_model = $this->model("ArchiveModel");
-        $this->disposal();
+       
     }
 
     public function index(){
