@@ -14,6 +14,8 @@ class ArchiveModel
         return $this->db->resultSet();
     }
 
+
+
     public function update_expiration_settings($data){
         $this->db->query("UPDATE expiration SET expiration_count = :expiration_count, expiration = :expiration, archive_path = :archive_path WHERE expiration_id = 1 ");
         $this->db->bind(":expiration_count", $data["expiration_count"]);

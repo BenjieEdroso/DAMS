@@ -9,12 +9,17 @@ class DashboardModel {
     }
   
 
+    public function get_master_list(){
+        $this->db->query("SELECT * FROM category");
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
+    
     public function get_categories(){
         $this->db->query("SELECT * FROM category");
         $this->db->execute();
         return $this->db->resultSet();
     }
-
     public function get_files(){
         $this->db->query("SELECT * FROM files");
         $this->db->execute();

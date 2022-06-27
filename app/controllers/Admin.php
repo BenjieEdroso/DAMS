@@ -91,7 +91,7 @@ class Admin extends Controller
             "total" => files()["total"],
             "total_docx" => files()["total_docx"],
             "total_pdf" => files()["total_pdf"],
-            "master_list" => $this->admin_model->get_categories()
+            "master_list" => $this->admin_model->get_master_list()
         ];
 
         $this->view("admin/dashboard", $data);

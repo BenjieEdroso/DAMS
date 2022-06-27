@@ -8,29 +8,33 @@
         <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel"
             aria-labelledby="v-pills-home-tab">
             <div>
-                <div class="w-100 custom-navbar p-2 text-white">
+                <div class="w-100 custom-navbar p-2 text-white d-flex">
                     <div class="col-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" aria-label="Username"
+                            <input type="text" class="form-control" placeholder="Search" aria-label="search"
                                 aria-describedby="input-group-button-right">
                             <button type="button" class="btn btn-light" id="input-group-button-right"><i
                                     class="bi bi-search search-icon"></i></button>
                         </div>
                     </div>
+                    <div class="col-2 ms-3">
+                        <button class="btn btn-light default-color"><i class="bi bi-funnel-fill"></i></button>
+                    </div>
                 </div>
-               <div class="p-3 custom-height">
-                   <div class="card border bg-white p-3 col-3 master-list-mh">
-                       <div class="position-relative">
-                           <h6>Master List</h6>
-                           <img src="<?php echo URLROOT?>/images/icons8-list-96.png" width="50" class="position-absolute end-0 top-0">
-                       </div>
-                       <div class="overflow-scroll hide-scroll">
-                       <?php if (isset($data)) { foreach($data["master_list"] as $category) { ?>
-                           <div><?php echo $category->category?></div>
-                       <?php } } ?>
-                       </div>
-                   </div>
-               </div>
+                <div class="p-3 custom-height">
+                    <div class="card border bg-white p-3 col-3 master-list-mh">
+                        <div class="position-relative">
+                            <h6>Master List</h6>
+                            <img src="<?php echo URLROOT?>/images/icons8-list-96.png" width="50"
+                                class="position-absolute end-0 top-0">
+                        </div>
+                        <div class="overflow-scroll hide-scroll">
+                            <?php if (isset($data)) { foreach($data["master_list"] as $category) { ?>
+                            <div><?php echo $category->category?></div>
+                            <?php } } ?>
+                        </div>
+                    </div>
+                </div>
 
                 <!--  <div class="cards-top d-flex p-3 justify-content-between">
                     <div class="storage card  col-3 px-4 py-3">
