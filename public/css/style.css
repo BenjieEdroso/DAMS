@@ -19,7 +19,7 @@
   background: #f3f3f3;
 }
 .master-list-mh {
-  max-height: 300px;
+  max-height: 500px;
 }
 
 .active-link {
@@ -29,6 +29,10 @@
 .custom-thead {
   background-color: #047a40;
   color: #fff;
+}
+
+.custom-position {
+  bottom: 16px;
 }
 
 .hide-scroll::-webkit-scrollbar {
@@ -198,4 +202,9 @@
 
 #loginBtn {
   background: #047a40;
+}
+
+.filter {
+  left: 62%;
+  z-index: 999;
 }

@@ -103,4 +103,17 @@ class ArchiveModel
         
         return $this->db->execute();
     }
+
+    public function query_search($data){
+        $result = null;
+        if($data["filter"] === "file_category"){
+            $this->db->query("SELECT * FROM files WHERE file_category LIKE ?");
+        }else{
+            $this->db->query("SELECT * FROM files WHERE file_name LIKE ?");
+        }
+        $this->db->bind(1, $data["q"] . "%");
+        $this->db->execute();
+        $result = $this->db->resultSet();
+        return $result;
+    }
 }

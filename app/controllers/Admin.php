@@ -165,4 +165,10 @@ class Admin extends Controller
         }
     }
 
+    public function search(){
+        $query_param = $_GET["q"];
+        $filter = $_GET['filter'];
+        $data = ["q" => $query_param, "filter" => $filter];
+        print_r($this->archive_model->query_search($data));
+    }
 }
