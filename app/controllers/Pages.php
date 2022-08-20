@@ -1,13 +1,10 @@
 <?php
-class Pages extends Controller
-{
-  public function __construct()
-  {
-  }
+class Pages extends Controller{
+    public function index(){
+        $this->view("pages/homepage");
+    }
 
-  public function index()
-  {
-    $this->view("pages/index");
-  }
-
+    public function homepage(){
+        $this->view("pages/homepage");
+    }
 }

@@ -9,10 +9,6 @@
 .nav li a {
   text-align: left;
 }
-.nav li a:hover {
-  background: #047a40;
-  color: #fff;
-}
 
 .dashboard,
 .archiving-main {
@@ -22,10 +18,6 @@
   max-height: 500px;
 }
 
-.active-link {
-  background-color: #047a40 !important;
-  color: #fff !important;
-}
 .custom-thead {
   background-color: #047a40;
   color: #fff;

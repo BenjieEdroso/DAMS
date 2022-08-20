@@ -1,47 +1,45 @@
-let getCurrentPath = () => {
-  let arr = window.location.pathname.split("/");
-  return arr[arr.length - 1];
-};
+// $("#searchField").on("keyup", function () {
+//   $.ajax("http://localhost/DAMS/archive/search", {
+//     method: "POST",
+//     data: {
+//       query: $("#searchField").val(),
+//     },
+//     success: function (res) {
+//       let documents = Array.from(JSON.parse(res));
+//       let results = Array.from(document.querySelector(".results").children);
 
-let setActiveLink = () => {
-  let element = document.querySelector(`.${getCurrentPath()}`);
-  element.classList.add("active-link");
-};
+//       if (documents.length > 0) {
+//         results.forEach((el) => {
+//           el.remove();
+//         });
+//         documents.forEach((doc) => {
+//           let htmlString = `<div class="card">
+//                       <div class="card-body">
+//                           <p class="h6">${doc.file_name}</p>
+//                           <span class="me-3 text-muted small">${doc.file_date_uploaded}</span>
+//                           <span class="text-muted small">${doc.file_date_modified}</span>
+//                       </div>
+//                   </div>`;
+//           $(".results").append(htmlString);
+//         });
+//       } else {
+//         results.forEach((el) => {
+//           el.remove();
+//         });
+//       }
+//     },
+//   });
+// });
 
-setActiveLink();
-
-function getSearchResults(query, filter) {
-  const XHR = new XMLHttpRequest();
-  XHR.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      console.log(this.responseText);
-      // <div class="card">
-      //   <div class="card-body">
-      //     <h5 class="card-title">Special title treatment</h5>
-      //     <p class="card-text">
-      //       With supporting text below as a natural lead-in to additional
-      //       content.
-      //     </p>
-      //     <a href="#" class="btn btn-primary">
-      //       Go somewhere
-      //     </a>
-      //   </div>
-      //   <div class="card-footer text-muted">2 days ago</div>
-      // </div>;
-    }
-  };
-  XHR.open(
-    "GET",
-    `http://localhost/DAMS/admin/search?q=${query}&filter=${filter}`,
-    true
-  );
-  XHR.send();
-}
-
-let searchForm = document.getElementById("searchForm");
-searchForm.addEventListener("submit", (e) => {
+$(".register-form").on("submit", function (e) {
   e.preventDefault();
-  let query = document.getElementById("query");
-  let filter = document.getElementById("filter");
-  getSearchResults(query.value, filter.value);
+  let formData = $(this).serializeArray();
+  $.ajax("http://localhost/DAMS/users/register", {
+    method: "POST",
+    data: formData,
+    success: function (response) {
+      let htmlString = `<div class="alert alert-success alert-msg">${response}</div>`;
+      $(".register-form").append(htmlString);
+    },
+  });
 });
