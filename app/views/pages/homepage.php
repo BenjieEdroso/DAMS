@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/bootstrap.min.css">
-</head>
-
-<body>
-    <h1>Welcome</h1>
-    <p>Electronic document archiving and monitoring system you can now search for an archived document our the IT
-        department</p>
+<?php require_once(APPROOT."/includes/header.php")?>
+    <div class="col-12 d-flex justify-content-between p-3">
+        <div>
+            <h1>Welcome</h1>
+            <p class="d-inline">Electronic document archiving and monitoring system you can now search for an archived
+                document our the
+                IT department</p>
+            <?php echo $_SESSION["user_id"];?>
+        </div>
+        <div>
+            <span><?php echo $_SESSION["user"];?></span>
+            <a href="<?php echo URLROOT?>/request" class="btn btn-sm btn-primary">My Requests</a>
+            <a href="<?php echo URLROOT?>/users/logout" class="btn btn-sm btn-secondary">Logout</a>
+        </div>
+    </div>
     <form method="get" id="searchForm">
         <div class="input-group mb-3 input-group-sm">
             <input type="text" class="form-control form-control-sm" placeholder="Search a document"
@@ -22,9 +22,4 @@
     <div class="results">
 
     </div>
-    <script src="<?php echo URLROOT?>/js/jquery.min.js"></script>
-    <script src="<?php echo URLROOT?>/js/bootstrap.min.js"></script>
-    <script src="<?php echo URLROOT?>/js/main.js"></script>
-</body>
-
-</html>
+<?php require_once(APPROOT."/includes/footer.php")?>

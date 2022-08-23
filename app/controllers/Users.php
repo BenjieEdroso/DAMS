@@ -1,4 +1,5 @@
 <?php
+session_start();
 class Users extends Controller{
     private $user_model;
     
@@ -7,19 +8,25 @@ class Users extends Controller{
         $this->user_model = $this->model("usersModel");
     }
     public function index(){
-        $this->view("user/login");
+        if(!isset($_SESSION["user"])){
+            redirect("users/login");   
+        }
+         $this->view("pages/homepage");
     }
 
     public function login(){
+        session_unset();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email = $_POST["email"];
         $password = $_POST["password"];
         $has_user = $this->user_model->has_user($email);
             if(password_verify($password,$has_user->password)){
+                $_SESSION["user"] = $has_user->firstname;
+                $_SESSION["user_id"] = $has_user->user_id;
                 if($has_user->type == "user"){
                     redirect("users/homepage");
                 }
-                if($has_user->type == "superuser"){
+                if($has_user->type == "admin"){
                     redirect("admin/dashboard");
                 }
             }
@@ -46,4 +53,19 @@ class Users extends Controller{
         }
         $this->view("user/register");
     }
+
+    public function homepage(){
+        if(!isset($_SESSION["user"])){
+            redirect("users/login");   
+        }
+         $this->view("pages/homepage");
+    }
+
+    public function logout(){
+        session_unset();
+        redirect("users/login");
+    }
+
+  
+
 }
