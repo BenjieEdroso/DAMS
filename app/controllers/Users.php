@@ -8,25 +8,36 @@ class Users extends Controller{
         $this->user_model = $this->model("usersModel");
     }
     public function index(){
-        if(!isset($_SESSION["user"])){
+        if(!isset($_SESSION["user"]) ){
             redirect("users/login");   
         }
-         $this->view("pages/homepage");
+
+        if($_SESSION["user_type"] === "user"){
+             $this->view("pages/homepage");
+        }
+        
     }
 
     public function login(){
-        session_unset();
+         
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email = $_POST["email"];
         $password = $_POST["password"];
         $has_user = $this->user_model->has_user($email);
+      
             if(password_verify($password,$has_user->password)){
-                $_SESSION["user"] = $has_user->firstname;
-                $_SESSION["user_id"] = $has_user->user_id;
-                if($has_user->type == "user"){
+                
+                if($has_user->type == "user"){  
+                    $_SESSION["user"] = $has_user->firstname;
+                    $_SESSION["user_id"] = $has_user->user_id;
+                    $_SESSION["user_type"] = $has_user->type;
+     
                     redirect("users/homepage");
-                }
-                if($has_user->type == "admin"){
+                }elseif($has_user->type == "admin"){
+                    $_SESSION["user"] = $has_user->firstname;
+                    $_SESSION["user_id"] = $has_user->user_id;
+                    $_SESSION["user_type"] = $has_user->type;
+
                     redirect("admin/dashboard");
                 }
             }
@@ -54,6 +65,8 @@ class Users extends Controller{
         $this->view("user/register");
     }
 
+    
+
     public function homepage(){
         if(!isset($_SESSION["user"])){
             redirect("users/login");   
@@ -62,6 +75,8 @@ class Users extends Controller{
     }
 
     public function logout(){
+        unset($_SESSION["user"]);
+        unset($_SESSION["user_id"]);
         session_unset();
         redirect("users/login");
     }

@@ -6,3 +6,8 @@
 .request-action {
   width: fit-content !important;
 }
+
+.custom-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

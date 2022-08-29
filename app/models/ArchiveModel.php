@@ -24,12 +24,7 @@ class ArchiveModel{
         $this->db->bind(":file_size", $data["size"][$i]);
         $this->db->bind(":file_date_uploaded", $data["date_uploaded"]);
         $this->db->bind(":file_date_modified", $data["date_modified"]);
-
         return $this->db->execute();
-
-      
-        
-        
     }
 
     public function check_duplicate_doc($data){
@@ -37,5 +32,11 @@ class ArchiveModel{
         $this->db->bind(":file_name", $data);
         $this->db->execute();
         return $this->db->rowCount();
+    }
+
+    public function get_archived(){
+        $this->db->query("SELECT * FROM files");
+        $this->db->execute();
+        return $this->db->resultSet();
     }
 }

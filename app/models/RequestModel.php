@@ -15,5 +15,12 @@ class RequestModel{
         return $this->db->resultSet();
     }
 
+    public function approve_request($data){
+        $this->db->query("UPDATE requests SET status = :status WHERE id = :id");
+        $this->db->bind(":status", $data["updated_status"]);
+        $this->db->bind(":id", $data["request_id"]);
+        return $this->db->execute();
+    }
+
    
 }

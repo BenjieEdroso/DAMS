@@ -12,11 +12,37 @@ class UsersModel{
         $this->db->query("SELECT * FROM users WHERE email = :email");
         $this->db->bind(":email", $data);
         $this->db->execute();
-        
-        $result = $this->db->fetchOne();
-        return $result;
+        return $this->db->fetchOne();
     }
 
+    public function get_all_users(){
+        $this->db->query("SELECT * FROM users");
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
+
+    public function get_users_request(){
+        $this->db->query("SELECT requests.id, requests.user_id, users.firstname, users.lastname, users.email FROM requests INNER JOIN users ON requests.user_id = users.user_id WHERE type='user'");
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
+
+    public function get_all_users_id(){
+        $this->db->query("SELECT user_id FROM users WHERE type='user'");
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
+
+    public function create($data){
+        $this->db->query("INSERT INTO users (firstname , lastname , email , password , birthdate , type) VALUES (:firstname, :lastname, :email, :password, :birthdate, :type)");
+        $this->db->bind(":firstname", $data["firstname"]);
+        $this->db->bind(":lastname", $data["lastname"]);
+        $this->db->bind(":email", $data["email"]);
+        $this->db->bind(":password", $data["password"]);
+        $this->db->bind(":birthdate", $data["birthdate"]);
+        $this->db->bind(":type", $data["type"]);
+        return $this->db->execute();
+    }
     public function create_user($data){
         $this->db->query("INSERT INTO users (firstname , lastname , email , password , birthdate , type) VALUES (:firstname, :lastname, :email, :password, :birthdate, :type)");
         $this->db->bind(":firstname", $data["firstname"]);

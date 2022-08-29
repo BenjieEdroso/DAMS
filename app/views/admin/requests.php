@@ -22,11 +22,18 @@
             <td><?php echo "$request->firstname $request->lastname"?></td>
             <td><?php echo $request->date_requested?></td>
             <td>
-                <select name="request-action" id="request-action"
-                    class="form-select form-select-sm request-action bg-primary text-white">
-                    <option value="refused" selected>Refuse</option>
-                    <option value="approved">Approve</option>
-                </select>
+                <div class="d-flex gap-3">
+                    <form action="<?php echo URLROOT?>/request/approve" method="post">
+                        <input type="number" name="id" id="id" hidden value="<?php echo $request->id?>">
+                        <input type="text" name="status" id="status" hidden value="approved">
+                        <button type="submit" class="btn btn-primary btn-sm">Approve</button>
+                    </form>
+                    <form action="<?php echo URLROOT?>/request/refuse" method="post">
+                        <input type="number" name="id" id="id" hidden value="<?php echo $request->id?>">
+                        <input type="text" name="status" id="status" hidden value="refused">
+                        <button type="submit" class="btn btn-danger btn-sm">Refuse</button>
+                    </form>
+                </div>
             </td>
         </tr>
         <?php }?>

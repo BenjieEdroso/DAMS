@@ -16,10 +16,12 @@
     <div><?php echo $data->file_type?></div>
     <div><?php echo $data->file_date_uploaded?></div>
     <div><?php echo $data->file_date_modified?></div>
-    <a href="<?php _if($data->status === "pending", "#", "http://localhost/DAMS/doc/request?id=$data->file_id");?>"
-        class="btn btn-sm btn-primary request-btn <?php if($data->status === "pending") { ?> btn-warning pe-none  <?php }?>"
-        data-id="<?php echo $data->file_id?>" <?php if($data->status === "pending") {?> disabled
-        <?php }?>><?php if($data->status === "pending") { ?>Pending<?php } else { ?> Request this file
+    <a href="<?php _if($data->status === "pending", "#", "https://edams.edu.ph/DAMS/doc/request?id=$data->file_id");?>"
+        class="btn btn-sm btn-primary request-btn <?php if($data->status === "pending") { ?> btn-warning pe-none disabled  <?php }?> <?php if($data->status === "approved") {?> btn-success disabled pe-none<?php }?>"
+        data-id="<?php echo $data->file_id?>" <?php if($data->status === "pending" || $data->status === "approved") {?>
+        disabled
+        <?php }?>><?php if($data->status === "pending") { ?>Pending<?php } elseif($data->status === "approved") {?>
+        Approved <?php } else { ?> Request this file
         <?php }?>
     </a>
 

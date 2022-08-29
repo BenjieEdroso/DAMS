@@ -1,12 +1,12 @@
 <?php
-define("DB_HOST", "localhost");
+define("DB_HOST", "edams.edu.ph");
 define("DB_USERNAME", "root");
 define("DB_PASSWORD", "");
 define("DB_NAME", "dams");
 define("APPROOT", dirname(dirname(__FILE__)));
 define("ARCHIVE_PATH", APPROOT . "\drive_main\\");;
 define("BACKUP_PATH", "D:\backup\\");
-define("URLROOT", "http://localhost/DAMS");
+define("URLROOT", "https://edams.edu.ph/dams");
 define("SITENAME", "DAMS");
 define("KB", 1024);
 define("MB", 1048576);
