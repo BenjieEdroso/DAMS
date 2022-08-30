@@ -21,6 +21,29 @@ class UsersModel{
         return $this->db->resultSet();
     }
 
+    public function get_single_user($user_id){
+        $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
+        $this->db->bind(":user_id", $user_id);
+        $this->db->execute();
+        return $this->db->fetchOne();
+    }
+
+    public function delete_user($user_id){
+        $this->db->query("DELETE FROM users WHERE user_id = :user_id");
+        $this->db->bind(":user_id", $user_id);
+        return $this->db->execute();
+    }
+
+    public function update_user($data){
+        $this->db->query("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email WHERE user_id = :user_id AND type='user'");
+        $this->db->bind(":user_id", $data["user_id"]);
+        $this->db->bind(":firstname", $data["firstname"]);
+        $this->db->bind(":lastname", $data["lastname"]);
+        $this->db->bind(":email", $data["email"]);
+        return $this->db->execute();
+        
+    }
+
     public function get_users_request(){
         $this->db->query("SELECT requests.id, requests.user_id, users.firstname, users.lastname, users.email FROM requests INNER JOIN users ON requests.user_id = users.user_id WHERE type='user'");
         $this->db->execute();
@@ -28,7 +51,7 @@ class UsersModel{
     }
 
     public function get_all_users_id(){
-        $this->db->query("SELECT user_id FROM users WHERE type='user'");
+        $this->db->query("SELECT user_id, firstname, lastname, email FROM users WHERE type='user'");
         $this->db->execute();
         return $this->db->resultSet();
     }

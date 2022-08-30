@@ -34,25 +34,30 @@ class Admin extends Controller{
     }
 
     public function manage_users(){
-        //get how many times this user requested
-        //get the user id of all the users
-        $data = $this->userModel->get_all_users_id();
-        $requests = $this->userModel->get_users_request();
-     
-        foreach($data as $user){
-            foreach($requests as $request){
-                 if($user->user_id === $request->user_id){
-                    $i = 0;
-                    $data["number_of_request"] = $i++;
-                 }
-            }
-           
-        }
-        //if the user id from the loop is equals to the saved id of all users
-        //then count 1 as number of request
 
         
+   
+   
         
+        $data = $this->userModel->get_all_users_id();
+        $requests = $this->userModel->get_users_request();
+        $users = $this->userModel->get_all_users_id();
+        
+       
+        foreach($users as $user){
+           $temp[$user->firstname] = null;
+        }
+        
+        foreach($users as $user){
+            foreach($requests as $request){  
+                if($user->user_id === $request->user_id){
+                    $temp[$user->firstname] += 1;
+                }
+            }
+        }
+        foreach($data as $single_data){
+            $single_data->request_count = $temp[$single_data->firstname];
+        }
         $this->view("admin/users",$data);
     }
 
@@ -82,6 +87,43 @@ class Admin extends Controller{
 
         $this->view("admin/users", $data);
         
+    }
+
+    public function edit_user(){
+        $user_id = htmlentities($_GET["user_id"]);
+        $data = $this->userModel->get_single_user($user_id);
+      
+        $this->view("admin/edit_user", $data);
+    }
+
+    public function delete_user(){
+        $user_id = htmlentities($_GET["user_id"]);
+        $data["warning_msg"] = "Are you sure you want to delete this user?";
+        $user_deleted = $this->userModel->delete_user($user_id);
+        if($user_deleted){
+            redirect("admin/manage_users");
+        }
+
+        $this->view("admin/manage_users", $data);
+    }
+
+    public function update_user(){
+        $user_id = htmlentities($_POST["user_id"]);
+        $firstname = htmlentities($_POST["firstname"]);
+        $lastname = htmlentities($_POST["lastname"]);
+        $email = htmlentities($_POST["email"]);
+        $data = [
+            "user_id" => $user_id,
+            "firstname" => $firstname,
+            "lastname" => $lastname,
+            "email" => $email
+        ];
+       $updated = $this->userModel->update_user($data);
+       if($updated){
+        redirect("admin/manage_users");
+       }
+    
+      
     }
 
 

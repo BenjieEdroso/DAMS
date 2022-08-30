@@ -1,6 +1,6 @@
-if (window.location.href !== "https://edams.edu.ph/DAMS/admin/archive") {
+if (window.location.href !== "http://localhost/DAMS/admin/archive") {
   $("#searchField").on("keyup", function () {
-    $.ajax("https://edams.edu.ph/DAMS/archive/search", {
+    $.ajax("http://localhost/DAMS/archive/search", {
       method: "POST",
       data: {
         query: $("#searchField").val(),
@@ -14,7 +14,7 @@ if (window.location.href !== "https://edams.edu.ph/DAMS/admin/archive") {
             el.remove();
           });
           documents.forEach((doc) => {
-            let htmlString = `<a href="https://edams.edu.ph/DAMS/doc/open?id=${doc.file_id}" ">
+            let htmlString = `<a href="http://localhost/DAMS/doc/open?id=${doc.file_id}" ">
 <div class="card">
                       <div class="card-body">
                           <p class="h6">${doc.file_name}</p>
@@ -37,7 +37,7 @@ if (window.location.href !== "https://edams.edu.ph/DAMS/admin/archive") {
 $(".register-form").on("submit", function (e) {
   e.preventDefault();
   let formData = $(this).serializeArray();
-  $.ajax("https://edams.edu.ph/DAMS/users/register", {
+  $.ajax("http://localhost/DAMS/users/register", {
     method: "POST",
     data: formData,
     success: function (file) {
@@ -66,7 +66,7 @@ $(window).on("load", function () {
   $("#searchField").val("");
 });
 
-if (window.location.href === "https://edams.edu.ph/dams/admin/dashboard") {
+if (window.location.href === "http://localhost/dams/admin/dashboard") {
   function fadeOutAlert() {
     setTimeout(() => {
       let alertElement = document.getElementById("upload_msg");
@@ -84,7 +84,7 @@ $("#searchArchive").on("keyup", function () {
   });
   let keyword = $("#searchField").val();
 
-  $.ajax("https://edams.edu.ph/DAMS/admin/search", {
+  $.ajax("http://localhost/DAMS/admin/search", {
     method: "GET",
     data: {
       keyword: keyword,
@@ -108,5 +108,3 @@ $("#searchArchive").on("keyup", function () {
     },
   });
 });
-
-$("#createUserBtn").on("click", function () {});

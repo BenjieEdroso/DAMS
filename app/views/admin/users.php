@@ -10,7 +10,6 @@
         </form>
     </div>
     <div class="users">
-        <?php var_dump($data);?>
         <table class="table">
             <thead>
                 <tr>
@@ -26,19 +25,45 @@
                 <?php foreach($data as $user) {?>
                 <tr>
                     <td scope="row"><?php echo $user->user_id?></td>
-                    <td></td>
-                    <td>Benjie</td>
-                    <td>Edroso</td>
-                    <td>benjie.a.edroso@gmail.com</td>
+                    <td><?php if(isset($user->request_count)) {echo $user->request_count;} else { echo "0"; };?></td>
+                    <td><?php echo $user->firstname?></td>
+                    <td><?php echo $user->lastname?></td>
+                    <td><?php echo $user->email?></td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                        <!-- <button data-bs-target="#editUserModal" data-bs-toggle="modal"
+                            class="btn btn-sm btn-primary">Edit</button> -->
+                        <a href="<?php echo URLROOT?>/admin/edit_user?user_id=<?php echo $user->user_id?>"
+                            class="btn btn-sm btn-primary">Edit</a>
+                        <button id="deleteBtn" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#confirmDeleteModal">Delete</button>
+                        <!-- <a href="<?php echo URLROOT?>/admin/delete_user?user_id=<?php echo $user->user_id?>"
+                            class="btn btn-sm btn-danger">Delete</a> -->
+                        <div class="modal fade" id="confirmDeleteModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5>Are you sure to delete this user?</h5>
+                                        <button data-bs-dismiss="modal" class="btn btn-sm btn-danger">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form
+                                            action="<?php echo URLROOT?>/admin/delete_user?user_id=<?php echo $user->user_id?>">
+                                            <button type="submit" class="btn btn-sm btn-primary">Yes</button>
+                                            <button data-bs-dismiss="modal"
+                                                class="btn btn-sm btn-secondary">Cancel</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 <?php }?>
             </tbody>
         </table>
     </div>
+
     <div class="modal fade" id="createUserModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content p-3">
@@ -84,6 +109,36 @@
             </div>
         </div>
     </div>
+
+    <!-- <div class="modal fade" id="editUserModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Update user</h5>
+                    <button class="btn btn-sm btn-danger" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="firstname">Firstname</label>
+                            <input type="text" name="firstname" id="firstname" class="form-control form-control-sm"
+                                value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Lastname</label>
+                            <input type="text" name="lastname" id="lastname" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" class="form-control form-control-sm">
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-primary col-12 mt-3">Update</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
 
 </div>
 
