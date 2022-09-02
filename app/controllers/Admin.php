@@ -98,13 +98,10 @@ class Admin extends Controller{
 
     public function delete_user(){
         $user_id = htmlentities($_GET["user_id"]);
-        $data["warning_msg"] = "Are you sure you want to delete this user?";
         $user_deleted = $this->userModel->delete_user($user_id);
         if($user_deleted){
             redirect("admin/manage_users");
         }
-
-        $this->view("admin/manage_users", $data);
     }
 
     public function update_user(){
@@ -124,6 +121,55 @@ class Admin extends Controller{
        }
     
       
+    }
+
+    public function edit_file(){
+        $file_id = $_GET["file_id"];
+        $data = $this->archiveModel->get_file($file_id);
+       
+        $this->view("admin/edit_file", $data);
+    }
+    public function rename_file($oldfilename, $newfilename){
+        try{
+            return rename($oldfilename, $newfilename);
+        }catch(Exception $error){
+            echo $error;
+        }
+    }
+    public function update_file(){
+        $data = [
+            "file_id" => htmlentities($_POST["file_id"]),
+            "file_name" => htmlentities($_POST["file_name"])
+        ];
+        $old_filename = $this->archiveModel->get_file($data["file_id"])[0]->file_name;
+        $renamed_filesystem = $this->rename_file(APPROOT . "\drive_main\\".$old_filename, APPROOT. "\drive_main\\" .$data["file_name"]);
+        $file_updated = $this->archiveModel->file_update($data);
+        if($file_updated && $renamed_filesystem){
+            redirect("admin/archive");
+        };
+    }
+
+    public function delete_file(){
+        //get id of file to be deleted
+        $file_name = htmlentities($_GET["file_name"]);
+        $file_to_delete = htmlentities($_GET["file_id"]);
+
+        $data = [
+            "file_id" => $file_to_delete,
+            "file_name" => $file_name,
+        ];
+        //delete the database record
+        $db_record_deleted = $this->archiveModel->file_delete($data);
+        //delete the file in the file system
+        $file_deleted = unlink(APPROOT . "\drive_main\\" . $file_name);
+
+        if($db_record_deleted && $file_deleted){
+            redirect("admin/archive");
+        }else{
+            echo "Error in folder deletion. Please contact administrator.";
+        }
+        //return true if deleted
+        
     }
 
 

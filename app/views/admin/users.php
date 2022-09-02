@@ -46,12 +46,14 @@
                                         <button data-bs-dismiss="modal" class="btn btn-sm btn-danger">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <form
-                                            action="<?php echo URLROOT?>/admin/delete_user?user_id=<?php echo $user->user_id?>">
+                                        <a href="<?php echo URLROOT?>/admin/delete_user?user_id=<?php echo $user->user_id?>" class="btn btn-sm btn-primary">Yes</a>
+                                        <button data-bs-dismiss="modal" class="btn btn-sm btn-secondary">Cancel</button>
+                                        <!-- <form
+                                            action="<?php echo URLROOT?>/admin/delete_user?user_id=<?php echo $user->user_id?>" method="get">
                                             <button type="submit" class="btn btn-sm btn-primary">Yes</button>
                                             <button data-bs-dismiss="modal"
                                                 class="btn btn-sm btn-secondary">Cancel</button>
-                                        </form>
+                                        </form> -->
                                     </div>
                                 </div>
 

@@ -18,6 +18,7 @@
                 <th scope="col">File Size</th>
                 <th scope="col">File Date Upload</th>
                 <th scope="col">File Date Modified</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody class="tbody">
@@ -32,6 +33,11 @@
                 <td class="overflow-hidden"><?php echo $archive->file_size?></td>
                 <td class="overflow-hidden"><?php echo $archive->file_date_uploaded?></td>
                 <td class="overflow-hidden"><?php echo $archive->file_date_modified?></td>
+                <td><a href="<?php echo URLROOT?>/admin/edit_file?file_id=<?php echo $archive->file_id?>"
+                        class="btn btn-sm btn-primary">Edit</a>
+                    <a href="<?php echo URLROOT?>/admin/delete_file?file_id=<?php echo $archive->file_id?>&file_name=<?php echo $archive->file_name?>"
+                        class="btn btn-sm btn-danger">Delete</a>
+                </td>
             </tr>
             <?php }?>
 

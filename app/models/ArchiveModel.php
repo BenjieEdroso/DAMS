@@ -10,7 +10,6 @@ class ArchiveModel{
     public function search_doc($data){
         $this->db->query("SELECT * FROM files WHERE file_name LIKE ?");
         $this->db->bind(1,  "%". $data["keyword"] . "%");
-        $this->db->execute();
         return $this->db->resultSet();
     }
 
@@ -30,13 +29,31 @@ class ArchiveModel{
     public function check_duplicate_doc($data){
         $this->db->query("SELECT * FROM files WHERE file_name = :file_name");
         $this->db->bind(":file_name", $data);
-        $this->db->execute();
         return $this->db->rowCount();
     }
 
     public function get_archived(){
         $this->db->query("SELECT * FROM files");
-        $this->db->execute();
         return $this->db->resultSet();
+    }
+
+    public function file_delete($data){
+        $this->db->query("DELETE FROM files WHERE file_id = :file_id AND file_name = :file_name");
+        $this->db->bind(":file_id", $data["file_id"]);
+        $this->db->bind(":file_name", $data["file_name"]);
+        return $this->db->execute();
+    }
+
+    public function get_file($file_id){
+        $this->db->query("SELECT * FROM files WHERE file_id = :file_id");
+        $this->db->bind(":file_id", $file_id);
+        return $this->db->resultSet();
+    }
+
+    public function file_update($data){
+        $this->db->query("UPDATE files SET file_name = :file_name WHERE file_id = :file_id");
+        $this->db->bind(":file_id", $data["file_id"]);
+        $this->db->bind(":file_name", $data["file_name"]);
+        return $this->db->execute();
     }
 }

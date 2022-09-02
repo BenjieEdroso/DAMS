@@ -102,6 +102,7 @@ $("#searchArchive").on("keyup", function () {
                      <td>${item.file_size}</td>
                      <td>${item.file_date_uploaded}</td>
                      <td>${item.file_date_modified}</td>
+                     <td>aw</td>
                      </tr>`;
         $(".tbody").append(jsx);
       });
