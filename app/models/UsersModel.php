@@ -56,6 +56,18 @@ class UsersModel{
         return $this->db->resultSet();
     }
 
+    public function get_password($user_id){
+        $this->db->query("SELECT password FROM users WHERE user_id = :user_id");
+        $this->db->bind(":user_id", $user_id);
+        return $this->db->fetchOne();
+    }
+    public function update_pass($data){
+        $this->db->query("UPDATE users SET password = :password WHERE user_id = :user_id");
+        $this->db->bind(":user_id", $data["user_id"]);
+        $this->db->bind(":password", $data["password"]);
+        return $this->db->execute();
+
+    }
     public function create($data){
         $this->db->query("INSERT INTO users (firstname , lastname , email , password , birthdate , type) VALUES (:firstname, :lastname, :email, :password, :birthdate, :type)");
         $this->db->bind(":firstname", $data["firstname"]);

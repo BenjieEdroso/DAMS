@@ -46,7 +46,8 @@
                                         <button data-bs-dismiss="modal" class="btn btn-sm btn-danger">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <a href="<?php echo URLROOT?>/admin/delete_user?user_id=<?php echo $user->user_id?>" class="btn btn-sm btn-primary">Yes</a>
+                                        <a href="<?php echo URLROOT?>/admin/delete_user?user_id=<?php echo $user->user_id?>"
+                                            class="btn btn-sm btn-primary">Yes</a>
                                         <button data-bs-dismiss="modal" class="btn btn-sm btn-secondary">Cancel</button>
                                         <!-- <form
                                             action="<?php echo URLROOT?>/admin/delete_user?user_id=<?php echo $user->user_id?>" method="get">
@@ -59,6 +60,8 @@
 
                             </div>
                         </div>
+                        <a href="<?php echo URLROOT?>/admin/change_pass?id=<?php echo $user->user_id?>"
+                            class="btn btn-sm btn-secondary">Change Password</a>
                     </td>
                 </tr>
                 <?php }?>

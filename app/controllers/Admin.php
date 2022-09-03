@@ -172,6 +172,34 @@ class Admin extends Controller{
         
     }
 
+    public function change_pass(){
+        $user_id = htmlentities($_GET["id"]);
+        $data = [
+            "user_id" =>$user_id
+        ];
+
+        $this->view("admin/change_pass", $data);
+    }
+
+    public function update_pass(){
+        $user_id = htmlentities($_POST["user_id"]);
+        $old_pass = htmlentities($_POST["old_pass"]);
+        $new_pass = htmlentities($_POST["new_pass"]);
+        $confirm_pass = htmlentities($_POST["confirm_pass"]);
+        $password_hash = $this->userModel->get_password($user_id)->password;
+        $data = [
+            "user_id" => $user_id,
+            "password" => password_hash($new_pass, PASSWORD_DEFAULT)
+        ];
+
+        if(password_verify($old_pass, $password_hash) && $new_pass === $confirm_pass){
+            $password_updated = $this->userModel->update_pass($data);
+            if($password_updated){
+                redirect("admin/manage_users");
+            }
+        }
+    }
+
 
 
     public function logout(){
