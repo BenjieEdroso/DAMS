@@ -10,10 +10,20 @@ class Archive extends Controller{
     public function search(){
         $data = ["keyword" => $_POST["query"]];
         if(!empty($data["keyword"])){
-            $json = json_encode($this->archiveModel->search_doc($data));
-            echo $json;
-        }else{
-            echo json_encode(array("message" => "No results"));
+            $search_datas = $this->archiveModel->search_doc($data);
+            foreach($search_datas as $search_data){
+            $search_response ="
+            <a href='http://localhost/DAMS/doc/open?id=$search_data->file_id'>
+                <div class='card'>
+                    <div class='card-body'>
+                    <p class='h6'>$search_data->file_name</p>
+                    <span class='me-3 text-muted small'>$search_data->file_date_uploaded</span>
+                    <span class='text-muted small'>$search_data->file_date_modified</span>
+                    </div>
+                </div>
+            </a>";
+             print_r($search_response);
+            }
         }
     }
 

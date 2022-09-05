@@ -29,6 +29,6 @@ class DocModel{
         $this->db->bind(":file_id", $data["file_id"]);
         $this->db->bind(":user_id", $data["user_id"]);
         $this->db->bind(":date_requested", $data["date_requested"]);
-        $this->db->execute();
+        return $this->db->execute();
     }
 }

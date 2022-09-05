@@ -61,6 +61,12 @@ class UsersModel{
         $this->db->bind(":user_id", $user_id);
         return $this->db->fetchOne();
     }
+
+    public function find_user($keyword){
+        $this->db->query("SELECT * FROM users WHERE firstname LIKE ? AND type='user'");
+        $this->db->bind(1, "%" . $keyword . "%");
+        return $this->db->resultSet();
+    }
     public function update_pass($data){
         $this->db->query("UPDATE users SET password = :password WHERE user_id = :user_id");
         $this->db->bind(":user_id", $data["user_id"]);

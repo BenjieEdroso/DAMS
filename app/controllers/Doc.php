@@ -4,6 +4,7 @@ class Doc extends Controller {
     private $docModel;
     public function __construct(){
         $this->docModel = $this->model("docModel");
+        $this->requestModel = $this->model("requestModel");
     }
     public function index(){
         if(!isset($_SESSION["user"])){
@@ -39,10 +40,28 @@ class Doc extends Controller {
                 "status" => $status,
                 "file_id" => $file_id,
                 "user_id" => $user_id,
-                "date_requested" =>   $date_requested
+                "date_requested" =>   $date_requested,
+                "request_count" => null
             ];
-            $this->docModel->create_request($data);
-            redirect("doc/open?id=$file_id");
+            $request_created = $this->docModel->create_request($data);
+            if($request_created){
+                $number_of_requests = $this->requestModel->get_requests($data);
+                foreach($number_of_requests as $number_of_request){
+                    $data["request_count"] += 1;
+                }
+                try{
+                    $request_counted = $this->requestModel->count_request($data);
+                }catch(Exception $e){
+                    $request_updated = $this->requestModel->update_request_count($data);
+                }
+                
+                if($request_counted || $request_updated){   
+                    redirect("doc/open?id=$file_id");
+                }
+
+               
+            }
+           
         }catch(Exception $error){
             echo "Request not created encountered an error $error";
         }

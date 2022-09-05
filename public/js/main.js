@@ -1,4 +1,7 @@
-if (window.location.href !== "http://localhost/DAMS/admin/archive") {
+const CURRENT_URL = window.location.href;
+const ARCHIVE = "http://localhost/DAMS/admin/archive";
+
+if (CURRENT_URL !== ARCHIVE) {
   $("#searchField").on("keyup", function () {
     $.ajax("http://localhost/DAMS/archive/search", {
       method: "POST",
@@ -6,25 +9,13 @@ if (window.location.href !== "http://localhost/DAMS/admin/archive") {
         query: $("#searchField").val(),
       },
       success: function (res) {
-        let documents = Array.from(JSON.parse(res));
+        const NO_RESULT = 0;
         let results = Array.from(document.querySelector(".results").children);
-
-        if (documents.length > 0) {
+        if (res.length > NO_RESULT) {
           results.forEach((el) => {
             el.remove();
           });
-          documents.forEach((doc) => {
-            let htmlString = `<a href="http://localhost/DAMS/doc/open?id=${doc.file_id}" ">
-<div class="card">
-                      <div class="card-body">
-                          <p class="h6">${doc.file_name}</p>
-                          <span class="me-3 text-muted small">${doc.file_date_uploaded}</span>
-                          <span class="text-muted small">${doc.file_date_modified}</span>
-                      </div>
-                  </div>
-</a>`;
-            $(".results").append(htmlString);
-          });
+          $(".results").append(res);
         } else {
           results.forEach((el) => {
             el.remove();
@@ -34,6 +25,7 @@ if (window.location.href !== "http://localhost/DAMS/admin/archive") {
     });
   });
 }
+
 $(".register-form").on("submit", function (e) {
   e.preventDefault();
   let formData = $(this).serializeArray();
@@ -47,21 +39,6 @@ $(".register-form").on("submit", function (e) {
   });
 });
 
-// $(".request-btn").on("click", function () {
-//   let fileNameId = $(this).attr("data-id");
-//   $.ajax("http://localhost/DAMS/doc/request", {
-//     method: "GET",
-//     data: {
-//       id: fileNameId,
-//     },
-//     success: function (res) {
-//       // $(".request-btn").prop("disabled", true);
-//       // $(".request-btn").text("Requested");
-//       // $(".request-btn").removeClass("btn-primary");
-//       // $(".request-btn").addClass("btn-success");
-//     },
-//   });
-// });
 $(window).on("load", function () {
   $("#searchField").val("");
 });
@@ -102,10 +79,31 @@ $("#searchArchive").on("keyup", function () {
                      <td>${item.file_size}</td>
                      <td>${item.file_date_uploaded}</td>
                      <td>${item.file_date_modified}</td>
-                     <td>aw</td>
+                     <td  style="width: 120px;" >
+                     <a href="http://localhost/dams/admin/edit_file?file_id=${item.file_id}" class="btn btn-sm btn-primary">Edit</a>
+                     
+                     <a href="http://localhost/dams/admin/delete_file?file_id=${item.file_id}&file_name=${item.file_name}" class="btn btn-sm btn-danger">Delete</a></td>
+                     
                      </tr>`;
         $(".tbody").append(jsx);
       });
+    },
+  });
+});
+
+$("#searchUserForm").on("keyup", function () {
+  let initialElements = Array.from($("#tbody")[0].children);
+  initialElements.forEach((el) => {
+    el.remove();
+  });
+  let keyword = $("#keyword").val();
+  $.ajax("http://localhost/DAMS/admin/search_user", {
+    method: "GET",
+    data: {
+      keyword: keyword,
+    },
+    success: function (response) {
+      $("#tbody").append(response);
     },
   });
 });

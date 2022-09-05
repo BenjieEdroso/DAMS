@@ -19,7 +19,7 @@ class Users extends Controller{
     }
 
     public function login(){
-         
+        session_unset();
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email = $_POST["email"];
         $password = $_POST["password"];
