@@ -91,7 +91,7 @@ $("#searchArchive").on("keyup", function () {
   });
 });
 
-$("#searchUserForm").on("keyup", function () {
+$("#keyword").on("keyup", function () {
   let initialElements = Array.from($("#tbody")[0].children);
   initialElements.forEach((el) => {
     el.remove();
@@ -103,6 +103,10 @@ $("#searchUserForm").on("keyup", function () {
       keyword: keyword,
     },
     success: function (response) {
+      let tbody = Array.from($("#tbody")[0].children);
+      tbody.forEach((el) => {
+        el.remove();
+      });
       $("#tbody").append(response);
     },
   });
