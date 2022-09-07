@@ -13,7 +13,7 @@ class Archive extends Controller{
             $search_datas = $this->archiveModel->search_doc($data);
             foreach($search_datas as $search_data){
             $search_response ="
-            <a href='http://localhost/DAMS/doc/open?id=$search_data->file_id'>
+            <a href='http://localhost/DAMS/doc/open?id=$search_data->file_id' class='mb-3 d-block text-decoration-none text-dark col-6 mx-auto'>
                 <div class='card'>
                     <div class='card-body'>
                     <p class='h6'>$search_data->file_name</p>

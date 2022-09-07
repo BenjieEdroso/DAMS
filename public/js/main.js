@@ -111,3 +111,7 @@ $("#keyword").on("keyup", function () {
     },
   });
 });
+
+$("#backBtn").on("click", function () {
+  window.history.back();
+});

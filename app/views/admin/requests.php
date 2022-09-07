@@ -1,7 +1,6 @@
 <?php require_once(APPROOT . "/includes/header.php");?>
 <div class="requests d-flex bg-light">
     <?php include_once(APPROOT . "/includes/sidebar.php");?>
-
     <div class="h-full w-100 p-3">
         <div class="d-flex justify-content-between">
             <h3>Requests</h3>

@@ -1,8 +1,42 @@
 .login,
-.homepage,
 .dashboard,
 .requests {
   height: 100vh;
+}
+.searchForm {
+  position: relative;
+  z-index: 4;
+
+}
+.homepage {
+  height: calc(100vh - 94px);
+}
+
+.results {
+  position: relative;
+  z-index: 2;
+}
+
+.results::-webkit-scrollbar {
+  display: none;
+}
+
+.homepageBg {
+  position: absolute;
+  background: url("../images/chmsu-logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  top: 80%;
+  right: 0;
+  transform: translateY(-80%);
+  left: 0;
+  bottom: 0;
+  height: 80%;
+  opacity: 10%;
+  z-index: 1;
 }
 
 .sidebar {

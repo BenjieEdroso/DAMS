@@ -1,26 +1,24 @@
 <?php require_once(APPROOT."/includes/header.php")?>
 <?php if($_SESSION["user_type"] === "admin"){ redirect("admin/dashboard");}?>
-<div class="homepage bg-light p-3">
-    <div class="col-12 d-flex justify-content-between">
-        <div>
+<?php include_once(APPROOT . "/includes/homepage_header.php");?>
+<div class="homepage bg-light p-3 w-100">
+    <div class="position-relative w-full">
+        <div class="col-6 mx-auto text-center mb-3">
             <h1>Welcome</h1>
             <p class="d-inline">Electronic document archiving and monitoring system you can now search for an archived
                 document our the
                 IT department</p>
         </div>
-        <div>
-            <span><?php echo $_SESSION["user"];?></span>
-            <a href="<?php echo URLROOT?>/request" class="btn btn-sm btn-primary">My Requests</a>
-            <a href="<?php echo URLROOT?>/users/logout" class="btn btn-sm btn-secondary">Logout</a>
-        </div>
     </div>
-    <form method="get" id="searchForm">
+    <form method="get" id="searchForm" class="col-6 mx-auto position-relative searchForm">
         <div class="input-group mb-3 input-group-sm">
             <input type="text" class="form-control form-control-sm" placeholder="Search a document"
                 aria-label="Search a document" aria-describedby="basic-addon2" id="searchField">
         </div>
     </form>
-    <div class="results">
+    <div class="results " style="overflow-y: scroll; max-height: calc(100vh - 250px); ">
+
     </div>
+    <div class="homepageBg"></div>
 </div>
 <?php require_once(APPROOT."/includes/footer.php")?>
