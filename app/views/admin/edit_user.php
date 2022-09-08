@@ -3,7 +3,7 @@
     <?php include_once(APPROOT . "/includes/sidebar.php");?>
     <div class="w-100 p-3">
         <div class="d-flex justify-content-between">
-            <h1>Edit user</h1>
+            <h1>Edit user test</h1>
             <div class="d-flex align-items-center">
                 <button id="backBtn" style="outline: none; border:none; background: none;">
                     <img src="<?php echo URLROOT?> /images/arrow-left-square-fill.svg" height="28"
@@ -33,5 +33,6 @@
         </form>
     </div>
 </div>
+
 
 <?php require_once(APPROOT . "/includes/footer.php");?>
