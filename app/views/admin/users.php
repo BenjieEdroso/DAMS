@@ -41,7 +41,7 @@
                                 class="btn btn-primary btn-sm">Edit</a>
                             <a href="<?php echo URLROOT?>/admin/confirm_delete?user_id=<?php echo $user->user_id?>"
                                 id="deleteBtn" class="btn btn-sm btn-danger">Delete</a>
-                            <a href="<?php echo URLROOT?>/admin/change_pass" class="btn btn-secondary btn-sm">Change
+                            <a href="<?php echo URLROOT?>/admin/change_pass?user_id=<?php echo $user->user_id?>" class="btn btn-secondary btn-sm">Change
                                 Password</a>
                         </td>
                     </tr>

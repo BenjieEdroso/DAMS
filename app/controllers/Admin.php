@@ -289,12 +289,12 @@ echo "Error in folder deletion. Please contact administrator.";
 }
 
 public function change_pass(){
-$user_id = htmlentities($_GET["id"]);
-$data = [
-"user_id" =>$user_id
-];
+    $user_id = htmlentities($_GET["user_id"]);
+    $data = [
+    "user_id" =>$user_id
+    ];
 
-$this->view("admin/change_pass", $data);
+    $this->view("admin/change_pass", $data);
 }
 
 public function update_pass(){

@@ -27,9 +27,10 @@
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" value="<?php echo $data->email?>"
-                    class="form-control form-control-sm">
+                    class="form-control form-control-sm mb-3">
             </div>
-            <button type="submit" class="btn btn-sm btn-primary mt-3 col-12">Update</button>
+            <button type="submit" class="btn btn-sm btn-primary ">Update</button>
+            <button class="btn btn-sm btn-secondary " onclick="window.history.back();">Cancel</button>
         </form>
     </div>
 </div>
