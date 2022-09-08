@@ -67,26 +67,7 @@ $("#searchArchive").on("keyup", function () {
       keyword: keyword,
     },
     success: function (response) {
-      let jsonResponse = JSON.parse(response);
-      jsonResponse.forEach((item) => {
-        let jsx = `
-                     <tr class="result-row">
-                     <th scope="row">${item.file_id}</th>
-                     <td style="width: 275.13px;">${item.file_name}</td>
-                     <td>${item.file_type}</td>
-                     <td>${item.file_tmp_name}</td>
-                     <td>${item.file_error}</td>
-                     <td>${item.file_size}</td>
-                     <td>${item.file_date_uploaded}</td>
-                     <td>${item.file_date_modified}</td>
-                     <td  style="width: 120px;" >
-                     <a href="http://localhost/dams/admin/edit_file?file_id=${item.file_id}" class="btn btn-sm btn-primary">Edit</a>
-                     
-                     <a href="http://localhost/dams/admin/delete_file?file_id=${item.file_id}&file_name=${item.file_name}" class="btn btn-sm btn-danger">Delete</a></td>
-                     
-                     </tr>`;
-        $(".tbody").append(jsx);
-      });
+        $(".tbody").append(response);
     },
   });
 });

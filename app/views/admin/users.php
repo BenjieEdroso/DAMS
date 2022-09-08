@@ -36,104 +36,12 @@
                         <td><?php echo $user->lastname?></td>
                         <td><?php echo $user->email?></td>
                         <td>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#editUserModal">Edit</button>
-                            <div class="modal fade" id="editUserModal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4>Edit user</h4>
-                                            <button class="btn btn-danger btn-sm"
-                                                data-bs-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="<?php echo URLROOT?>/admin/update_user" method="post">
-                                                <input type="text" name="user_id" id="user_id"
-                                                    value="<?php echo $user->user_id?>" hidden>
-                                                <div class="form-group">
-                                                    <label for="firstname">Firstname</label>
-                                                    <input type="text" name="firstname" id="firstname"
-                                                        value="<?php echo $user->firstname?>"
-                                                        class="form-control form-control-sm">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="lastname">Lastname</label>
-                                                    <input type="text" name="lastname" id="lastname"
-                                                        value="<?php echo $user->lastname?>"
-                                                        class="form-control form-control-sm">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" name="email" id="email"
-                                                        value="<?php echo $user->email?>"
-                                                        class="form-control form-control-sm">
-                                                </div>
-                                                <button type="submit"
-                                                    class="btn btn-sm btn-primary mt-3">Update</button>
-                                                <button class="btn-sm btn btn-secondary mt-3"
-                                                    data-bs-dismiss="modal">Cancel</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button id="deleteBtn" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#confirmDeleteModal">Delete</button>
-                            <div class="modal fade" id="confirmDeleteModal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5>Are you sure to delete this user?</h5>
-                                            <button data-bs-dismiss="modal"
-                                                class="btn btn-sm btn-danger">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <a href="<?php echo URLROOT?>/admin/delete_user?user_id=<?php echo $user->user_id?>"
-                                                class="btn btn-sm btn-primary">Yes</a>
-                                            <button data-bs-dismiss="modal"
-                                                class="btn btn-sm btn-secondary">Cancel</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <button class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#changePassModal">Change Password</button>
-                            <div class="modal fade" id="changePassModal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4>Change password</h4>
-                                            <button class="btn btn-danger btn-sm"
-                                                data-bs-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="<?php echo URLROOT?>/admin/update_pass" method="post">
-                                                <input type="number" name="user_id" id="user_id" hidden
-                                                    value="<?php echo $user->user_id;?>">
-                                                <div class="form-group">
-                                                    <label for="old_pass">Old Password</label>
-                                                    <input type="password" name="old_pass" id="old_pass"
-                                                        class="form-control form-control-sm">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="new_pass">New Password</label>
-                                                    <input type="password" name="new_pass" id="new_pass"
-                                                        class="form-control form-control-sm">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="confirm_pass">Confirm New Password</label>
-                                                    <input type="password" name="confirm_pass" id="confirm_pass"
-                                                        class="form-control form-control-sm">
-                                                </div>
-                                                <button type="submit" class="btn btn-sm btn-primary mt-3">Save</button>
-                                                <button class="btn-sm btn-secondary btn mt-3"
-                                                    data-bs-dismiss="modal">Cancel</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <a href="<?php echo URLROOT?>/admin/edit_user?user_id=<?php echo $user->user_id?>"
+                                class="btn btn-primary btn-sm">Edit</a>
+                            <a href="<?php echo URLROOT?>/admin/delete_user" id="deleteBtn"
+                                class="btn btn-sm btn-danger">Delete</a>
+                            <a href="<?php echo URLROOT?>/admin/change_pass" class="btn btn-secondary btn-sm">Change
+                                Password</a>
                         </td>
                     </tr>
                     <?php }?>

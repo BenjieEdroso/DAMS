@@ -42,6 +42,7 @@
                         <td style="width: 120px;">
                             <button class="btn btn-sm btn-primary" id="editBtn" data-bs-toggle="modal"
                                 data-bs-target="#editFileModal">Edit</button>
+                            <a href="<?php echo $archive->file_id?>" class="btn btn-primary btn-sm">id</a>
                             <div class="modal fade" id="editFileModal">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">

@@ -1,9 +1,14 @@
 <?php require_once(APPROOT."/includes/header.php")?>
-<?php include_once(APPROOT . "/includes/homepage_header.php");?>
 <div class="request-page bg-light p-3" style="height: 100vh;">
-
     <div class="d-flex justify-content-between align-items-center">
-        <h4>Request History</h4>
+        <h1>Request History</h1>
+        <div>
+            <button id="backBtn" style="outline: none; border:none; background: none;">
+                <img src="<?php echo URLROOT?> /images/arrow-left-square-fill.svg" height="28" style="opacity: 70%;">
+            </button>
+            <h6 class="d-inline"><?php echo $_SESSION["user"]?></h6>
+            <a href="<?php echo URLROOT?>/admin/logout" class="btn btn-sm btn-secondary">Logout</a>
+        </div>
     </div>
 
     <div class="my-request">
@@ -18,7 +23,6 @@
                 class="btn btn-sm btn-primary col-1 mt-3">Download</a> <?php }?>
         </div>
         <?php }?>
-
     </div>
 </div>
 <?php require_once(APPROOT."/includes/footer.php")?>

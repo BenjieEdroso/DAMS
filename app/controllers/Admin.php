@@ -200,10 +200,10 @@ $this->view("admin/users", $data);
 }
 
 public function edit_user(){
-$user_id = htmlentities($_GET["user_id"]);
-$data = $this->userModel->get_single_user($user_id);
+    $user_id = htmlentities($_GET["user_id"]);
+    $data = $this->userModel->get_single_user($user_id);
 
-$this->view("admin/edit_user", $data);
+    $this->view("admin/edit_user", $data);
 }
 
 public function delete_user(){
@@ -232,9 +232,9 @@ redirect("admin/manage_users");
 }
 
 public function edit_file(){
-$file_id = htmlentities($_GET["file_id"]);
-$data = $this->archiveModel->get_file($file_id);
-$this->view("admin/edit_file", $data);
+    $file_id = htmlentities($_GET["file_id"]);
+    $data = $this->archiveModel->get_file($file_id);
+    $this->view("admin/edit_file", $data);
 }
 public function rename_file($oldfilename, $newfilename){
 try{
@@ -323,7 +323,74 @@ public function search(){
 
 $data = ["keyword" => htmlentities($_GET["keyword"])];
 $result = $this->archiveModel->search_doc($data);
-echo json_encode($result);
+
+foreach($result as $archive){
+    $jsx = "<tr class='result-row'>
+                        <th scope='row'> $archive->file_id</th>
+                        <td class='overflow-hidden custom-text' style='width: 275.13px;'>
+                             $archive->file_name</td>
+                        <td class='overflow-hidden'> $archive->file_type</td>
+                        <td class='overflow-hidden'> $archive->file_tmp_name</td>
+                        <td class='overflow-hidden'> $archive->file_error</td>
+                        <td class='overflow-hidden'> $archive->file_size</td>
+                        <td class='overflow-hidden'> $archive->file_date_uploaded</td>
+                        <td class='overflow-hidden'> $archive->file_date_modified</td>
+                        <td style='width: 120px;'>
+                            <button class='btn btn-sm btn-primary' id='editBtn' data-bs-toggle='modal'
+                                data-bs-target='#editFileModal'>Edit</button>
+                            <div class='modal fade' id='editFileModal'>
+                                <div class='modal-dialog' role='document'>
+                                    <div class='modal-content'>
+                                        <div class='modal-header'>
+                                            <h4>Edit file</h4>
+                                            <button class='btn btn-danger btn-sm'
+                                                data-bs-dismiss='modal'>&times;</button>
+                                        </div>
+                                        <div class='modal-body'>
+                                            <form action=' ". URLROOT . "/admin/update_file' method='post'>
+                                                <input type='number' name='file_id' id='file_id' hidden
+                                                    value=' $archive->file_id'>
+                                                <div class='form-group'>
+                                                    <label for='file_name'>Filename</label>
+                                                    <input type='text' name='file_name' id='file_name'
+                                                        value=' $archive->file_name'
+                                                        class='form-control form-control-sm'>
+                                                </div>
+                                                <div class='form-group'>
+                                                    <input type='submit' value='Update'
+                                                        class='btn btn-sm btn-primary col-12 mt-3'>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class='btn btn-sm btn-danger' data-bs-target='#deleteFileModal'
+                                data-bs-toggle='modal'>Delete</button>
+                            <div class='modal fade' data-bs-toggle='modal' id='deleteFileModal'>
+                                <div class='modal-dialog' role='document'>
+                                    <div class='modal-content'>
+                                        <div class='modal-header'>
+                                            <h4>Are you sure you want to dete this file?</h4>
+                                            <button class='btn btn-danger btn-sm'
+                                                data-bs-dismiss='modal'>&times;</button>
+                                        </div>
+                                        <div class='modal-body'>
+                                            <a href=' ". URLROOT . "/admin/delete_file?file_id= $archive->file_id&file_name= $archive->file_name'
+                                                class='btn-sm btn btn-primary'>Yes</a>
+                                            <button class='btn btn-secondary btn-sm'
+                                                data-bs-dismiss='modal'>Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>";
+
+                    print_r($jsx);
+}
+
 }
 
 }
