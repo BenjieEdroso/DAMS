@@ -84,6 +84,18 @@ class UsersModel{
         $this->db->bind(":type", $data["type"]);
         return $this->db->execute();
     }
+
+    public function set_request($data){
+        $this->db->query("SELECT user_id FROM users WHERE firstname = :firstname AND lastname = :lastname");
+        $this->db->bind(":firstname", $data["firstname"]);
+        $this->db->bind(":lastname", $data["lastname"]);
+        $id = $this->db->fetchOne()->user_id;
+
+        $this->db->query("INSERT INTO request_load (user_id, request_count) VALUES (:user_id, :request_count)");
+        $this->db->bind(":user_id", $id);
+        $this->db->bind(":request_count", 0);
+        return $this->db->execute();
+    }
     public function create_user($data){
         $this->db->query("INSERT INTO users (firstname , lastname , email , password , birthdate , type) VALUES (:firstname, :lastname, :email, :password, :birthdate, :type)");
         $this->db->bind(":firstname", $data["firstname"]);

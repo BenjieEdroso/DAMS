@@ -84,10 +84,6 @@ $("#keyword").on("keyup", function () {
       keyword: keyword,
     },
     success: function (response) {
-      let tbody = Array.from($("#tbody")[0].children);
-      tbody.forEach((el) => {
-        el.remove();
-      });
       $("#tbody").append(response);
     },
   });

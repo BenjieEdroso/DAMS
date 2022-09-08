@@ -43,108 +43,29 @@ class Admin extends Controller{
                 }
             }
         }
-       
-        foreach($results as $response){
-            $jsx = "<tr>
-                        <td scope='row'> $response->user_id</td>
-<td>" . request_count($response->request_count) . "</td>
-<td>$response->firstname</td>
-<td>$response->lastname</td>
-<td>$response->email</td>
-<td>
-    <button class='btn btn-primary btn-sm' data-bs-toggle='modal' data-bs-target='#editUserModal'>Edit</button>
-    <div class='modal fade' id='editUserModal'>
-        <div class='modal-dialog' role='document'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <h4>Edit user</h4>
-                    <button class='btn btn-danger btn-sm' data-bs-dismiss='modal'>&times;</button>
-                </div>
-                <div class='modal-body'>
-                    <form action=' " . URLROOT . "/admin/update_user' method='post'>
-                        <input type='text' name='user_id' id='user_id' value='$response->user_id' hidden>
-                        <div class='form-group'>
-                            <label for='firstname'>Firstname</label>
-                            <input type='text' name='firstname' id='firstname' value='$response->firstname'
-                                class='form-control form-control-sm'>
-                        </div>
-                        <div class='form-group'>
-                            <label for='lastname'>Lastname</label>
-                            <input type='text' name='lastname' id='lastname' value='$response->lastname'
-                                class='form-control form-control-sm'>
-                        </div>
-                        <div class='form-group'>
-                            <label for='email'>Email</label>
-                            <input type='email' name='email' id='email' value='$response->email'
-                                class='form-control form-control-sm'>
-                        </div>
-                        <button type='submit' class='btn btn-sm btn-primary mt-3'>Update</button>
-                        <button class='btn-sm btn btn-secondary mt-3' data-bs-dismiss='modal'>Cancel</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button id='deleteBtn' class='btn btn-sm btn-danger' data-bs-toggle='modal'
-        data-bs-target='#confirmDeleteModal'>Delete</button>
-    <div class='modal fade' id='confirmDeleteModal'>
-        <div class='modal-dialog' role='document'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <h5>Are you sure to delete this user?</h5>
-                    <button data-bs-dismiss='modal' class='btn btn-sm btn-danger'>&times;</button>
-                </div>
-                <div class='modal-body'>
-                    <a href=' " . URLROOT . "/admin/delete_user?user_id=$response->user_id'
-                        class='btn btn-sm btn-primary'>Yes</a>
-                    <button data-bs-dismiss='modal' class='btn btn-sm btn-secondary'>Cancel</button>
-                </div>
-            </div>
 
-        </div>
-    </div>
-    <button class='btn btn-secondary btn-sm' data-bs-toggle='modal' data-bs-target='#changePassModal'>Change
-        Password</button>
-    <div class='modal fade' id='changePassModal'>
-        <div class='modal-dialog' role='document'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <h4>Change password</h4>
-                    <button class='btn btn-danger btn-sm' data-bs-dismiss='modal'>&times;</button>
-                </div>
-                <div class='modal-body'>
-                    <form action=' " . URLROOT . "/admin/update_pass' method='post'>
-                        <input type='number' name='user_id' id='user_id' hidden value='$response->user_id'>
-                        <div class='form-group'>
-                            <label for='old_pass'>Old Password</label>
-                            <input type='password' name='old_pass' id='old_pass' class='form-control form-control-sm'>
-                        </div>
-                        <div class='form-group'>
-                            <label for='new_pass'>New Password</label>
-                            <input type='password' name='new_pass' id='new_pass' class='form-control form-control-sm'>
-                        </div>
-                        <div class='form-group'>
-                            <label for='confirm_pass'>Confirm New Password</label>
-                            <input type='password' name='confirm_pass' id='confirm_pass'
-                                class='form-control form-control-sm'>
-                        </div>
-                        <button type='submit' class='btn btn-sm btn-primary mt-3'>Save</button>
-                        <button class='btn-sm btn-secondary btn mt-3' data-bs-dismiss='modal'>Cancel</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>";
-print_r($jsx);
-}
+        foreach ($results as $result){
+                    $html = "<tr>
+                        <td scope='row'> $result->user_id</td>
+                        <td>$result->request_count</td>
+                        <td> $result->firstname</td>
+                        <td> $result->lastname</td>
+                        <td> $result->email</td>
+                        <td>
+                            <a href='". URLROOT ."/admin/edit_user?user_id= $result->user_id'
+                                class='btn btn-primary btn-sm'>Edit</a>
+                            <a href='". URLROOT ."/admin/confirm_delete?user_id= $result->user_id'
+                                id='deleteBtn' class='btn btn-sm btn-danger'>Delete</a>
+                            <a href='". URLROOT ."/admin/change_pass?user_id= $result->user_id' class='btn btn-secondary btn-sm'>Change
+                                Password</a>
+                        </td>
+                    </tr>";
+            print_r($html);
+        }
 
 
 
-
-
-}
+    }
 
 public function manage_users(){
     $data = $this->userModel->get_all_users_id();
@@ -174,30 +95,30 @@ public function manage_users(){
 
 
 public function create_user(){
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-$data = [
-"firstname" => $_POST["firstname"],
-"lastname" => $_POST["lastname"],
-"email" => $_POST["email"],
-"password" => password_hash($_POST["password"], PASSWORD_DEFAULT),
-"birthdate" => $_POST["birthdate"],
-"type" => $_POST["type"]
-];
-$has_user = $this->userModel->has_user($data);
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $data = [
+            "firstname" => $_POST["firstname"],
+            "lastname" => $_POST["lastname"],
+            "email" => $_POST["email"],
+            "password" => password_hash($_POST["password"], PASSWORD_DEFAULT),
+            "birthdate" => $_POST["birthdate"],
+            "type" => $_POST["type"]
+        ];
+        $has_user = $this->userModel->has_user($data);
 
-if(!$has_user){
-$user_created = $this->userModel->create($data);
-if($user_created){
-redirect("admin/manage_users");
-}
-} else{
-redirect("admin/manage_users");
-}
+        if(!$has_user){
+            $user_created = $this->userModel->create($data);
+            $inital_request = $this->userModel->set_request($data);
+            if($user_created && $inital_request){
+                redirect("admin/manage_users");
+            }
+        }else{
+            redirect("admin/manage_users");
+        }
 
-}
-
-
-$this->view("admin/users", $data);
+    }
+    
+    $this->view("admin/users", $data);
 
 }
 
