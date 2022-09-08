@@ -67,7 +67,7 @@ $("#searchArchive").on("keyup", function () {
       keyword: keyword,
     },
     success: function (response) {
-        $(".tbody").append(response);
+      $(".tbody").append(response);
     },
   });
 });
@@ -95,4 +95,8 @@ $("#keyword").on("keyup", function () {
 
 $("#backBtn").on("click", function () {
   window.history.back();
+});
+
+$(".deleteBtn").on("click", function () {
+  $(".myModal").removeAttr("hidden");
 });

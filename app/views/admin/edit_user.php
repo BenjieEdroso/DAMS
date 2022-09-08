@@ -3,7 +3,7 @@
     <?php include_once(APPROOT . "/includes/sidebar.php");?>
     <div class="w-100 p-3">
         <div class="d-flex justify-content-between">
-            <h1>Edit user test</h1>
+            <h1>Edit user</h1>
             <div class="d-flex align-items-center">
                 <button id="backBtn" style="outline: none; border:none; background: none;">
                     <img src="<?php echo URLROOT?> /images/arrow-left-square-fill.svg" height="28"
@@ -12,7 +12,7 @@
                 <?php include_once(APPROOT . "/includes/logout_button.php");?>
             </div>
         </div>
-        <form action="<?php echo URLROOT?>/admin/update_user" method="post" class="col-4 border p-3 rounded">
+        <form action="<?php echo URLROOT?>/admin/update_user" method="post" class="col-4 border p-3 rounded bg-white">
             <input type="text" name="user_id" id="user_id" value="<?php echo $data->user_id?>" hidden>
             <div class="form-group">
                 <label for="firstname">Firstname</label>

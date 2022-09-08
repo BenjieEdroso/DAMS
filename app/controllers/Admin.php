@@ -171,6 +171,8 @@ public function manage_users(){
     $this->view("admin/users",$data);
 }
 
+
+
 public function create_user(){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 $data = [
@@ -206,12 +208,18 @@ public function edit_user(){
     $this->view("admin/edit_user", $data);
 }
 
-public function delete_user(){
-$user_id = htmlentities($_GET["user_id"]);
-$user_deleted = $this->userModel->delete_user($user_id);
-if($user_deleted){
-redirect("admin/manage_users");
+public function confirm_delete(){
+    $user_id = htmlentities($_GET["user_id"]);
+    $data = ["user_id" => $user_id];
+    $this->view("admin/confirm_delete", $data);
 }
+
+public function delete_user(){
+    $user_id = htmlentities($_GET['user_id']);
+    $user_deleted = $this->userModel->delete_user($user_id);
+    if($user_deleted){
+        redirect("admin/manage_users");
+    }
 }
 
 public function update_user(){

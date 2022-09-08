@@ -14,6 +14,7 @@
                     placeholder="Search user">
             </form>
         </div>
+
         <div class="users mt-3" style="max-height: calc(100vh - 160px); overflow-y:scroll;">
             <table class="table bg-white rounded">
                 <thead>
@@ -38,8 +39,8 @@
                         <td>
                             <a href="<?php echo URLROOT?>/admin/edit_user?user_id=<?php echo $user->user_id?>"
                                 class="btn btn-primary btn-sm">Edit</a>
-                            <a href="<?php echo URLROOT?>/admin/delete_user" id="deleteBtn"
-                                class="btn btn-sm btn-danger">Delete</a>
+                            <a href="<?php echo URLROOT?>/admin/confirm_delete?user_id=<?php echo $user->user_id?>"
+                                id="deleteBtn" class="btn btn-sm btn-danger">Delete</a>
                             <a href="<?php echo URLROOT?>/admin/change_pass" class="btn btn-secondary btn-sm">Change
                                 Password</a>
                         </td>
