@@ -12,17 +12,17 @@ class Archive extends Controller{
         if(!empty($data["keyword"])){
             $search_datas = $this->archiveModel->search_doc($data);
             foreach($search_datas as $search_data){
-            $search_response ="
-            <a href='http://localhost/DAMS/doc/open?id=$search_data->file_id' class='mb-3 d-block text-decoration-none text-dark col-6 mx-auto'>
-                <div class='card'>
-                    <div class='card-body'>
-                    <p class='h6'>$search_data->file_name</p>
-                    <span class='me-3 text-muted small'>$search_data->file_date_uploaded</span>
-                    <span class='text-muted small'>$search_data->file_date_modified</span>
+            $search_response = "
+                <a href='http://localhost/DAMS/doc/open?id=$search_data->file_id' class='mb-3 d-block text-decoration-none text-dark col-6 mx-auto'>
+                    <div class='card'>
+                        <div class='card-body'>
+                        <p class='h6'>$search_data->file_name</p>
+                        <span class='me-3 text-muted small'>$search_data->file_date_uploaded</span>
+                        <span class='text-muted small'>$search_data->file_date_modified</span>
+                        </div>
                     </div>
-                </div>
-            </a>";
-             print_r($search_response);
+                </a>";
+                print_r($search_response);
             }
         }
     }

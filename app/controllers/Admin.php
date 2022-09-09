@@ -10,10 +10,11 @@ class Admin extends Controller{
         define("LOGIN_URL", "users/login");
         define("USER", "user");
         define("USER_TYPE", "user_type");
+        define("TYPE", "admin");
     }
 
     public function login_redirect(){
-        if(!isset($_SESSION[USER]) && $_SESSION[USER_TYPE] !== "admin"){
+        if(!isset($_SESSION[USER]) && $_SESSION[USER_TYPE] !== TYPE){
             redirect(LOGIN_URL);
         }
     }
@@ -65,8 +66,7 @@ class Admin extends Controller{
                     <a href='". URLROOT ."/admin/confirm_delete?user_id= $result->user_id' id='deleteBtn' class='btn btn-sm btn-danger'>Delete</a>
                     <a href='". URLROOT ."/admin/change_pass?user_id= $result->user_id' class='btn btn-secondary btn-sm'>Change Password</a>
                 </td>
-            </tr>";
-            
+            </tr>";   
             print_r($html);
         }
     }
