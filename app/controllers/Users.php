@@ -22,19 +22,24 @@ class Users extends Controller{
         $email = $_POST["email"];
         $password = $_POST["password"];
         $has_user = $this->user_model->has_user($email);
-            if(password_verify($password,$has_user->password)){
-                if($has_user->type == "user"){  
-                    $_SESSION["user"] = $has_user->firstname;
-                    $_SESSION["user_id"] = $has_user->user_id;
-                    $_SESSION["user_type"] = $has_user->type;
-                    redirect("users/homepage");
-                }elseif($has_user->type == "admin"){
-                    $_SESSION["user"] = $has_user->firstname;
-                    $_SESSION["user_id"] = $has_user->user_id;
-                    $_SESSION["user_type"] = $has_user->type;
-                    redirect("admin/dashboard");
+            if($has_user){
+                if(password_verify($password,$has_user->password)){
+                    if($has_user->type == "user"){  
+                        $_SESSION["user"] = $has_user->firstname;
+                        $_SESSION["user_id"] = $has_user->user_id;
+                        $_SESSION["user_type"] = $has_user->type;
+                        redirect("users/homepage");
+                    }elseif($has_user->type == "admin"){
+                        $_SESSION["user"] = $has_user->firstname;
+                        $_SESSION["user_id"] = $has_user->user_id;
+                        $_SESSION["user_type"] = $has_user->type;
+                        redirect("admin/dashboard");
+                    }
                 }
+            }else{
+                redirect("users/login");
             }
+
         }
         $this->view("user/login");
     }
