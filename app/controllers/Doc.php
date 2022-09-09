@@ -2,19 +2,28 @@
 
 class Doc extends Controller {
     private $docModel;
+
     public function __construct(){
         $this->docModel = $this->model("docModel");
         $this->requestModel = $this->model("requestModel");
+        define("LOGIN_URL", "users/login");
+        define("USER", "user");
+        define("USER_TYPE", "user_type");
+        define("TYPE", "user");
     }
+
+    public function login_redirect(){
+        if(!isset($_SESSION[USER]) && $_SESSION[USER_TYPE] !== TYPE){
+            redirect(LOGIN_URL);
+        }
+    }
+
     public function index(){
-        if(!isset($_SESSION["user"])){
-            redirect("users/login");   
-        }
+        $this->login_redirect();
     }
+    
     public function open(){
-        if(!isset($_SESSION["user"])){
-            redirect("users/login");   
-        }
+        $this->login_redirect();
         $file_id = htmlentities($_GET["id"]);
         $user_id = htmlentities($_SESSION["user_id"]);
         $data = ["file_id" => $file_id,];
@@ -60,11 +69,9 @@ class Doc extends Controller {
                 }
 
                
-            }
-           
+            }  
         }catch(Exception $error){
             echo "Request not created encountered an error $error";
         }
-        
     }
 }
