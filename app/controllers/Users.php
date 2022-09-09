@@ -77,6 +77,7 @@ class Users extends Controller{
     public function logout(){
         unset($_SESSION["user"]);
         unset($_SESSION["user_id"]);
+        unset($_SESSION["user_type"]);
         session_unset();
         redirect("users/login");
     }

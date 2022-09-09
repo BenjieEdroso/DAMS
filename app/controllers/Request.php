@@ -8,6 +8,9 @@ class Request extends Controller{
     }
 
     public function index(){
+        if(!isset($_SESSION["user"])){
+            redirect("users/login");
+        }
         $data = ["user_id" => htmlentities($_SESSION["user_id"])];
         $requests = $this->requestModel->get_requests($data);
         $data["requests"] = $requests;

@@ -96,3 +96,13 @@ $("#backBtn").on("click", function () {
 $(".deleteBtn").on("click", function () {
   $(".myModal").removeAttr("hidden");
 });
+
+function clearHistory() {
+  const LOGIN_URL = "http://localhost/dams/users/login";
+  let currentURL = window.location.href;
+  if (LOGIN_URL === currentURL) {
+    browser.history.deleteAll();
+  }
+}
+
+clearHistory();
