@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2022 at 11:29 AM
+-- Generation Time: Sep 09, 2022 at 05:06 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,45 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `dams`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL,
-  `category` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`category_id`, `category`) VALUES
-(9, 'FOM1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `expiration`
---
-
-CREATE TABLE `expiration` (
-  `expiration_id` int(11) NOT NULL,
-  `expiration` int(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `expiration`
---
-
-INSERT INTO `expiration` (`expiration_id`, `expiration`) VALUES
-(1, 7),
-(2, 30),
-(3, 60),
-(4, 365);
 
 -- --------------------------------------------------------
 
@@ -82,9 +43,15 @@ CREATE TABLE `files` (
 --
 
 INSERT INTO `files` (`file_id`, `file_name`, `file_type`, `file_tmp_name`, `file_error`, `file_size`, `file_date_uploaded`, `file_date_modified`) VALUES
-(1, 'Think Like a Programmer An Introduction to Creative Problem Solving by V. Anton Spraul (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php4E04.tmp', '0', '7525122', '2022-08-28 5:04:31:PM', '2022-08-28 5:04:30:PM'),
-(2, 'Universal principles of design 125 ways to enhance usability, influence perception, increase appeal, make better design decisions, and teach through design by William Lidwell, Kritina Holden, Jill But (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php4F2D.tmp', '0', '11941894', '2022-08-28 5:04:31:PM', '2022-08-28 5:04:30:PM'),
-(3, 'Vue.Js Up and Running Building Accessible and Performant Web Apps by Callum Macrae (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php50E4.tmp', '0', '3569300', '2022-08-28 5:04:31:PM', '2022-08-28 5:04:31:PM');
+(6, 'The Design of Everyday Things by Don Norman (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php9DCE.tmp', '0', '2424307', '2022-09-07 4:52:29:PM', '2022-09-07 4:52:29:PM'),
+(7, 'Domain-driven design tackling complexity in the heart of software by Evans, Eric (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php2CD6.tmp', '0', '3781791', '2022-09-09 2:10:09:PM', '2022-09-09 2:10:09:PM'),
+(8, 'Frontend Architecture for Design Systems A Modern Blueprint for Scalable and Sustainable Websites (Micah Godbolt) (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php2D73.tmp', '0', '8248382', '2022-09-09 2:10:09:PM', '2022-09-09 2:10:09:PM'),
+(9, 'Think Like a Programmer An Introduction to Creative Problem Solving by V. Anton Spraul (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php4C66.tmp', '0', '7525122', '2022-09-09 2:10:19:PM', '2022-09-09 2:10:17:PM'),
+(10, 'UI is Communication How to Design Intuitive, User Centered Interfaces by Focusing on Effective Communication by Everett N McKay (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php4D80.tmp', '0', '42592328', '2022-09-09 2:10:19:PM', '2022-09-09 2:10:18:PM'),
+(11, 'Vue.Js Up and Running Building Accessible and Performant Web Apps by Callum Macrae (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php538C.tmp', '0', '3569300', '2022-09-09 2:10:19:PM', '2022-09-09 2:10:19:PM'),
+(12, 'WordPress Responsive Theme Design Essentials by Dejan Markovic (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php5429.tmp', '0', '4478014', '2022-09-09 2:10:19:PM', '2022-09-09 2:10:19:PM'),
+(13, 'ByteByteGo_LinkedIn_PDF.pdf', 'application/pdf', 'C:\\xampp\\tmp\\php8099.tmp', '0', '39603891', '2022-09-09 2:10:32:PM', '2022-09-09 2:10:31:PM'),
+(14, 'High Performance Browser Networking What every web developer should know about networking and web performance (Ilya Grigorik) (z-lib.org).pdf', 'application/pdf', 'C:\\xampp\\tmp\\php8647.tmp', '0', '17184955', '2022-09-09 2:10:32:PM', '2022-09-09 2:10:32:PM');
 
 -- --------------------------------------------------------
 
@@ -105,12 +72,27 @@ CREATE TABLE `requests` (
 --
 
 INSERT INTO `requests` (`id`, `status`, `file_id`, `user_id`, `date_requested`) VALUES
-(4, 'approved', 3, 1, '2022-08-28 05:06:10'),
-(5, 'approved', 3, 4, '2022-08-28 05:07:22'),
-(6, 'approved', 1, 4, '2022-08-28 05:07:41'),
-(7, 'approved', 2, 4, '2022-08-28 05:07:48'),
-(8, 'approved', 1, 1, '2022-08-28 05:08:39'),
-(9, 'approved', 2, 1, '2022-08-28 05:08:50');
+(6, 'approved', 6, 19, '2022-09-09 02:14:06'),
+(7, 'approved', 10, 19, '2022-09-09 09:06:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request_load`
+--
+
+CREATE TABLE `request_load` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `request_count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `request_load`
+--
+
+INSERT INTO `request_load` (`id`, `user_id`, `request_count`) VALUES
+(1, 19, 2);
 
 -- --------------------------------------------------------
 
@@ -133,25 +115,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `birthdate`, `type`) VALUES
-(1, 'Benjie', 'Edroso', 'benjieedroso@gmail.com', '$2y$10$h8/E1c4jqP.kWP42Zhn6POPDk9GvGZsUQkuDyvrM.Eg5X1woYs7Py', '2022-08-04', 'user'),
-(2, 'Christ', 'Gil', 'christ@gmail.com', '$2y$10$0wX5UWAz2ifbJ6dn4CqhOeUyDOQLsWPTb2HESDpq4Tl031Y54kRA2', '2022-08-04', 'admin'),
-(4, 'ronnel', 'dalisay', 'ronnel@gmail.com', '$2y$10$vuakl9CxCP/v1JYUNzZSJOWlPuvtkCaEI/tRhG0SWLQ00Ld2Vd10a', '2022-08-06', 'user');
+(3, 'Christ', 'Gil', 'christ@gmail.com', '$2y$10$DFjoW.m6zv3PUJrBZv7nDOdDUsvd/iWvpvHDFukueUA4OILKIeX3y', '2022-09-04', 'admin'),
+(12, 'Ronnel', 'Dalisay', 'ronnel@gmail.com', '$2y$10$WZ2tu7S.8XEuzxojWU3HE.fPgcGXjRJwahnkUTVUs5zlXm1z9N1z2', '2022-09-09', 'user'),
+(18, 'christ2', 'christ2', 'christ2@gmail.com', '$2y$10$AlfCn8uHY8z7oDVnNq971Oq.m6C9eqFaHbx9jzi5CxJVBK.2XLeVe', '2022-09-09', 'user'),
+(19, 'Benjie', 'Edroso', 'benjie@gmail.com', '$2y$10$qKe78ISkECMSt9pfCb3RKe0dU.cvDXSHo4wbmmDT/ZvVtmt31Dvpq', '2022-09-09', 'user');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`category_id`);
-
---
--- Indexes for table `expiration`
---
-ALTER TABLE `expiration`
-  ADD PRIMARY KEY (`expiration_id`);
 
 --
 -- Indexes for table `files`
@@ -168,6 +139,13 @@ ALTER TABLE `requests`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `request_load`
+--
+ALTER TABLE `request_load`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -178,34 +156,28 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `expiration`
---
-ALTER TABLE `expiration`
-  MODIFY `expiration_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `request_load`
+--
+ALTER TABLE `request_load`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
@@ -217,6 +189,12 @@ ALTER TABLE `users`
 ALTER TABLE `requests`
   ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`file_id`) REFERENCES `files` (`file_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `request_load`
+--
+ALTER TABLE `request_load`
+  ADD CONSTRAINT `request_load_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
