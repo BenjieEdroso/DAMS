@@ -33,16 +33,11 @@
                         <td><?php echo $request->date_requested?></td>
                         <td>
                             <div class="d-flex gap-3">
-                                <form action="<?php echo URLROOT?>/request/approve" method="post">
-                                    <input type="number" name="id" id="id" hidden value="<?php echo $request->id?>">
-                                    <input type="text" name="status" id="status" hidden value="approved">
-                                    <button type="submit" class="btn btn-primary btn-sm">Approve</button>
-                                </form>
-                                <form action="<?php echo URLROOT?>/request/refuse" method="post">
-                                    <input type="number" name="id" id="id" hidden value="<?php echo $request->id?>">
-                                    <input type="text" name="status" id="status" hidden value="refused">
-                                    <button type="submit" class="btn btn-danger btn-sm">Refuse</button>
-                                </form>
+                                <a href="<?php echo URLROOT?>/request/confirm_approve?file_id=<?php echo $request->id?>"
+                                    class="btn btn-sm btn-primary">Approve</a>
+                                <a href="<?php echo URLROOT?>/request/confirm_refuse?file_id=<?php echo $request->id?>"
+                                    class="btn btn-sm btn-danger">Refuse</a>
+
                             </div>
                         </td>
                     </tr>

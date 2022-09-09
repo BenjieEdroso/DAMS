@@ -16,6 +16,19 @@ class Request extends Controller{
         $this->view("pages/request", $data);
     }
 
+    public function confirm_approve(){
+        $data = [
+            "file_id" => htmlentities($_GET["file_id"]),
+        ];
+        $this->view("admin/confirm_approve", $data);
+    }
+    public function confirm_refuse(){
+        $data = [
+            "file_id" => htmlentities($_GET["file_id"]),
+        ];
+        $this->view("admin/confirm_refuse", $data);
+    }
+
     public function approve(){
         $data = [
             "request_id" => htmlentities($_POST["id"]),
@@ -26,6 +39,18 @@ class Request extends Controller{
             redirect("admin/requests");
         }
     }
+    public function refuse(){
+        $data = [
+            "request_id" => htmlentities($_POST["id"]),
+            "updated_status" => htmlentities($_POST["status"])
+        ];
+        $resultOfQuery = $this->requestModel->approve_request($data);
+        if($resultOfQuery){
+            redirect("admin/requests");
+        }
+    }
+
+    
 
     public function download(){
         try{
