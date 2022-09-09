@@ -186,6 +186,18 @@ redirect("admin/archive");
 };
 }
 
+public function confirm_delete_file(){
+    $file_name = htmlentities($_GET["file_name"]);
+    $file_to_delete = htmlentities($_GET["file_id"]);
+
+    $data = [
+    "file_id" => $file_to_delete,
+    "file_name" => $file_name,
+    ];
+
+    $this->view("admin/confirm_delete_file", $data);
+}
+
 public function delete_file(){
 //get id of file to be deleted
 $file_name = htmlentities($_GET["file_name"]);

@@ -40,56 +40,10 @@
                         <td class="overflow-hidden"><?php echo $archive->file_date_uploaded?></td>
                         <td class="overflow-hidden"><?php echo $archive->file_date_modified?></td>
                         <td style="width: 120px;">
-                            <button class="btn btn-sm btn-primary" id="editBtn" data-bs-toggle="modal"
-                                data-bs-target="#editFileModal">Edit</button>
-                            <a href="<?php echo $archive->file_id?>" class="btn btn-primary btn-sm">id</a>
-                            <div class="modal fade" id="editFileModal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4>Edit file</h4>
-                                            <button class="btn btn-danger btn-sm"
-                                                data-bs-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="<?php echo URLROOT?>/admin/update_file" method="post">
-                                                <input type="number" name="file_id" id="file_id" hidden
-                                                    value="<?php echo $archive->file_id?>">
-                                                <div class="form-group">
-                                                    <label for="file_name">Filename</label>
-                                                    <input type="text" name="file_name" id="file_name"
-                                                        value="<?php echo $archive->file_name?>"
-                                                        class="form-control form-control-sm">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="submit" value="Update"
-                                                        class="btn btn-sm btn-primary col-12 mt-3">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button class="btn btn-sm btn-danger" data-bs-target="#deleteFileModal"
-                                data-bs-toggle="modal">Delete</button>
-                            <div class="modal fade" data-bs-toggle="modal" id="deleteFileModal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4>Are you sure you want to dete this file?</h4>
-                                            <button class="btn btn-danger btn-sm"
-                                                data-bs-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <a href="<?php echo URLROOT?>/admin/delete_file?file_id=<?php echo $archive->file_id?>&file_name=<?php echo $archive->file_name?>"
-                                                class="btn-sm btn btn-primary">Yes</a>
-                                            <button class="btn btn-secondary btn-sm"
-                                                data-bs-dismiss="modal">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <a href="<?php echo URLROOT?>/admin/edit_file?file_id=<?php echo $archive->file_id?>"
+                                class="btn btn-primary btn-sm">Edit</a>
+                            <a href="<?php echo URLROOT?>/admin/confirm_delete_file?file_id=<?php echo $archive->file_id?>&file_name=<?php echo $archive->file_name?>"
+                                class="btn btn-sm btn-danger">Delete</a>
                         </td>
                     </tr>
                     <?php }?>
