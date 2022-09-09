@@ -2,8 +2,7 @@
 session_start();
 class Request extends Controller{
     private $requestModel;
-    public function __construct()
-    {
+    public function __construct(){
         $this->requestModel = $this->model("requestModel");
     }
 
@@ -18,17 +17,14 @@ class Request extends Controller{
     }
 
     public function approve(){
-       
         $data = [
             "request_id" => htmlentities($_POST["id"]),
             "updated_status" => htmlentities($_POST["status"])
         ];
-       
         $resultOfQuery = $this->requestModel->approve_request($data);
         if($resultOfQuery){
             redirect("admin/requests");
         }
-
     }
 
     public function download(){
